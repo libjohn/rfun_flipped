@@ -1,0 +1,52 @@
+# General stuff
+_publish.R
+_book
+_bookdown_files
+rsconnect
+
+# A few specific files
+exercise_00.nb.html
+exercise_00_answers.nb.html
+exercise_01.nb.html
+exercise_01_answers.nb.html
+
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+data/*.zip
+data/*.feather
+2008.csv
+cars2.csv
+cars3.csv
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+.Rproj.user
