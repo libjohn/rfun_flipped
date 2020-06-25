@@ -5,8 +5,8 @@ date: "`r Sys.Date()`"
 output: github_document
 ---
 <!-- READ THIS -->
-<!-- file is generated from README.Rmd. Please edit that file -->
-<!-- READ THIS       ^^^     Yeah, you!!  Eyes up here ^^^    -->
+<!-- file is generated from outline.Rmd. Please edit that file:  i.e. edit outline.Rmd -->
+<!-- READ THIS       ^^^     Yeah, you!!  Eyes up here ^^^                             -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

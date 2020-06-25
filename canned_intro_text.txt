@@ -1,0 +1,5 @@
+Hi.  I'm John Little and you're watching the Introduction to R instruction series.  This series is a part of Rfun learning resources, sponsored by CDVS @ DUL.
+In this section we will explore how to access R & RStudio
+•	How to download the R kernel
+•	How to download and run the RStudio IDE
+•	And, briefly consider how to choose a programming language by discussiong R and Python on a very superficial level
