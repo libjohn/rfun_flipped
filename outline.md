@@ -5,9 +5,9 @@ John Little
 
 <!-- READ THIS -->
 
-<!-- file is generated from README.Rmd. Please edit that file -->
+<!-- file is generated from outline.Rmd. Please edit that file:  i.e. edit outline.Rmd -->
 
-<!-- READ THIS       ^^^     Yeah, you!!  Eyes up here ^^^    -->
+<!-- READ THIS       ^^^     Yeah, you!!  Eyes up here ^^^                             -->
 
 ## Introduction to R - Refactoring the Workshop
 
@@ -101,8 +101,8 @@ presentation
 4.  Tour of the RStudio environment
     
       - Create a blank project
-      - Console ; Packages ; Help ; Data ; Environment
-      - Script Editor & R Markdown
+      - Console | Files / Packages / Help | Environment | Script Editor
+      - R Markdown
       - Switch to your other project (from Section 2)
       - [Keyboard
         Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
