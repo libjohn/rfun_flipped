@@ -1,15 +1,7 @@
 # General stuff
-_publish.R
-_book
-_bookdown_files
 rsconnect
 
 # A few specific files
-exercise_00.nb.html
-exercise_00_answers.nb.html
-exercise_01.nb.html
-exercise_01_answers.nb.html
-
 
 # History files
 .Rhistory
@@ -17,11 +9,7 @@ exercise_01_answers.nb.html
 
 # Session Data files
 .RData
-data/*.zip
-data/*.feather
-2008.csv
-cars2.csv
-cars3.csv
+
 
 # Example code in package build process
 *-Ex.R

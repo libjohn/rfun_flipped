@@ -1,0 +1,22 @@
+---
+title: README
+author: John Little
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## workshop_rfun_flipped
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Due to COVID-19, in preparation for remote zoom-based teaching, I'm flipping the workshop
