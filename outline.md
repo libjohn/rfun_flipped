@@ -1,7 +1,7 @@
 Outline for modules
 ================
 John Little
-2020-06-25
+2020-06-29
 
 <!-- READ THIS -->
 
@@ -209,6 +209,8 @@ presentation
     the grammar of graphics, & interactive plots via `plotly`
 
 11. R Markdown
+
+12. Assignment `<-` & pipe `%>%`
 
 -----
 

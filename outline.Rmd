@@ -164,6 +164,8 @@ project_name (folder)
 
 1. R Markdown
 
+1. Assignment `<-`  & pipe `%>%`
+
 
 ---
 
