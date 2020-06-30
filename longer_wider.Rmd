@@ -1,0 +1,95 @@
+---
+title: "pivot data"
+subtitle: longer or wider
+output: html_notebook
+---
+
+- Make messy data into tidy data
+    - Every variable is a column
+    - Every row is an observation
+    - Every cell is a single value
+- Pivoting (i.e. reshaping)
+
+https://tidyr.tidyverse.org/
+tidyr	           gather	        spread
+                 pivot_longer   pivot_wider 
+reshape(2)	     melt	          cast
+spreadsheets	   unpivot	      pivot
+databases	       fold	          unfold
+
+
+Vignette:  https://tidyr.tidyverse.org/articles/pivot.html
+
+## Load library packages
+
+```{r}
+library(tidyverse)
+```
+
+## Data
+
+Onboard with the [tidyr](https://tidyr.tidyverse.org/reference/index.html#section-data) you will find several practice datasets
+
+```{r}
+data(relig_income)
+data(fish_encounters)
+```
+
+
+## Longer
+
+```{r}
+relig_income
+```
+
+
+```{r}
+relig_income %>%
+  pivot_longer(-religion, names_to = "income", values_to = "count")
+```
+
+```{r}
+relig_income %>%
+  pivot_longer(-religion, names_to = "income", values_to = "count") %>% 
+  ggplot(aes(religion, count, fill = income)) +
+  geom_col()
+```
+
+```{r}
+inc_levels = c("Don't know/refused",
+               "<$10k", "$10-20k", "$20-30k", "$30-40k",
+               "$40-50k", "$50-75k", "$75-100k", "$100-150k",
+               ">150k")
+
+relig_income %>%
+  pivot_longer(-religion, names_to = "income", values_to = "count") %>% 
+  mutate(income = fct_relevel(income, inc_levels)) %>% 
+  ggplot(aes(fct_reorder(religion, count), 
+             count, fill = fct_rev(income))) +
+  geom_col() +
+  scale_fill_viridis_d(direction = -1) +
+  coord_flip() 
+```
+
+```{r}
+relig_income %>%
+  pivot_longer(-religion, names_to = "income", values_to = "count") %>% 
+  filter(income == ">150k") %>% 
+  ggplot(aes(fct_reorder(religion, count), count, fill = income)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  ggtitle("Income greater than $150k by demonimation")
+```
+
+## Wider
+
+```{r}
+fish_encounters
+```
+
+
+```{r}
+fish_encounters %>% 
+  pivot_wider(names_from = station, values_from = seen)
+```
+
