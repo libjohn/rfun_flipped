@@ -144,7 +144,9 @@ presentation
           - [ROpenSci](https://ropensci.org/)
           - [MetaCran](https://www.r-pkg.org/)
 
-6.  Demo & R Markdown
+6.  Assignment `<-` & pipe `%>%`
+
+7.  Demo & R Markdown
     
       - Base R, in the console
           - A big calculator
@@ -175,7 +177,7 @@ presentation
               - (Share with others, so they don’t have to recreate your
                 compute environment.)
 
-7.  [`dplyr`](https://dplyr.tidyverse.org/) package
+8.  [`dplyr`](https://dplyr.tidyverse.org/) package
     
       - “A grammar of data manipulation, providing a consistent set of
         verbs that help you solve the most common data manipulation
@@ -190,7 +192,7 @@ presentation
       - [RStudio Keyboard
         Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
 
-8.  [`tidyr`](https://tidyr.tidyverse.org/) package
+9.  [`tidyr`](https://tidyr.tidyverse.org/) package
     
       - Make messy data into **tidy data**
           - Every variable is a column
@@ -198,22 +200,20 @@ presentation
           - Every cell is a single value
       - i.e. **pivots**
 
-9.  dplyr revisited
+10. dplyr revisited
     
       - People who like `pivot_longer()` also like `dplyr::left_joint()`
 
-10. Exploratory Data Analysis (EDA): `ggplot2()` & `skimr`
+11. Exploratory Data Analysis (EDA): `ggplot2()` & `skimr`
     
       - `skimr::skim()` from
         library[(skimr)](https://docs.ropensci.org/skimr/)
       - ggplot2(): a brief overview of visualization
 
-11. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to
+12. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to
     the grammar of graphics, & interactive plots via `plotly`
 
-12. R Markdown
-
-13. Assignment `<-` & pipe `%>%`
+13. R Markdown
 
 -----
 
