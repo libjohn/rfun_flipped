@@ -151,7 +151,7 @@ presentation
 
 6.  Assignment `<-` & pipe `%>%`
 
-7.  Demo & R Markdown
+7.  R, RStudio IDE, R Markdown
     
       - Base R, in the console
           - A big calculator
@@ -236,7 +236,7 @@ presentation
 
 25. Version Control: git and GitHub
 
-## Quick Start
+## Quick Start - Demonstration
 
 1.  make a folder
 2.  drag starwars.csv
