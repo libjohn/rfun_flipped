@@ -1,7 +1,7 @@
 Outline for modules
 ================
 John Little
-2020-06-29
+2020-07-10
 
 <!-- READ THIS -->
 
@@ -197,20 +197,23 @@ presentation
           - Every row is an observation
           - Every cell is a single value
       - i.e. **pivots**
+
+9.  dplyr revisited
+    
       - People who like `pivot_longer()` also like `dplyr::left_joint()`
 
-9.  Exploratory Data Analysis (EDA): `ggplot2()` & `skimr`
+10. Exploratory Data Analysis (EDA): `ggplot2()` & `skimr`
     
       - `skimr::skim()` from
         library[(skimr)](https://docs.ropensci.org/skimr/)
       - ggplot2(): a brief overview of visualization
 
-10. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to
+11. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to
     the grammar of graphics, & interactive plots via `plotly`
 
-11. R Markdown
+12. R Markdown
 
-12. Assignment `<-` & pipe `%>%`
+13. Assignment `<-` & pipe `%>%`
 
 -----
 

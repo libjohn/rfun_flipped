@@ -154,6 +154,8 @@ project_name (folder)
         -  Every row is an observation
         -  Every cell is a single value
     -  i.e. **pivots**
+
+1. dplyr revisited
     -  People who like `pivot_longer()` also like `dplyr::left_joint()`
 
 1. Exploratory Data Analysis (EDA): `ggplot2()` & `skimr`
