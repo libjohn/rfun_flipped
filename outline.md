@@ -32,6 +32,11 @@ presentation
               - [R Community](https://community.rstudio.com/)
               - [R Ladies](https://rladies.org/) | Locally, [R Ladies,
                 RTP](https://www.meetup.com/rladies-rtp/)
+              - [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
+                weekly practice sessions (+ David Robinson’s [recorded
+                live feed of TT on
+                YouTube](https://www.youtube.com/watch?v=NY0-IFet5AM&list=PL19ev-r1GBwkuyiwnxoHTRC8TTqP8OEi8)
+                )
           - ML leans towards Python, [or does
             it](https://www.tidymodels.org/learn/)?
           - Programmer/Coder v Analyst
