@@ -1,0 +1,160 @@
+---
+title: "Quickstart demo"
+author: "John Little"
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+## Outline
+
+1. make a folder
+2. drag starwars.csv
+3. Make existing folder and RStudio project
+4. Open an R Markdown Notebook
+5. `library(tidyverses)`
+6. `read_csv(starwars.csv)`
+7. `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
+8. `summary(starwars)`
+9. `skimr(starwars)`
+10. `left_join(starwars, fivethirtyeight)`
+12. Transform data: five dplyr verbs ...
+13. `count` / `group_by` & `summarize`
+14. Make barchart an interactive ggplotly
+15. Quick Linear Regression
+16. Save Notebook report, and as MSWord file
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(skimr)
+library(plotly)
+library(broom)
+```
+
+```{r}
+data("starwars")
+```
+
+```{r}
+plot <- ggplot(data = starwars, aes(hair_color)) + 
+  geom_bar()
+plot
+```
+
+```{r}
+skim(starwars)
+```
+
+11. `summarize(gender)`
+```{r}
+starwars %>% 
+  summary(gender)
+```
+
+## Load more data
+
+```{r}
+favorability <- read_csv("https://raw.githubusercontent.com/libjohn/intro2r-code/master/data/538_favorability_popularity.csv",
+                         ,skip = 11)
+```
+
+10. `left_join(starwars, fivethirtyeight)`
+
+```{r}
+starwars %>% 
+  left_join(favorability, by = "name")
+```
+
+
+
+
+
+12. Transform data: five dplyr verbs ...
+
+
+```{r}
+starwars %>% 
+  select(name, gender, hair_color)
+```
+
+```{r}
+starwars %>% 
+  filter(gender == "feminine")
+```
+
+
+```{r}
+starwars %>% 
+  arrange(desc(height), desc(name))
+```
+
+```{r}
+starwars %>%
+  drop_na(mass) %>% 
+  select(name, mass) %>% 
+  mutate(big_mass = mass * 2)
+```
+
+
+13. `count` / `group_by` & `summarize`
+
+
+```{r}
+starwars %>% 
+  count(gender)
+```
+
+```{r}
+starwars %>% 
+  drop_na(mass) %>% 
+  summarise(sum(mass))
+```
+
+
+```{r}
+starwars %>% 
+  drop_na(height) %>% 
+  group_by(gender, species) %>% 
+  summarise(mean_height = mean(height), total = n()) %>% 
+  arrange(-total) %>%
+  drop_na(gender) %>% 
+  filter(total > 1)
+```
+
+
+```{r}
+ggplotly(plot)
+```
+
+```{r}
+model <- lm(mass ~ height, data = starwars %>% filter(mass < 500))
+model
+```
+
+```{r}
+tidy(model)
+```
+
+```{r}
+glance(model)
+```
+
+
+```{r}
+augment(model)
+```
+
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>%
+  ggplot(aes(height, mass)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## Render reports
+
+- html_notebook
+- ms_word
+- slides
+- flexdashboard
