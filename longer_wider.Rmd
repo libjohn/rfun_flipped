@@ -129,7 +129,7 @@ relig_income %>%
 
 It also becomes a natural step to make comparisons with all the income values using `ggplot2::facet_wrap()`
 
-```{r fig.width=10}
+```{r fig.height=9, fig.width=10, warning=FALSE}
 relig_income %>%
   pivot_longer(-religion, names_to = "income", values_to = "count") %>% 
   mutate(income = fct_relevel(income, inc_levels)) %>% 
@@ -137,16 +137,15 @@ relig_income %>%
              count)) +
   geom_col(show.legend = FALSE) +
   coord_flip() +
-  facet_wrap(~ income, nrow = 2) 
-  
+  facet_wrap(~ income, nrow = 2)
 ```
 
 Another variation.  Again, ggplot2 affordances are easier to leverage with tall data.
 
-```{r fig.height=4, fig.width=10, message=FALSE}
+```{r fig.height=4, fig.width=10, message=FALSE, warning=FALSE}
 relig_income %>%
   pivot_longer(-religion, names_to = "income", values_to = "count") %>% 
-  mutate(religion = fct_lump_n(religion, 6, w = count)) %>% 
+  mutate(religion = fct_lump_n(religion, 4, w = count)) %>% 
   mutate(income = fct_relevel(income, inc_levels)) %>% 
   group_by(religion, income) %>%
   summarise(sumcount = sum(count)) %>% 
