@@ -215,12 +215,12 @@ project_name (folder)
 - [RStudio Primers](https://rstudio.cloud/learn/primers)
 - [DataQuest.io](https://www.dataquest.io/data-science-courses-directory/)
 - [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) practice
-- [Rfun](https://rfun.library.duke.edu/) - R we having fun yet‽
+- [Rfun](https://rfun.library.duke.edu/) - **R we having fun yet‽**
 - [ReMaster the Tidyverse](https://github.com/rstudio-education/remaster-the-tidyverse)
 
     - Update of [Master the Tidyverse](https://github.com/rstudio/master-the-tidyverse)
 
-- [R for Data Science](https://r4ds.had.co.nz/) by Wickham and Grolemund
+- [_R for Data Science_](https://r4ds.had.co.nz/) by Wickham and Grolemund
 - [Introduction to Data Science](https://introds.org/) by Çetinkaya-Rundel
 - [_Hands-On programming_](https://rstudio-education.github.io/hopr/) by Grolemund
 - [_ggplot2: Elegant Graphics for Data Analysis_](https://ggplot2-book.org/) by Wickham
@@ -228,7 +228,7 @@ project_name (folder)
 - [_Data Visualization A practical introduction_](https://socviz.co/makeplot.html#makeplot) by Healy
 - [_Text Mining with R_](https://www.tidytextmining.com/) by Silge & Robinson
 - [Shiny](https://shiny.rstudio.com/)
-- [Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/) by Ismay and Kim
+- [_Statistical Inference via Data Science: A ModernDive into R and the Tidyverse_](https://moderndive.com/) by Ismay and Kim
 - [Tidymodels](https://www.tidymodels.org/) _packages for modeling and machine learning_
 
 

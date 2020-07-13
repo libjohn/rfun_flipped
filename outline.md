@@ -283,7 +283,7 @@ presentation
   - [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday)
     practice
 
-  - [Rfun](https://rfun.library.duke.edu/) - R we having fun yet‽
+  - [Rfun](https://rfun.library.duke.edu/) - **R we having fun yet‽**
 
   - [ReMaster the
     Tidyverse](https://github.com/rstudio-education/remaster-the-tidyverse)
@@ -291,7 +291,7 @@ presentation
       - Update of [Master the
         Tidyverse](https://github.com/rstudio/master-the-tidyverse)
 
-  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham and
+  - [*R for Data Science*](https://r4ds.had.co.nz/) by Wickham and
     Grolemund
 
   - [Introduction to Data Science](https://introds.org/) by
@@ -314,8 +314,8 @@ presentation
 
   - [Shiny](https://shiny.rstudio.com/)
 
-  - [Statistical Inference via Data Science: A ModernDive into R and the
-    Tidyverse](https://moderndive.com/) by Ismay and Kim
+  - [*Statistical Inference via Data Science: A ModernDive into R and
+    the Tidyverse*](https://moderndive.com/) by Ismay and Kim
 
   - [Tidymodels](https://www.tidymodels.org/) *packages for modeling and
     machine learning*
