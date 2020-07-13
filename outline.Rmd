@@ -195,18 +195,19 @@ project_name (folder)
 1. Make existing folder and RStudio project
 1. Open an R Markdown Notebook
 1. `library(tidyverses)`  plus other libraries
-1. IMPORT data See Also _RStudio data import wizard_
-1. ATTACHE data
+1. IMPORT data See Also [_RStudio data import wizard_](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
+1. Attach data
 1. EDA: Visualize `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
 1. EDA: `skimr::skim(starwars)`
 1. EDA: summary(fav_rating)
 1. `left_join(starwars, fivethirtyeight)`
 1. Transform data: five dplyr verbs ...
 
+    - `filter`, `select`, `arrange`, `mutate`
     - `count` / `group_by` & `summarize`
         
-1. Interactive visualization ggplotly
-1. Quick Linear Regression
+1. Interactive visualization: `ggplotly`
+1. linear regression / models (quick syntax introduction)
 1. Reports:  notebooks, slides, dashboards, word document, PDF, book, etc.
 
 

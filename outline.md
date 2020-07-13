@@ -248,9 +248,10 @@ presentation
 
 5.  `library(tidyverses)` plus other libraries
 
-6.  IMPORT data See Also *RStudio data import wizard*
+6.  IMPORT data See Also [*RStudio data import
+    wizard*](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
 
-7.  ATTACHE data
+7.  Attach data
 
 8.  EDA: Visualize `ggplot(data = starwars, aes(hair_color)) +
     geom_bar()`
@@ -263,11 +264,12 @@ presentation
 
 12. Transform data: five dplyr verbs …
     
+      - `filter`, `select`, `arrange`, `mutate`
       - `count` / `group_by` & `summarize`
 
-13. Interactive visualization ggplotly
+13. Interactive visualization: `ggplotly`
 
-14. Quick Linear Regression
+14. linear regression / models (quick syntax introduction)
 
 15. Reports: notebooks, slides, dashboards, word document, PDF, book,
     etc.
