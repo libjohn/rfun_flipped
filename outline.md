@@ -316,3 +316,6 @@ presentation
 
   - [Statistical Inference via Data Science: A ModernDive into R and the
     Tidyverse](https://moderndive.com/) by Ismay and Kim
+
+  - [Tidymodels](https://www.tidymodels.org/) *packages for modeling and
+    machine learning*
