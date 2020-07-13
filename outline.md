@@ -274,13 +274,43 @@ presentation
 
 ## Resources
 
-    - RStudio Primers
-    - DataQuest.io
-    - Master the Tidyverse
-    - Rfun 
-    - R for Data Science
-    - Grolemund practical programming
-    - ggplot2
-    - Text Mining by Silge/Robinson
-    - Shiny
-    - Plotly for R
+  - [RStudio Primers](https://rstudio.cloud/learn/primers)
+
+  - [DataQuest.io](https://www.dataquest.io/data-science-courses-directory/)
+
+  - [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday)
+    practice
+
+  - [Rfun](https://rfun.library.duke.edu/) - R we having fun yet‽
+
+  - [ReMaster the
+    Tidyverse](https://github.com/rstudio-education/remaster-the-tidyverse)
+    
+      - Update of [Master the
+        Tidyverse](https://github.com/rstudio/master-the-tidyverse)
+
+  - [R for Data Science](https://r4ds.had.co.nz/) by Wickham and
+    Grolemund
+
+  - [Introduction to Data Science](https://introds.org/) by
+    Çetinkaya-Rundel
+
+  - [*Hands-On programming*](https://rstudio-education.github.io/hopr/)
+    by Grolemund
+
+  - [*ggplot2: Elegant Graphics for Data
+    Analysis*](https://ggplot2-book.org/) by Wickham
+
+  - [*Interactive web-based data visualization with R, plotly, and
+    shiny*](https://plotly-r.com/) by Sievert
+
+  - [*Data Visualization A practical
+    introduction*](https://socviz.co/makeplot.html#makeplot) by Healy
+
+  - [*Text Mining with R*](https://www.tidytextmining.com/) by Silge &
+    Robinson
+
+  - [Shiny](https://shiny.rstudio.com/)
+
+  - [Statistical Inference via Data Science: A ModernDive into R and the
+    Tidyverse](https://moderndive.com/) by Ismay and Kim
