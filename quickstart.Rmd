@@ -7,32 +7,58 @@ output: html_notebook
 
 ## Outline
 
-1. make a folder
-2. drag starwars.csv
-3. Make existing folder and RStudio project
-4. Open an R Markdown Notebook
-5. `library(tidyverses)`
-6. `read_csv(starwars.csv)`
-7. `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
-8. `summary(starwars)`
-9. `skimr(starwars)`
-10. `left_join(starwars, fivethirtyeight)`
-12. Transform data: five dplyr verbs ...
-13. `count` / `group_by` & `summarize`
-14. Make barchart an interactive ggplotly
-15. Quick Linear Regression
-16. Save Notebook report, and as MSWord file
+1. Make a data folder
+1. Drag favorability.csv into the data folder
+1. Make existing folder and RStudio project
+1. Open an R Markdown Notebook
+1. `library(tidyverses)`  plus other libraries
+1. IMPORT data See Also _RStudio data import wizard_
+1. ATTACHE data
+1. EDA: Visualize `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
+1. EDA: `skimr::skim(starwars)`
+1. EDA: summary(fav_rating)
+1. `left_join(starwars, fivethirtyeight)`
+1. Transform data: five dplyr verbs ...
+
+    - `count` / `group_by` & `summarize`
+        
+1. Interactive visualization ggplotly
+1. Quick Linear Regression
+1. Reports:  notebooks, slides, dashboards, word document, PDF, book, etc.
+
+---
+
+## 5. `library(tidyverses)`  plus other libraries
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(skimr)
 library(plotly)
+library(moderndive)
 library(broom)
 ```
+
+## 6. `read_csv(favorability.csv)`   See Also data import wizard
+
+```{r}
+## fav_data <- read_csv("data/fav.csv")
+favorability <- read_csv("https://raw.githubusercontent.com/libjohn/intro2r-code/master/data/538_favorability_popularity.csv", skip = 11)
+```
+
+
+## 7 attached on-board data
+
+- dplyr::starwars
+
+`dplyr::starwars`
 
 ```{r}
 data("starwars")
 ```
+
+## 8 Quick visualization
+
+Visualize with the `ggplot2` library.
 
 ```{r}
 plot <- ggplot(data = starwars, aes(hair_color)) + 
@@ -40,52 +66,70 @@ plot <- ggplot(data = starwars, aes(hair_color)) +
 plot
 ```
 
+### One improvement
+
+Arrange bars by frequency using forcats::fct_infreq
+
+
+```{r}
+plot1 <- ggplot(data = starwars, aes(fct_infreq(hair_color))) + 
+  geom_bar()
+plot1
+```
+
+
+## 9. `skimr::skim(starwars)`
+
+The `skimr` library presents summary EDA results using the `skim()` function 
+
 ```{r}
 skim(starwars)
 ```
 
-11. `summarize(gender)`
-```{r}
-starwars %>% 
-  summary(gender)
-```
-
-## Load more data
+## 10. summary
 
 ```{r}
-favorability <- read_csv("https://raw.githubusercontent.com/libjohn/intro2r-code/master/data/538_favorability_popularity.csv",
-                         ,skip = 11)
+summary(favorability)
 ```
 
-10. `left_join(starwars, fivethirtyeight)`
+## 11. `left_join(starwars, fivethirtyeight)`
+
+Joins or merges are part of the`dplyr` library.
 
 ```{r}
 starwars %>% 
-  left_join(favorability, by = "name")
+  left_join(favorability, by = "name") %>% 
+  select(name, fav_rating, everything()) %>% 
+  arrange(-fav_rating)
 ```
 
 
+## 12. Transform data: 
 
+From the `dplyr` library, use the five  verbs ...
 
-
-12. Transform data: five dplyr verbs ...
-
+### `select` to subset data by columns
 
 ```{r}
 starwars %>% 
   select(name, gender, hair_color)
 ```
 
+### `filter` to subset data rows 
+
 ```{r}
 starwars %>% 
   filter(gender == "feminine")
 ```
 
+### `arrange` to sort data
 
 ```{r}
 starwars %>% 
   arrange(desc(height), desc(name))
 ```
+
+### `mutate` to add new variable or transform existing
 
 ```{r}
 starwars %>%
@@ -95,7 +139,9 @@ starwars %>%
 ```
 
 
-13. `count` / `group_by` & `summarize`
+### `count` / `group_by` & `summarize`
+
+subtotals of variables
 
 
 ```{r}
@@ -103,58 +149,104 @@ starwars %>%
   count(gender)
 ```
 
+Variable totals (and also, but not here, calculations)
+
 ```{r}
 starwars %>% 
   drop_na(mass) %>% 
   summarise(sum(mass))
 ```
 
+Variable subtotals and calculations
 
-```{r}
+> `group_by(gender, species) %>% 
+   summarise(mean_height = mean(height), total = n())`
+
+```{r message=FALSE, warning=FALSE}
 starwars %>% 
   drop_na(height) %>% 
   group_by(gender, species) %>% 
   summarise(mean_height = mean(height), total = n()) %>% 
-  arrange(-total) %>%
-  drop_na(gender) %>% 
-  filter(total > 1)
+  arrange(desc(total)) %>%
+  drop_na(species) %>%
+  filter(total > 1) %>% 
+  select(species, gender, total, everything())
 ```
+
+## 13. Interactive visualization
+
+from the `plotly` library
 
 
 ```{r}
-ggplotly(plot)
+ggplotly(plot1)
 ```
+
+## 14. Regression / models
+
+Predict mass from height after eliminating Jabba from the data set.  Here we'll use primarily base R, `moderndive` for model outputs, and tidyverse for the pipe `%>%` and `dplyr` for data transformations.  Plus, alternatively, the `broom` library to manipulate models. 
 
 ```{r}
 model <- lm(mass ~ height, data = starwars %>% filter(mass < 500))
 model
+summary(model)
+```
+
+A nice _Explanation of Basic Regression_ can be found in [chapter 5](https://moderndive.com/5-regression.html) of the book [_Statistical Inference via Data Science_](https://moderndive.com/).  You can also use the `moderndive`
+library packages to access helpful functions such as:  `get_correlatin()`, `get_regression_table()`, etc.
+
+You may also appreciate or prefer the [broom](https://broom.tidyverse.org) package for the very nice `tidy()`, `glance()`, and `augment()` functions.
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>% 
+  get_correlation(mass ~ height)
+```
+
+
+```{r}
+# tidy(model)
+get_regression_table(model)
 ```
 
 ```{r}
-tidy(model)
-```
-
-```{r}
-glance(model)
+# broom::glance(model)
+get_regression_summaries(model)
 ```
 
 
 ```{r}
-augment(model)
+# broom::augment(model)
+get_regression_points(model)
 ```
 
+### Visualize regression
+
+`mass` over `height` with a fitted linear regression line and confidence interval using `geom_smooth()`
 
 ```{r}
 starwars %>% 
   filter(mass < 500) %>%
   ggplot(aes(height, mass)) +
-  geom_point() +
+  geom_jitter() +
   geom_smooth(method = "lm")
 ```
 
-## Render reports
+## 15. Render reports
 
-- html_notebook
-- ms_word
-- slides
-- flexdashboard
+By changing the argument in the YAML header, you can render many report styles.  A few popular examples include
+
+type | YAML syntax | More information
+--- | --- | ---
+notebook (alpha or dev) | output: html_notebook | [Notebook](https://bookdown.org/yihui/rmarkdown/notebook.html)
+notebook (final or prod) | output: html_document | [HTML document](https://bookdown.org/yihui/rmarkdown/html-document.html)
+Word document | output: word_document | [MS Word](https://bookdown.org/yihui/rmarkdown/word-document.html)
+slide deck | See [Get Started](https://slides.yihui.org/xaringan/#4) | [Xaringan](https://slides.yihui.org/xaringan/#1)
+dashboards | &nbsp; | [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) | [shiny](https://shiny.rstudio.com/)
+e-book / web-book | &nbsp; | [Bookdown](https://bookdown.org/yihui/bookdown/)
+website | &nbsp; | [Blogdown](https://bookdown.org/yihui/blogdown/)
+website (simpler) | | [Create a website / Distill](https://rstudio.github.io/distill/website.html)
+PDF | output: pdf_document | [PDF document](https://bookdown.org/yihui/rmarkdown/pdf-document.html)
+
+
+
