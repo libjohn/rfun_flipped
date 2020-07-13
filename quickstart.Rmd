@@ -38,9 +38,11 @@ library(moderndive)
 library(broom)
 ```
 
-## 6. `read_csv(favorability.csv)`   See Also data import wizard
+## 6. `read_csv(file_name.csv)`   
 
-```{r}
+See Also [data import wizard](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
+
+```{r message=FALSE, warning=FALSE}
 ## fav_data <- read_csv("data/fav.csv")
 favorability <- read_csv("https://raw.githubusercontent.com/libjohn/intro2r-code/master/data/538_favorability_popularity.csv", skip = 11)
 ```
@@ -61,18 +63,20 @@ data("starwars")
 Visualize with the `ggplot2` library.
 
 ```{r}
-plot <- ggplot(data = starwars, aes(hair_color)) + 
+plot <- ggplot(data = starwars, 
+               aes(x = hair_color)) + 
   geom_bar()
 plot
 ```
 
 ### One improvement
 
-Arrange bars by frequency using forcats::fct_infreq
+Arrange bars by frequency using `forcats::fct_infreq()`
 
 
 ```{r}
-plot1 <- ggplot(data = starwars, aes(fct_infreq(hair_color))) + 
+plot1 <- ggplot(starwars, 
+                aes(fct_infreq(hair_color))) + 
   geom_bar()
 plot1
 ```
@@ -94,7 +98,7 @@ summary(favorability)
 
 ## 11. `left_join(starwars, fivethirtyeight)`
 
-Joins or merges are part of the`dplyr` library.
+[Joins](https://dplyr.tidyverse.org/articles/two-table.html) or merges are part of the`dplyr` library.
 
 ```{r}
 starwars %>% 
@@ -242,10 +246,10 @@ notebook (alpha or dev) | output: html_notebook | [Notebook](https://bookdown.or
 notebook (final or prod) | output: html_document | [HTML document](https://bookdown.org/yihui/rmarkdown/html-document.html)
 Word document | output: word_document | [MS Word](https://bookdown.org/yihui/rmarkdown/word-document.html)
 slide deck | See [Get Started](https://slides.yihui.org/xaringan/#4) | [Xaringan](https://slides.yihui.org/xaringan/#1)
-dashboards | &nbsp; | [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) | [shiny](https://shiny.rstudio.com/)
+dashboards | &nbsp; | [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/) or [shiny](https://shiny.rstudio.com/)
 e-book / web-book | &nbsp; | [Bookdown](https://bookdown.org/yihui/bookdown/)
 website | &nbsp; | [Blogdown](https://bookdown.org/yihui/blogdown/)
-website (simpler) | | [Create a website / Distill](https://rstudio.github.io/distill/website.html)
+website (simple) | | [Create a website / Distill](https://rstudio.github.io/distill/website.html)
 PDF | output: pdf_document | [PDF document](https://bookdown.org/yihui/rmarkdown/pdf-document.html)
 
 

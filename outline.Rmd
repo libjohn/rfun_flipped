@@ -23,7 +23,7 @@ Refactor existing workshop for smaller video segments and flipped presentation
         - https://rstudio.cloud
         - https://vm-manage.oit.duke.edu/containers
     - R v Python
-        - R is a _data first_ (i.e. analysis) programing language
+        - R is a _data first_ (i.e. analysis) programming language
         - Python is a general programming language
         - Are there libraries/packages relevant to your work?
         - Is there a supportive community?
@@ -107,7 +107,7 @@ project_name (folder)
          ---  | ---
          readr | importing CSV data
          dplyr | transforming data 
-         ggplot2 | visuazlizing
+         ggplot2 | visualizing
          tibble  | rectangular grid / data frame
          tidyr   | pivot 
          forcats | categorical data / factors
@@ -132,7 +132,7 @@ project_name (folder)
         - Code Chunks:  Separate prose from code
             - [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming)  (e.g. Jupyter notebooks, R notebooks)
             - [R Markdown Cheatsheet](https://rmarkdown.library.duke.edu/slides/index.html#5)
-        - Integrate a natural language explanation of your analysis along with your code snippets.  An approach used within computational sciences to create a functional record of *reproducibile* research. You are your most frequent collaborator, six months from now, or six months ago. 
+        - Integrate a natural language explanation of your analysis along with your code snippets.  An approach used within computational sciences to create a functional record of *reproducible* research. You are your most frequent collaborator, six months from now, or six months ago. 
         -  Create a new, blank R Notebook
             -  R **Notebook** v. R Markdown **Document[s]**
         -  Many types of R Reports
@@ -147,7 +147,7 @@ project_name (folder)
         - `select()` pick variables / columns
         - `filter()` subset data by row
         - `summarise()` reduces multiple values into a summary
-        - `count()` a special case of `summarize()` to tally occurances
+        - `count()` a special case of `summarize()` to tally occurrences
         - `arrange()` sort rows
     - [RStudio Keyboard Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
  
@@ -165,7 +165,7 @@ project_name (folder)
     - `skimr::skim()`   from library[(skimr)](https://docs.ropensci.org/skimr/)
     - ggplot2(): a brief overview of visualization
  
-1. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to the grammar of graphics, & interactive plots via `plotly` 
+1. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduction to the grammar of graphics, & interactive plots via `plotly` 
 
 1. R Markdown
 
@@ -190,22 +190,24 @@ project_name (folder)
 
 ## Quick Start - Demonstration
 
-1. make a folder
-2. drag starwars.csv
-3. Make existing folder and RStudio project
-4. Open an R Markdown Notebook
-5. `library(tidyverses)`
-6. `read_csv(starwars.csv)`
-7. `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
-8. `summary(starwars)`
-9. `skimr(starwars)`
-10. `left_join(starwars, fivethirtyeight)`
-11. `summarize(gender)`
-12. Transform data: five dplyr verbs ...
-13. `count` / `group_by` & `summarize`
-14. Make barchart an interactive ggplotly
-15. Quick Linear Regression
-16. Save Notebook report, and as MSWord file
+1. Make a data folder
+1. Drag favorability.csv into the data folder
+1. Make existing folder and RStudio project
+1. Open an R Markdown Notebook
+1. `library(tidyverses)`  plus other libraries
+1. IMPORT data See Also _RStudio data import wizard_
+1. ATTACHE data
+1. EDA: Visualize `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
+1. EDA: `skimr::skim(starwars)`
+1. EDA: summary(fav_rating)
+1. `left_join(starwars, fivethirtyeight)`
+1. Transform data: five dplyr verbs ...
+
+    - `count` / `group_by` & `summarize`
+        
+1. Interactive visualization ggplotly
+1. Quick Linear Regression
+1. Reports:  notebooks, slides, dashboards, word document, PDF, book, etc.
 
 
 ## Resources

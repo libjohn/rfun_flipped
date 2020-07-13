@@ -1,7 +1,7 @@
 Outline for modules
 ================
 John Little
-2020-07-10
+2020-07-13
 
 <!-- READ THIS -->
 
@@ -24,7 +24,7 @@ presentation
           - <https://rstudio.cloud>
           - <https://vm-manage.oit.duke.edu/containers>
       - R v Python
-          - R is a *data first* (i.e. analysis) programing language
+          - R is a *data first* (i.e. analysis) programming language
           - Python is a general programming language
           - Are there libraries/packages relevant to your work?
           - Is there a supportive community?
@@ -133,7 +133,7 @@ presentation
         | ------- | ----------------------------------------- |
         | readr   | importing CSV data                        |
         | dplyr   | transforming data                         |
-        | ggplot2 | visuazlizing                              |
+        | ggplot2 | visualizing                               |
         | tibble  | rectangular grid / data frame             |
         | tidyr   | pivot                                     |
         | forcats | categorical data / factors                |
@@ -169,7 +169,7 @@ presentation
           - Integrate a natural language explanation of your analysis
             along with your code snippets. An approach used within
             computational sciences to create a functional record of
-            *reproducibile* research. You are your most frequent
+            *reproducible* research. You are your most frequent
             collaborator, six months from now, or six months ago.
           - Create a new, blank R Notebook
               - R **Notebook** v. R Markdown **Document\[s\]**
@@ -192,7 +192,7 @@ presentation
           - `filter()` subset data by row
           - `summarise()` reduces multiple values into a summary
           - `count()` a special case of `summarize()` to tally
-            occurances
+            occurrences
           - `arrange()` sort rows
       - [RStudio Keyboard
         Shortcuts](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts)
@@ -215,7 +215,7 @@ presentation
         library[(skimr)](https://docs.ropensci.org/skimr/)
       - ggplot2(): a brief overview of visualization
 
-12. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduciton to
+12. [`ggplot2()`](https://ggplot2.tidyverse.org/): an introduction to
     the grammar of graphics, & interactive plots via `plotly`
 
 13. R Markdown
@@ -238,22 +238,39 @@ presentation
 
 ## Quick Start - Demonstration
 
-1.  make a folder
-2.  drag starwars.csv
+1.  Make a data folder
+
+2.  Drag favorability.csv into the data folder
+
 3.  Make existing folder and RStudio project
+
 4.  Open an R Markdown Notebook
-5.  `library(tidyverses)`
-6.  `read_csv(starwars.csv)`
-7.  `ggplot(data = starwars, aes(hair_color)) + geom_bar()`
-8.  `summary(starwars)`
-9.  `skimr(starwars)`
-10. `left_join(starwars, fivethirtyeight)`
-11. `summarize(gender)`
+
+5.  `library(tidyverses)` plus other libraries
+
+6.  IMPORT data See Also *RStudio data import wizard*
+
+7.  ATTACHE data
+
+8.  EDA: Visualize `ggplot(data = starwars, aes(hair_color)) +
+    geom_bar()`
+
+9.  EDA: `skimr::skim(starwars)`
+
+10. EDA: summary(fav\_rating)
+
+11. `left_join(starwars, fivethirtyeight)`
+
 12. Transform data: five dplyr verbs …
-13. `count` / `group_by` & `summarize`
-14. Make barchart an interactive ggplotly
-15. Quick Linear Regression
-16. Save Notebook report, and as MSWord file
+    
+      - `count` / `group_by` & `summarize`
+
+13. Interactive visualization ggplotly
+
+14. Quick Linear Regression
+
+15. Reports: notebooks, slides, dashboards, word document, PDF, book,
+    etc.
 
 ## Resources
 
