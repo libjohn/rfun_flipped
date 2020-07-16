@@ -1,7 +1,7 @@
 Outline for modules
 ================
 John Little
-2020-07-13
+2020-07-16
 
 <!-- READ THIS -->
 
@@ -240,7 +240,7 @@ presentation
 
 1.  Make a data folder
 
-2.  Drag favorability.csv into the data folder
+2.  Drag fav.csv into the data folder
 
 3.  Make existing folder and RStudio project
 
@@ -248,30 +248,31 @@ presentation
 
 5.  `library(tidyverses)` plus other libraries
 
-6.  IMPORT data See Also [*RStudio data import
-    wizard*](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
+6.  IMPORT data
+    
+      - See Also [*RStudio data import
+        wizard*](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
+      - ATTACH data
 
-7.  Attach data
-
-8.  EDA: Visualize `ggplot(data = starwars, aes(hair_color)) +
+7.  EDA: Visualize `ggplot(data = starwars, aes(hair_color)) +
     geom_bar()`
 
-9.  EDA: `skimr::skim(starwars)`
+8.  EDA: `skimr::skim(starwars)`
 
-10. EDA: summary(fav\_rating)
+9.  EDA: summary(fav\_rating)
 
-11. `left_join(starwars, fivethirtyeight)`
+10. `left_join(starwars, fivethirtyeight)`
 
-12. Transform data: five dplyr verbs …
+11. Transform data: five dplyr verbs …
     
       - `filter`, `select`, `arrange`, `mutate`
       - `count` / `group_by` & `summarize`
 
-13. Interactive visualization: `ggplotly`
+12. Interactive visualization: `ggplotly`
 
-14. linear regression / models (quick syntax introduction)
+13. linear regression / models (quick syntax introduction)
 
-15. Reports: notebooks, slides, dashboards, word document, PDF, book,
+14. Reports: notebooks, slides, dashboards, word document, PDF, book,
     etc.
 
 ## Resources
