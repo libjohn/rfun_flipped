@@ -12,8 +12,11 @@ output: html_notebook
 1. Make existing folder and RStudio project
 1. Open an R Markdown Notebook
 1. `library(tidyverses)`  plus other libraries
-1. IMPORT data See Also _RStudio data import wizard_
-1. ATTACHE data
+1. IMPORT data 
+
+    - See Also _RStudio data import wizard_
+    - ATTACH data
+    
 1. EDA: Visualize `ggplot(data = starwars, aes(hair_color)) + geom_bar()` 
 1. EDA: `skimr::skim(starwars)`
 1. EDA: summary(fav_rating)
