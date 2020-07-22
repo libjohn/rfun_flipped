@@ -1,0 +1,118 @@
+---
+title: "Regression"
+# output: html_notebook
+---
+
+## Load library packages
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+#library(gapminder)
+library(moderndive)
+library(broom)
+```
+
+## Data
+
+data are from the `moderndive` package.  [_Modern dive_](https://moderndive.com/) by Ismay and Kim.  
+
+```{r}
+evals_ch5 <- evals %>% 
+  select(ID, score, bty_avg, age)
+
+evals
+
+evals_ch5
+```
+
+
+```{r}
+evals_ch5 %>% 
+  summary()
+```
+
+```{r}
+skimr::skim(evals_ch5)
+```
+
+```{r}
+evals_ch5 %>% 
+  get_correlation(score ~ bty_avg)
+```
+
+Get correlation
+
+```{r}
+
+starwars %>% 
+  filter(mass < 500) %>% 
+  summarise(cor(mass, height))
+```
+
+
+```{r}
+evals_ch5 %>% 
+  summary()
+```
+
+### weak correlation
+
+```{r}
+evals_ch5 %>% 
+  ggplot(aes(score, age)) +
+  geom_jitter() +
+  geom_smooth(method = lm)
+```
+
+```{r}
+evals_ch5 %>% 
+  get_correlation(age ~ score)
+```
+
+## summary model 
+
+> For every increase of 1 unit increase in bty_avg, there is an associated increase of, on average, 0.067 units of score. from [_ModenDive_](https://moderndive.com/5-regression.html)
+
+```{r}
+# Fit regression model:
+score_model <- lm(score ~ bty_avg, data = evals_ch5)
+
+
+glance(score_model)
+get_regression_table(score_model)
+
+```
+
+### more
+
+```{r}
+get_regression_table(score_model)
+```
+
+
+```{r}
+broom::tidy(score_model)
+```
+
+```{r}
+get_regression_summaries(score_model)
+```
+
+
+```{r}
+broom::glance(score_model)
+```
+
+
+
+### More model data
+
+```{r}
+get_regression_points(score_model)
+```
+
+```{r}
+broom::augment(score_model)
+```
+
