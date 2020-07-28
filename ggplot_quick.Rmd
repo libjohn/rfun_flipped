@@ -1,6 +1,13 @@
 ---
 title: "ggplot2 - quick and easy"
-output: html_notebook
+author: "John Little"
+date: "`r Sys.Date()`"
+abstract: "A very quick overview of visualizing data with ggplot2.<p/>"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
 ---
 
 This code can be found at https://github.com/libjohn/workshop_rfun_flipped/ggplot2_quick.Rmd
@@ -176,7 +183,7 @@ starwars %>%
 
 ### Line graph
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 babynames::babynames %>% 
   filter(name == "Watts") %>% 
   ggplot(aes(year, n)) +
@@ -186,7 +193,7 @@ babynames::babynames %>%
 
 ### Multiple layers
 
-Each layer can support local arguments and draw from the global settings.
+Each layer can support local arguments and draw from the global settings.  Below we use the `geom_line()` function, followed by the `geom_point()` function.
 
 ```
 babynames %>%
@@ -197,7 +204,7 @@ babynames %>%
 
 ![](images/line_graph_je_names.png)
 
-But there is more to that graph, here's the bull code:
+But there is more to that graph, here's the full code for the above graph.
 
 ```
 library(babynames)
@@ -216,7 +223,9 @@ babynames %>%
 ````
 
 
-## Facet warp
+## Facet wrap
+
+Facetting is great way to make subplots of the same dataframe.  See both `facet_wrap()` and `facet_grid()`
 
 ```{r}
 mpg %>% 
@@ -239,30 +248,25 @@ mpg %>%
 
 ## Arrange order 
 
-Categorical values are most easily ordered with the `forcats` library. Part of the tidyverse, forcats will convert string data into factors, or categorical data.  This enables ordering
+Categorical values are most easily ordered with the `forcats` library. Part of the tidyverse, forcats will convert string data into factors, i.e. categorical data.  This enables ordering.
 
-```{r}
-msleep %>% 
-  ggplot(aes(vore, sleep_total)) +
-  geom_col() 
-```
-
-### forcats::fct_infreq()
-
-Change the order by the number of observations.
 
 ```{r}
 msleep %>% 
   ggplot(aes(vore)) +
   geom_bar()
 ```
+### forcats::fct_infreq()
 
+Change the order of the bars by the frequency of observations.
 
 ```{r}
 msleep %>% 
   ggplot(aes(fct_infreq(vore))) +
   geom_bar() 
 ```
+
+Notice below, we use the `fill =` argument to set the color of the bar.  In the scatter plot we used the `color =` argument.  Why?  (This is a good question to ask about if you're not sure of the answer.)
 
 ```{r}
 starwars %>% 
@@ -276,9 +280,9 @@ starwars %>%
 
 ## Scales
 
-https://ggplot2.tidyverse.org/reference/index.html#section-scales
+Below I'll just scratch the surface of using scales to affect the color of your plots.  [There's more to scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
-The viridis scales can apply color palettes to continuous, discrete, or binned data
+Viridis scales can apply color palettes to continuous, discrete, or binned data
 
 
 ```{r}
