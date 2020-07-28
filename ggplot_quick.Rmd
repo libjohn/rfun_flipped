@@ -47,7 +47,7 @@ dataframe %>%
 
 Visualize a scatter plot showing the relationship of mass to height for _Star Wars_ characters in the `dplyr::starwars` dataframe, excluding the heaviest character.  Indicate a linear regression line.
 
-```{r message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 starwars %>% 
   filter(mass < 500) %>% 
   ggplot(aes(height, mass)) +
@@ -61,7 +61,7 @@ starwars %>%
 dplyr has an onboard dataset, `starwars`
 
 ```{r}
-# data(starwars)
+data(starwars)
 starwars
 ```
 
@@ -222,6 +222,19 @@ babynames %>%
   theme(legend.position = "none")
 ````
 
+### Goal
+
+Recall the goal mentioned in the begining.  We want not only a scatter plot, but also a regression line.  This can be done by adding a layer in the form of another geom_ function:  `geom_smooth()` 
+
+```{r message=FALSE, warning=FALSE}
+starwars %>% 
+  filter(mass < 500) %>% 
+  ggplot(aes(height, mass)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+```
+
+
 
 ## Facet wrap
 
@@ -366,3 +379,22 @@ plot_sleep +
                                           "Threatened", "Vulnerable")) +
   theme(plot.title.position = "plot")
 ```
+
+## Reinforce your learning 
+
+On your own...
+
+Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cloud/learn/primers/3)
+
+[Angela Zoss code exercises](https://github.com/amzoss/ggplot2-DF19) 
+
+
+## Resources
+
+[Designing effective visualizations](https://introds.org/slides/w4_d1-effective-dataviz/w4_d1-effective-dataviz.html#26) by Dr. Mine Çetinkaya-Rundel - _Introduction to Data Science_ https://introds.org
+
+[Data Visualization: A Practical Introduction](https://socviz.co/lookatdata.html) Kieran Healy
+
+### Also, the ggplot2 book
+
+[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) Hadley Wickham
