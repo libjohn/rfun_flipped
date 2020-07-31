@@ -34,18 +34,6 @@ the end of part 1 you will import data, edit and save scripts, subset
 data, use projects to organize your work, and develop self-help
 techniques.
 
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/pfYDAA/" frameborder="0" scrolling="0" allow="autoplay; encrypted-media; fullscreen;  picture-in-picture;" allowfullscreen>
-
-</iframe>
-
-<iframe height="360" width="640" src="https://warpwire.duke.edu/w/6_YDAA/" frameborder="0" scrolling="0" allow="autoplay; encrypted-media; fullscreen;  picture-in-picture;" allowfullscreen>
-
-</iframe>
-
 #### Additional background and explanatory videos
 
-<iframe height="450" width="100%" src="https://warpwire.duke.edu/w/n_YDAA/" frameborder="0" scrolling="0" allow="autoplay; encrypted-media; fullscreen;  picture-in-picture; camera; microphone;" allowfullscreen>
-
-</iframe>
-
-See more at <https://rfun.library.duke.edu/portfolio/r_flipped/>
+See <https://rfun.library.duke.edu/portfolio/r_flipped/>
