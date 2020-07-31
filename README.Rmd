@@ -32,3 +32,24 @@ This is a two-part workshop.  In **Part 1** you’ll learn the fundamentals of R
 #### Additional background and explanatory videos
 
 See https://rfun.library.duke.edu/portfolio/r_flipped/
+
+- Part 1 - QuickStart - Basic (part 1): quickstart with R
+
+    - i - background: RStudio: Cloud or download and run locally
+    - ii - background: RStudio IDE
+    - iii - background: ggplot for visualization (briefly)
+    - iv - background: R Packages and the Tidyverse
+    - v - background: assignment and pipes
+    - A - detailed explanation: Get data & code
+    - B - detailed explanation: R Markdown for flexible reports and literate coding
+    - C - **Basic (part 1): Data wrangling with dplyr**
+    - D - detailed explanation: Exploratory Data Analysis (EDA) with skimr
+    - E - detailed explanation: Project reproducibility
+
+- Part 2 - QuickStart - Basic (part 2): quickstart with R
+
+    - F - **Basic (part 2): ggplot visualization**
+    - G - detailed explanation: interactive viz with plotly
+    - H - detailed explanation: left_join. merging data
+    - I - detailed explanation: Tidy and pivot data
+    - J - detailed explanation: Models and linear regression
