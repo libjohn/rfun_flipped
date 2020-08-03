@@ -35,13 +35,17 @@ ggplot(data = ---, mapping = aes(x = ---, y = ---)) +
   geom_----()
 ```
 
-It is helpful to see the argument mapping, above.  In practice above is typically shorthanded to this:
+Note:  `----` is meant to imply text (function names, dataframe names, variablenames) you supply.
+
+It is helpful to see the argument mapping, above.  In practice, rather than typing the formal arguments, code is typically shorthanded to this:
 
 ```
 dataframe %>% 
   ggplot(aes(xvar, yvar)) +
   geom_----() 
 ```
+
+
 
 ## Goal
 
@@ -69,7 +73,7 @@ starwars
 
 ### Draw the base layer
 
-This feels like, and looks like you drew an empty light grey square.  
+This feels like, and looks like, you drew an empty box.  
 
 ```{r}
 starwars %>% 
@@ -79,6 +83,8 @@ starwars %>%
 _But wait, there's more...._
 
 ### Map the aesthetics to variables in the dataframe
+
+Still doesn't look like much.  You will initialize the plot scales and labels based on the values of the variables in the dataframe.
 
 ```{r}
 starwars %>% 
@@ -224,7 +230,7 @@ babynames %>%
 
 ### Goal
 
-Recall the goal mentioned in the begining.  We want a scatter plot and a regression line.  This can be accomplished by adding a layer in the form of another geom_ function:  `geom_smooth()` 
+Recall the goal mentioned in the beginning.  We want a scatter plot and a regression line.  This can be accomplished by adding a layer in the form of another geom_ function:  `geom_smooth()` 
 
 ```{r message=FALSE, warning=FALSE}
 starwars %>% 
@@ -254,20 +260,20 @@ msleep %>%
   geom_bar() 
 ```
 
-Notice below, we use the `fill =` argument to set the color of the bar.  In the scatter plot we used the `color =` argument.  Why?  (This is a good question to ask about if you're not sure of the answer.)
+Notice below, we use the `fill =` argument to set the color of the bar.  In the scatter plot, above, we used the `color =` argument.  For many geoms you can use both `color` and `fill`.  How do these arguments differ?  Where can you look to find out more about `fill` and `color`?
 
 ```{r}
 starwars %>% 
   ggplot(aes(fct_rev(fct_infreq(eye_color)))) +
   geom_bar(fill = "grey70") +
-  geom_bar(data = starwars %>% filter(eye_color == "orange"), fill = "orange") +
+  geom_bar(data = starwars %>% filter(eye_color == "orange"), fill = "darkorange") +
   coord_flip()
   
 ```
 
 ## Facet wrap
 
-Facetting is great way to make subplots of the same dataframe.  See both `facet_wrap()` and `facet_grid()`
+Faceting is great way to make subplots of the same dataframe.  See both `facet_wrap()` and `facet_grid()`
 
 ```{r}
 mpg %>% 
@@ -276,11 +282,11 @@ mpg %>%
   facet_wrap(~ class)
 ```
 
-## Scales for color
+## Scales
 
-Below I'll just scratch the surface of using scales to affect the color of your plots.  [There's more to scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
+I'll briefly introduce the use of scales to affect.  In this case, scales are used to affect the color of the  plot.  [Read more about  scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
-Viridis scales can apply color palettes to continuous, discrete, or binned data
+Viridis scales apply color palettes to continuous, discrete, or binned data
 
 
 ```{r}
@@ -307,9 +313,43 @@ To find available colors:  Google search "R color names", or specific to ColorBr
 RColorBrewer::display.brewer.all()
 ```
 
+Sometimes a manual scale is preferred.  I like to google-search: "R color names" for helpful documentation.
+
+```{r}
+mycolors <- c("firebrick", "forestgreen", "navy", "darkorange", 
+               "goldenrod", "sienna")
+
+msleep %>% 
+  ggplot(aes(fct_infreq(vore), sleep_total)) +
+  geom_col(aes(fill = conservation)) +
+  scale_fill_manual(values = mycolors, na.value = "grey80") 
+```
+
+Scales are used to manipulate the visual properties of the data.  Beyond using scales to modify colors, another example is logarithmic scales to account for data skew.  In this way you can clarify the data pattern. For example, using the `ChickWeight` dataset, we visualize the weights of the chicks over time. 
+
+```{r}
+data("ChickWeight")
+
+ChickWeight %>% 
+  ggplot(aes(Time, weight, color = Diet)) +
+  geom_line(aes(group = Chick))
+```
+
+Using `scale_y_log10` we can alter the scale to highlight a more understandable data pattern
+
+```{r}
+ChickWeight %>% 
+  ggplot(aes(Time, weight, color = Diet)) +
+  geom_line(aes(group = Chick)) +
+  scale_y_log10()
+
+```
+
+
+
 ## Labels
 
-using the `labs()` function
+The `labs()` function is specialized scales function, used to apply labels.  See more on [scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
 ```{r}
 plot_sleep <- msleep %>% 
@@ -383,3 +423,5 @@ Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cl
 ### Also, the ggplot2 book
 
 [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) Hadley Wickham
+
+[Data Visualization with R](https://rkabacoff.github.io/datavis/) Rob Kabacoff
