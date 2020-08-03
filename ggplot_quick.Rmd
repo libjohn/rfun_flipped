@@ -4,11 +4,18 @@ author: "John Little"
 date: "`r Sys.Date()`"
 abstract: "A very quick overview of visualizing data with ggplot2.<p/>"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
-    toc_depth: 3
+  html_document: 
+    toc: yes
+    toc_float: yes
+    df_print: paged
+    css: style/for_captions.css
 ---
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("images/Rlogo.png"), 
+               alt = 'Rfun logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px;')
+```
 
 This code can be found at https://github.com/libjohn/workshop_rfun_flipped/ggplot2_quick.Rmd
 
@@ -16,34 +23,31 @@ This code can be found at https://github.com/libjohn/workshop_rfun_flipped/ggplo
 
 I only need `ggplot2` but I like to load `tidyverse` because it includes 8 complimentary packages, including `ggplot2`.
 
-Get more information from:
-
-- https://tidyverse.org
-- https://ggplot2.tidyverse.org
-
 ```{r message=FALSE, warning=FALSE}
 # library(ggplot2)
 library(tidyverse)
 ```
 
+Get more information from:
+
+- https://tidyverse.org
+- https://ggplot2.tidyverse.org
+
+## ggplot2 template code
 
 The ggplot2 template is used to identify the dataframe, identify the x and y axis, and define visualized layers
 
+>`ggplot(data = ---, mapping = aes(x = ---, y = ---)) + geom_----()`
 
-```
-ggplot(data = ---, mapping = aes(x = ---, y = ---)) +
-  geom_----()
-```
 
 Note:  `----` is meant to imply text (function names, dataframe names, variable names) you supply.
 
 It is helpful to see the argument mapping, above.  In practice, rather than typing the formal arguments, code is typically shorthanded to this:
 
-```
-dataframe %>% 
+> `dataframe %>% 
   ggplot(aes(xvar, yvar)) +
-  geom_----() 
-```
+  geom_----()` 
+
 
 
 
@@ -197,6 +201,32 @@ babynames::babynames %>%
   geom_line()
 ```
 
+### Overplotting
+
+There are two simple approaches to visualizing overplotted data.
+
+- Adjust **opacity**: One approach is to modify the `alpha` argument to affect the opacity of the points.  In this way, overplotted data will appear as darker points on the plot  
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>% 
+  ggplot() +
+  geom_point(aes(height, mass), alpha = .3)
+```
+
+
+- **Jitter** the data with `geom_jitter()`
+
+`geom_jitter` will not change the values of the data but it will offset data points, making it easier to perceive the overplotting.
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>% 
+  ggplot() +
+  geom_jitter(aes(height, mass))
+```
+
+
 ### Multiple layers
 
 Each layer can support local arguments and draw from the global settings.  Below we use the `geom_line()` function, followed by the `geom_point()` function.
@@ -250,6 +280,7 @@ msleep %>%
   ggplot(aes(vore)) +
   geom_bar()
 ```
+
 ### forcats::fct_infreq()
 
 Change the order of the bars by the frequency of observations.
@@ -387,10 +418,23 @@ Themes are used to manipulate the stylistic characteristics of the non-data comp
 
 See more on [themes](https://ggplot2.tidyverse.org/reference/index.html#section-themes)
 
+### Example themes
+
+```{r example_themes, echo=FALSE, message=FALSE, warning=FALSE}
+library(htmltools)
+img(src = knitr::include_graphics("https://r4ds.had.co.nz/images/visualization-themes.png"), 
+    alt = 'ggplot2 themes')
+div(class="captxt", "Image source:  from R for Data Science by Grolemund & Wickham")
+```
+
+### theme_dark()
+
 ```{r}
 plot_sleep +
   theme_dark()
 ```
+
+### theme_classic
 
 ```{r}
 plot_sleep +
@@ -443,7 +487,12 @@ Use the `gganimate` package to bring your plot to life through the wonders of an
 
 For Example:
 
-![](https://gganimate.com/reference/figures/README-unnamed-chunk-4-1.gif)
+```{r example_gganimate, echo=FALSE, message=FALSE, warning=FALSE}
+library(htmltools)
+img(src = knitr::include_graphics("images/gganmimate_example.gif"), alt = 'gganmimate example')
+div(class="captxt", "Image source:  https://gganimate.com/index.html#yet-another-example")
+```
+
 
 ## Reinforce your learning 
 
@@ -460,10 +509,18 @@ Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cl
 
 [Data Visualization: A Practical Introduction.](https://socviz.co/lookatdata.html) Kieran Healy
 
-### Also, the ggplot2 book
+### books
 
 [ggplot2: Elegant Graphics for Data Analysis.](https://ggplot2-book.org/) Hadley Wickham
 
 [Data Visualization with R.](https://rkabacoff.github.io/datavis/) Rob Kabacoff
 
 [Interactive web-based data visualization with R, plotly, and shiny.](https://plotly-r.com/) Carson Sievert
+
+```{r echo=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+htmltools::div(class = "myccfoot", htmlTemplate("template/footer.html"))
+```
+
+
+
