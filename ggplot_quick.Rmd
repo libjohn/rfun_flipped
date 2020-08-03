@@ -35,7 +35,7 @@ ggplot(data = ---, mapping = aes(x = ---, y = ---)) +
   geom_----()
 ```
 
-Note:  `----` is meant to imply text (function names, dataframe names, variablenames) you supply.
+Note:  `----` is meant to imply text (function names, dataframe names, variable names) you supply.
 
 It is helpful to see the argument mapping, above.  In practice, rather than typing the formal arguments, code is typically shorthanded to this:
 
@@ -338,10 +338,11 @@ ChickWeight %>%
 Using `scale_y_log10` we can alter the scale to highlight a more understandable data pattern
 
 ```{r}
-ChickWeight %>% 
+chicken_plot <- ChickWeight %>% 
   ggplot(aes(Time, weight, color = Diet)) +
   geom_line(aes(group = Chick)) +
   scale_y_log10()
+chicken_plot
 
 ```
 
@@ -349,7 +350,7 @@ ChickWeight %>%
 
 ## Labels
 
-The `labs()` function is specialized scales function, used to apply labels.  See more on [scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
+The `labs()` function is specialized scales function, used to apply labels. For example, use the `labs()` function to add a title, subtitle, legend title, modify axis labels, and set a caption. See more on [scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
 ```{r}
 plot_sleep <- msleep %>% 
@@ -374,12 +375,17 @@ plot_sleep
 
 ## Themes
 
+Themes are used to manipulate the stylistic characteristics of the non-data components of your plot, such as font faces, text sizes, and grid lines.  **ProTip:** quickly manipulate a single plot with  preset themes such as `theme_dark`, or use a specialized theme extension such as `theme_ipsum` from the `hrbrthemes` package.
+
 - https://ggplot2.tidyverse.org/reference/ggtheme.html
 
     - for example... `theme_dark()`, `theme_light()`, `theme_classic()`
 
 - https://cinc.rud.is/web/packages/hrbrthemes/
 - https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/
+
+
+See more on [themes](https://ggplot2.tidyverse.org/reference/index.html#section-themes)
 
 ```{r}
 plot_sleep +
@@ -405,6 +411,40 @@ plot_sleep +
   theme(plot.title.position = "plot")
 ```
 
+## Combine plots
+
+The `patchwork` package makes it "ridiculously simple to combine separate ggplot objects into the same graphic."  See more about [patchwork](https://patchwork.data-imaginist.com/)
+
+```{r}
+# install.packages("devtools")
+# devtools::install_github("thomasp85/patchwork")
+# https://patchwork.data-imaginist.com/
+library(patchwork)
+
+(plot_sleep / chicken_plot)
+```
+
+## Interactive plots
+
+Use the `ggplotly` function to transform your static plot into an interactive plot that can be used in dashboards and web presentations.  
+
+See more at the [Plotly ggplot2 Library](https://plotly.com/ggplot2/) page, and the [_Interactive web-based data visualization with R, plotly, and shiny_](https://plotly-r.com/) book.
+
+```{r message=FALSE, warning=FALSE}
+library(plotly)
+ggplotly(plot_sleep)
+```
+
+
+
+## Annimate plots
+
+Use the `gganimate` package to bring your plot to life through the wonders of animation.  Learn more at the resource page for [gganimate](https://gganimate.com/)
+
+For Example:
+
+![](https://gganimate.com/reference/figures/README-unnamed-chunk-4-1.gif)
+
 ## Reinforce your learning 
 
 On your own...
@@ -418,10 +458,12 @@ Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cl
 
 [Designing effective visualizations](https://introds.org/slides/w4_d1-effective-dataviz/w4_d1-effective-dataviz.html#26) by Dr. Mine Çetinkaya-Rundel - _Introduction to Data Science_ https://introds.org
 
-[Data Visualization: A Practical Introduction](https://socviz.co/lookatdata.html) Kieran Healy
+[Data Visualization: A Practical Introduction.](https://socviz.co/lookatdata.html) Kieran Healy
 
 ### Also, the ggplot2 book
 
-[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) Hadley Wickham
+[ggplot2: Elegant Graphics for Data Analysis.](https://ggplot2-book.org/) Hadley Wickham
 
-[Data Visualization with R](https://rkabacoff.github.io/datavis/) Rob Kabacoff
+[Data Visualization with R.](https://rkabacoff.github.io/datavis/) Rob Kabacoff
+
+[Interactive web-based data visualization with R, plotly, and shiny.](https://plotly-r.com/) Carson Sievert
