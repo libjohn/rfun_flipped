@@ -116,10 +116,7 @@ starwars %>%
 
 ### Global v local arguments
 
-- Mapping aesthetics in the ggplot argument maps aesthetics as global arguments (above)
-- Arguments can also be set locally in the local layer function
-
-#### `aes()` arguments mapped _locally_ in `geom_point()`
+So far, the **aesthetics** are **mapped** in the `aes()` function within the initial `ggplot` function.  As such, these values are mapped globally and all layers are affected by this mapping.  See the `aes()` function, above.  Arguments can also be mapped locally, within a geom function layer, as as `geom_point(aes(height, mass))`.
 
 ```{r message=FALSE, warning=FALSE}
 starwars %>% 
@@ -130,7 +127,7 @@ starwars %>%
 
 ### Mapping v Setting
 
-Many arguments can be _mapped_ inside the aesthetic, `aes()`,  to leverage variable values, **OR** _set_ a visualized property outside the `aes()` function, but inside the geom_ function.  
+Dataframe values can be _mapped_ inside the aesthetic, `aes()`,  to visualize variable dataframe values.  Alternatively, data values can be _set_ as an argument outside the `aes()` function but inside the geom_ function.  This is done to affect a visual quality that is manually assigned, as opposed to being derived from variable data values.
 
 Aesthetic arguments include:
 
@@ -142,7 +139,7 @@ Aesthetic arguments include:
 - shape
 - _and more_ see documentation for each geom_
 
-#### Mapping: `color` is **mapped** _inside_ `aes()` function
+> Mapping: `color` is **mapped** _inside_ `aes()` function.  In this case, `color = starwars$gender`
 
 ```{r message=FALSE, warning=FALSE}
 starwars %>% 
@@ -155,7 +152,7 @@ starwars %>%
 Notice the legend was drawn automatically, above, by mapping an aesthetic
 
 
-#### Setting: `color` **set** _outside_ the `aes()` function
+> Setting: The `color` argument can be **set** outside the `aes()` function, but within the `geom_` function.  In this case with `color = "goldenrod"`
 
 ```{r message=FALSE, warning=FALSE}
 starwars %>% 
@@ -203,9 +200,9 @@ babynames::babynames %>%
 
 ### Overplotting
 
-There are two simple approaches to visualizing overplotted data.
+There are two simple approaches to visualizing overplotted data:  `geom_jitter()` and decrease the opacity be setting the `alpha =` argument.
 
-- Adjust **opacity**: One approach is to modify the `alpha` argument to affect the opacity of the points.  In this way, overplotted data will appear as darker points on the plot  
+- Adjust **opacity**.  The `alpha` argument within the geom function affects the opacity of the points.  In this way, overplotted data will appear as darker points on the plot  
 
 ```{r}
 starwars %>% 
@@ -229,7 +226,7 @@ starwars %>%
 
 ### Multiple layers
 
-Each layer can support local arguments and draw from the global settings.  Below we use the `geom_line()` function, followed by the `geom_point()` function.
+Each layer, visualized by a geom_ function, can support local arguments and draw from the global settings.  Below we use the `geom_line()` function, followed by the `geom_point()` function.
 
 ```
 babynames %>%
@@ -240,7 +237,7 @@ babynames %>%
 
 ![](images/line_graph_je_names.png)
 
-But there is more to that graph, here's the full code for the above graph.
+The full code for the above graph can be seen below.
 
 ```
 library(babynames)
@@ -260,7 +257,7 @@ babynames %>%
 
 ### Goal
 
-Recall the goal mentioned in the beginning.  We want a scatter plot and a regression line.  This can be accomplished by adding a layer in the form of another geom_ function:  `geom_smooth()` 
+Recall the goal mentioned in the beginning.  We want a scatter plot and a regression line.  The regression line is drawn with the `geom_smooth()` function.  
 
 ```{r message=FALSE, warning=FALSE}
 starwars %>% 
@@ -272,8 +269,9 @@ starwars %>%
 
 ## Arrange order 
 
-Categorical values are most easily ordered with the `forcats` library. Part of the tidyverse, forcats will convert string data into factors, i.e. categorical data.  This enables ordering.
+Categorical values are most easily ordered with the `forcats` library. Part of the Tidyverse, the [forcats](https://forcats.tidyverse.org/) package is used to transform string data as a factor data type.  Data types in R can be simple distinctions useful in efficient computation, such as calculating numeric outcomes versus manipulating character data (i.e. string or text data).  R data types are rich and sometimes complex.  Staying simple, text data consisting of categories, may be efficiently handled as a factor data type.  For example, eye colors can be categorized.  Brown, blue, and green are nominal categorical values for the factor variable `eye_color`. Among other things, treating `eye_color` as a factor data type enables visually ordering categorical values by frequency.
 
+#### Before ordering
 
 ```{r}
 msleep %>% 
@@ -281,9 +279,9 @@ msleep %>%
   geom_bar()
 ```
 
-### forcats::fct_infreq()
+### Ordering with forcats
 
-Change the order of the bars by the frequency of observations.
+Change the order of the bars by the frequency of observations using `forcats::fct_infreq()`
 
 ```{r}
 msleep %>% 
@@ -291,7 +289,7 @@ msleep %>%
   geom_bar() 
 ```
 
-Notice below, we use the `fill =` argument to set the color of the bar.  In the scatter plot, above, we used the `color =` argument.  For many geoms you can use both `color` and `fill`.  How do these arguments differ?  Where can you look to find out more about `fill` and `color`?
+Notice below, we use the `fill =` argument to set the color of an individual bar.  In the scatter plot examples, above, we used the `color =` argument.  In many `geoms_` you can use both `color` and `fill` arguments.  How do these arguments differ?  Where can you look to find out more about `fill` and `color`?
 
 ```{r}
 starwars %>% 
@@ -315,9 +313,11 @@ mpg %>%
 
 ## Scales
 
-I'll briefly introduce the use of scales to affect.  In this case, scales are used to affect the color of the  plot.  [Read more about  scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
+Scales are used to affect the visual qualities of the data.  I'll introduce scales to visualize discrete categories by associating each discrete value with a specific color.  [Read more about  scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
-Viridis scales apply color palettes to continuous, discrete, or binned data
+Viridis scales apply color palettes to continuous, discrete, or binned data.  For discrete data we can use the `scale_fill_viridis_d()` function.  
+
+> By using one the `scale_fill_` functions, we are able to affect the variable values associated in the `fill = conservation` argument.
 
 
 ```{r}
@@ -327,7 +327,7 @@ msleep %>%
   scale_fill_viridis_d(na.value = "grey80")
 ```
 
-The color brewer palette is similar but has a wider array of palettes to choose from.  
+The color brewer palette is similar but has a wider array of palettes to choose from.  Below we use `scale_fill_brewer()` and a default _qualitative_ color palette by setting the `type =` argument to _qual_ (for qualitative).  Alternatively, or additionally, we could assign a `palette =` argument to choose a particular ColorBrewer palette, such as choosing the "Dark2" palette with the argument `palette = "Dark2"`
 
 
 ```{r}
@@ -337,14 +337,7 @@ msleep %>%
   scale_fill_brewer(type = "qual", na.value = "grey80") 
 ```
 
-To find available colors:  Google search "R color names", or specific to ColorBrewer....
-
-```{r fig.height=8}
-#display.brewer.pal(7,"Dark2")
-RColorBrewer::display.brewer.all()
-```
-
-Sometimes a manual scale is preferred.  I like to google-search: "R color names" for helpful documentation.
+Sometimes a manual scale is preferred. Below we use `scale_fill_manual()` to associate a defined set of color names with my `fill = conservation` argument
 
 ```{r}
 mycolors <- c("firebrick", "forestgreen", "navy", "darkorange", 
@@ -356,7 +349,14 @@ msleep %>%
   scale_fill_manual(values = mycolors, na.value = "grey80") 
 ```
 
-Scales are used to manipulate the visual properties of the data.  Beyond using scales to modify colors, another example is logarithmic scales to account for data skew.  In this way you can clarify the data pattern. For example, using the `ChickWeight` dataset, we visualize the weights of the chicks over time. 
+To find available colors, I typically Google search "R color names." A more specific technique, within R, can be used to find the array of ColorBrewer palettes...
+
+```{r fig.height=8}
+#display.brewer.pal(7,"Dark2")
+RColorBrewer::display.brewer.all()
+```
+
+Scales are used to manipulate the visual properties of the data.  Beyond using scales to modify colors, another example is logarithmic scales to account for data skew.  In this way you can clarify the data pattern. For example, using the `ChickWeight` dataset, we visualize the weights of the chicks over time. Hint:  You can visualize the data skew with a histogram, `geom_histogram()`.
 
 ```{r}
 data("ChickWeight")
@@ -381,7 +381,7 @@ chicken_plot
 
 ## Labels
 
-The `labs()` function is specialized scales function, used to apply labels. For example, use the `labs()` function to add a title, subtitle, legend title, modify axis labels, and set a caption. See more on [scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
+The `labs()` function is a specialized scales function, used to apply labels. For example, use the `labs()` function to add a title, subtitle, legend title, modify axis labels, and set a caption. See more on [scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales).
 
 ```{r}
 plot_sleep <- msleep %>% 
@@ -457,7 +457,9 @@ plot_sleep +
 
 ## Combine plots
 
-The `patchwork` package makes it "ridiculously simple to combine separate ggplot objects into the same graphic."  See more about [patchwork](https://patchwork.data-imaginist.com/)
+The `patchwork` package makes it "ridiculously simple to combine separate ggplot objects into the same graphic."  The `/ `will separate plots vertically.  The `|` will separate plots horizontally.  See more about [patchwork](https://patchwork.data-imaginist.com/)
+
+> Try also:  (plot_sleep | chicken_plot)   
 
 ```{r}
 # install.packages("devtools")
@@ -465,12 +467,12 @@ The `patchwork` package makes it "ridiculously simple to combine separate ggplot
 # https://patchwork.data-imaginist.com/
 library(patchwork)
 
-(plot_sleep / chicken_plot)
+(plot_sleep / chicken_plot) 
 ```
 
 ## Interactive plots
 
-Use the `ggplotly` function to transform your static plot into an interactive plot that can be used in dashboards and web presentations.  
+Use the `ggplotly` function will transform your static ggplot object into an interactive plot.  This interactive plot can be used in dashboards and web presentations.  
 
 See more at the [Plotly ggplot2 Library](https://plotly.com/ggplot2/) page, and the [_Interactive web-based data visualization with R, plotly, and shiny_](https://plotly-r.com/) book.
 
@@ -500,7 +502,7 @@ On your own...
 
 Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cloud/learn/primers/3)
 
-[Angela Zoss code exercises](https://github.com/amzoss/ggplot2-DF19) 
+[Angela Zoss code exercises](https://github.com/amzoss/ggplot2-S20) 
 
 
 ## Resources
