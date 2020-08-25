@@ -65,18 +65,14 @@ See <https://rfun.library.duke.edu/portfolio/r_flipped/>
       - E - *detailed explanation*: [Project
         reproducibility](https://warpwire.duke.edu/w/q_YDAA/)
 
-  - Part 2 \[Basic\] [Visualization with ggplot2](foo%20foo%20foo) (Part
-    2 of 2)
+  - Part 2 \[Basic\] [Visualization with
+    ggplot2](https://warpwire.duke.edu/w/6_YDAA/) (Part 2 of 2)
     
       - G - *background / in brief*: [interactive viz with
-        plotly](foofoofoo%20foo)
+        plotly](https://warpwire.duke.edu/w/80YEAA/?start=1632&end=1677)
       - H - *detailed explanation*: [left\_join. merging
         data](https://warpwire.duke.edu/w/ffcDAA/)
       - I - *detailed explanation*: [Tidy and pivot
         data](https://warpwire.duke.edu/w/g_cDAA/)
       - J - *brief explanation*: [Models and linear
         regression](https://warpwire.duke.edu/w/pfYDAA/?start=1170&end=1377)
-
-<iframe height="450" width="100%" src="https://warpwire.duke.edu/w/n_YDAA/" frameborder="0" scrolling="0" allow="autoplay; encrypted-media; fullscreen;  picture-in-picture; camera; microphone;" allowfullscreen>
-
-</iframe>
