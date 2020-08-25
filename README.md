@@ -103,7 +103,7 @@ See <https://rfun.library.duke.edu/portfolio/r_flipped/>
         
           - [Interactive: visualization
             exercises](https://rstudio.cloud/learn/primers/3) on Bar
-            Charts, Histograms, Boxplots, Scatterpltols, Overplotting,
+            Charts, Histograms, Boxplots, Scatterplots, Overplotting,
             etc.
           - [Angela Zoss’s ggplot
             exercies](https://github.com/data-and-visualization/ggplot2-S20)
