@@ -11,8 +11,9 @@ John Little
 
 <!-- badges: end -->
 
-Due to COVID-19, This repo supports preparation for remote zoom-based
-teaching. I’m flipping the workshop.
+Due to COVID-19, This repo supports preparation for remote [zoom-based
+teaching. I’m flipping the
+workshop.](https://rfun.library.duke.edu/portfolio/r_flipped/)
 
 ### quickStart with R
 
