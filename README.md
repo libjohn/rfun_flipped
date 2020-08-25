@@ -1,7 +1,7 @@
 README
 ================
 John Little
-2020-07-31
+2020-08-25
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -38,25 +38,45 @@ techniques.
 
 See <https://rfun.library.duke.edu/portfolio/r_flipped/>
 
-  - Part 1 - QuickStart - Basic (part 1): quickstart with R
-    
-      - i - background: RStudio: Cloud or download and run locally
-      - ii - background: RStudio IDE
-      - iii - background: ggplot for visualization (briefly)
-      - iv - background: R Packages and the Tidyverse
-      - v - background: assignment and pipes
-      - A - detailed explanation: Get data & code
-      - B - detailed explanation: R Markdown for flexible reports and
-        literate coding
-      - C - **Basic (part 1): Data wrangling with dplyr**
-      - D - detailed explanation: Exploratory Data Analysis (EDA) with
-        skimr
-      - E - detailed explanation: Project reproducibility
+  - Part 1a - QuickStart \[Basic\] [Introduction to
+    R](https://warpwire.duke.edu/w/pfYDAA/): (Part 1a of 2)
 
-  - Part 2 - QuickStart - Basic (part 2): quickstart with R
+  - Part 1b - \[Basic\] [Data wrangling with
+    dplyr](https://warpwire.duke.edu/w/6_YDAA/): (Part 1b of 2)
     
-      - F - **Basic (part 2): ggplot visualization**
-      - G - detailed explanation: interactive viz with plotly
-      - H - detailed explanation: left\_join. merging data
-      - I - detailed explanation: Tidy and pivot data
-      - J - detailed explanation: Models and linear regression
+      - i - *background*: [RStudio: Cloud or download and run locally,
+        or cloud versions](https://warpwire.duke.edu/w/p_YDAA/)
+      - ii - *background*: [RStudio
+        IDE](https://warpwire.duke.edu/w/wfYDAA/)
+      - iii - *background*: ggplot for visualization [(briefly). See
+        QuickStart](https://warpwire.duke.edu/w/pfYDAA/?start=520&end=598)
+      - iv - *background*: [R Packages and the
+        Tidyverse](https://warpwire.duke.edu/w/z_YDAA/)
+      - v - *background*: [assignment and
+        pipes](https://warpwire.duke.edu/w/4fYDAA/)
+      - A - *detailed explanation*: [Get data &
+        code](https://warpwire.duke.edu/w/s_YDAA/)
+      - B - *detailed explanation*: [R Markdown for flexible reports and
+        literate coding](https://warpwire.duke.edu/w/S_cDAA/)
+      - C - **Basic (part 1): Data wrangling with dplyr** (see Part 1b,
+        above)
+      - D - *detailed explanation*: [Exploratory Data Analysis (EDA)
+        with skimr](https://warpwire.duke.edu/w/jfcDAA/)
+      - E - *detailed explanation*: [Project
+        reproducibility](https://warpwire.duke.edu/w/q_YDAA/)
+
+  - Part 2 \[Basic\] [Visualization with ggplot2](foo%20foo%20foo) (Part
+    2 of 2)
+    
+      - G - *background / in brief*: [interactive viz with
+        plotly](foofoofoo%20foo)
+      - H - *detailed explanation*: [left\_join. merging
+        data](https://warpwire.duke.edu/w/ffcDAA/)
+      - I - *detailed explanation*: [Tidy and pivot
+        data](https://warpwire.duke.edu/w/g_cDAA/)
+      - J - *brief explanation*: [Models and linear
+        regression](https://warpwire.duke.edu/w/pfYDAA/?start=1170&end=1377)
+
+<iframe height="450" width="100%" src="https://warpwire.duke.edu/w/n_YDAA/" frameborder="0" scrolling="0" allow="autoplay; encrypted-media; fullscreen;  picture-in-picture; camera; microphone;" allowfullscreen>
+
+</iframe>
