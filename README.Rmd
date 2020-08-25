@@ -62,7 +62,7 @@ See https://rfun.library.duke.edu/portfolio/r_flipped/
     
     - Exercises
     
-        - [Interactive: visualization exercises](https://rstudio.cloud/learn/primers/3) on Bar Chars, Histograms, Boxplots, Scatterpltols, Overplotting, etc.
+        - [Interactive: visualization exercises](https://rstudio.cloud/learn/primers/3) on Bar Charts, Histograms, Boxplots, Scatterpltols, Overplotting, etc.
         - [Angela Zoss's ggplot exercies](https://github.com/data-and-visualization/ggplot2-S20)
         - 01_exercises [from Mastering the Tidyverse](https://github.com/libjohn/workshop_ggplot2) 
         - [Interactive: Join Data](https://rstudio.cloud/learn/primers/4)
