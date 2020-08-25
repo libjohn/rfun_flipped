@@ -66,7 +66,7 @@ See <https://rfun.library.duke.edu/portfolio/r_flipped/>
       - E - *detailed explanation*: [Project
         reproducibility](https://warpwire.duke.edu/w/q_YDAA/)
 
-#### Exercises
+#### Exercises (Part 1)
 
   - [Subsetting and wrangling Data
     (Interactive)](https://rstudio.cloud/learn/primers/2)
@@ -88,7 +88,7 @@ See <https://rfun.library.duke.edu/portfolio/r_flipped/>
       - J - *brief explanation*: [Models and linear
         regression](https://warpwire.duke.edu/w/pfYDAA/?start=1170&end=1377)
 
-#### Exercises
+#### Exercises (Part 2)
 
   - [Interactive: visualization
     exercises](https://rstudio.cloud/learn/primers/3) on Bar Charts,
