@@ -17,7 +17,7 @@ workshop.](https://rfun.library.duke.edu/portfolio/r_flipped/)
 
 ## Preparation
 
-This [letter](0_prepare.Rmd) will be sent in advance to workshop
+This [letter](0_prepare.md) will be sent in advance to workshop
 registrants.
 
 ### quickStart with R

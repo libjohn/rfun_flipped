@@ -23,7 +23,7 @@ Due to COVID-19, This repo supports preparation for remote [zoom-based teaching.
 
 ## Preparation
 
-This [letter](0_prepare.Rmd) will be sent in advance to workshop registrants.
+This [letter](0_prepare.md) will be sent in advance to workshop registrants.
 
 ### quickStart with R
 
