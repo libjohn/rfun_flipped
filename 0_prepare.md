@@ -20,14 +20,15 @@ The code and data repository is here:
 
 You are receiving this note because you are registered for *Part 1 -
 getting started, EDA, data wrangling*, \<\< insert date/time \>\>. This
-is a flipped classroom model which means you will come prepared to ask
-questions based on materials shared in advance.
+is a flipped classroom model which means you will **come prepared to ask
+questions based on materials shared in advance**.
 
-During the workshop, there will be ample time for your questions. We
-will focus on how to use RStudio as a data manipulation tool. We will
-not cover statistical modeling or research design, i.e. areas of
-specific subject expertise. Email me separately about my consultation
-services. You may leave the interactive (Zoom) session at any time.
+During the workshop, there will be **ample time** for **your
+questions**. **We will** focus on how to use RStudio as a data
+manipulation tool. **We will not** cover statistical modeling or
+research design, i.e. areas of specific subject expertise. Email me
+separately about my consultation services. You may leave the interactive
+(Zoom) session at any time.
 
 > Brief pre-workshop survey. Please complete this now. \<\< insert link
 > to pre-workshop survey \>\>
@@ -79,10 +80,10 @@ reports.
 
 #### Required viewing
 
-  - 0.1 Part 1a \[Basic\] [Introduction to R:
-    quickstart](https://warpwire.duke.edu/w/pfYDAA/)
-  - 0.1.1 Part 1b \[Basic\] [Data wrangling with
-    dplyr](https://warpwire.duke.edu/w/6_YDAA/)
+  - 0.1 **Part 1a** \[Basic\] [Introduction to R:
+    **quickstart**](https://warpwire.duke.edu/w/pfYDAA/)
+  - 0.1.1 **Part 1b** \[Basic\] [Data wrangling with
+    **dplyr**](https://warpwire.duke.edu/w/6_YDAA/)
 
 **See Also:** [Background and in-depth
 videos](https://github.com/libjohn/rfun_flipped#part-1-additional-background-and-explanatory-videos)
