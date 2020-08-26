@@ -1,7 +1,7 @@
 README
 ================
 John Little
-2020-08-25
+2020-08-26
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -14,6 +14,11 @@ John Little
 Due to COVID-19, This repo supports preparation for remote [zoom-based
 teaching. I’m flipping the
 workshop.](https://rfun.library.duke.edu/portfolio/r_flipped/)
+
+## Preparation
+
+This [letter](0_prepare.Rmd) will be sent in advance to workshop
+registrants.
 
 ### quickStart with R
 

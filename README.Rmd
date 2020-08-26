@@ -21,6 +21,10 @@ knitr::opts_chunk$set(
 
 Due to COVID-19, This repo supports preparation for remote [zoom-based teaching. I'm flipping the workshop.](https://rfun.library.duke.edu/portfolio/r_flipped/)
 
+## Preparation
+
+This [letter](0_prepare.Rmd) will be sent in advance to workshop registrants.
+
 ### quickStart with R
 
 R and the Tidyverse are a data-first coding language that enables reproducible workflows.  In this two-part workshop, you’ll learn the fundamentals of R, everything you need to know to quickly get started.
