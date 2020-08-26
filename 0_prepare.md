@@ -46,7 +46,9 @@ services. You may leave the interactive (Zoom) session at any time.
 I’m looking forward to seeing you in the workshop. Please contact me if
 you have questions.
 
-Details… Installation Information
+### Details…
+
+#### Installation Information
 
 It is assumed that you will install R, RStudio and the Tidyverse on your
 laptop. [Interactive instructions are
@@ -64,7 +66,7 @@ background information can be found in [my video
 library](https://warpwire.duke.edu/w/n_YDAA/); see \[background\]
 sections 1.i through 1.v
 
-Part 1 materials
+#### Part 1 materials
 
 In the flipped classroom model you will watch [video
 materials](https://warpwire.duke.edu/w/n_YDAA/) (Part 1a and Part 1b) to
@@ -72,13 +74,14 @@ learn how to wrangle data for analysis, gain a brief introduction to
 visualization, practice Exploratory Data Analysis (EDA), and generate
 reports.
 
-Required viewing 0.1 Part 1a \[Basic\] [Introduction to R:
-quickstart](https://warpwire.duke.edu/w/pfYDAA/)
+#### Required viewing
 
-0.1.1 Part 1b \[Basic\] [Data wrangling with
-dplyr](https://warpwire.duke.edu/w/6_YDAA/)
+  - 0.1 Part 1a \[Basic\] [Introduction to R:
+    quickstart](https://warpwire.duke.edu/w/pfYDAA/)
+  - 0.1.1 Part 1b \[Basic\] [Data wrangling with
+    dplyr](https://warpwire.duke.edu/w/6_YDAA/)
 
-See Also: [Background and in-depth
+**See Also:** [Background and in-depth
 videos](https://github.com/libjohn/rfun_flipped#part-1-additional-background-and-explanatory-videos)
 (optional). This outline of videos allows you to get more in depth
 information on targeted areas when using RStudio and the Tidyverse.
