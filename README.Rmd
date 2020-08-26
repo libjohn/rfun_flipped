@@ -40,7 +40,7 @@ See https://rfun.library.duke.edu/portfolio/r_flipped/
 - Part 1a - QuickStart [Basic] [Introduction to R](https://warpwire.duke.edu/w/pfYDAA/):  (Part 1a of 2)
 - Part 1b - [Basic] [Data wrangling with dplyr](https://warpwire.duke.edu/w/6_YDAA/): (Part 1b of 2)
 
-    - i - _background_: [RStudio: Cloud or download and run locally, or cloud versions](https://warpwire.duke.edu/w/p_YDAA/)
+    - i - _background_: [RStudio: download and run locally, or cloud versions](https://warpwire.duke.edu/w/p_YDAA/)
     - ii - _background_: [RStudio IDE](https://warpwire.duke.edu/w/wfYDAA/)
     - iii - _background_: ggplot for visualization [(briefly). See QuickStart](https://warpwire.duke.edu/w/pfYDAA/?start=520&end=598)
     - iv - _background_: [R Packages and the Tidyverse](https://warpwire.duke.edu/w/z_YDAA/)

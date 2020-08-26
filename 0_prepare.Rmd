@@ -9,21 +9,23 @@ output: github_document
 
 Note:  Registration links can be found near the bottom of this [workshop's description page](https://rfun.library.duke.edu/portfolio/r_flipped/).
 
+> This email is sent a week in advance of the flipped workshop.
+
 ## The letter....
 
-> This email is sent a week in advance of the flipped workshop.
+The code and data repository is here:  https://github.com/libjohn/rfun_flipped
 
 
 ## Flipped classroom preparation - Rfun: Introduction to R for data science Workshop
 
 
-You are receiving this note because you are registered for Part 1 - getting started, EDA, data wrangling, <<insert date/time>>.  This is a flipped classroom model which means you will come prepared to ask questions based on materials shared in advance.  
+You are receiving this note because you are registered for _Part 1 - getting started, EDA, data wrangling_, \<\< insert date/time \>\>.  This is a flipped classroom model which means you will come prepared to ask questions based on materials shared in advance.  
 
 
 During the workshop, there will be ample time for your questions. We will focus on how to use RStudio as a data manipulation tool.  We will not cover statistical modeling or research design, i.e. areas of specific subject expertise.  Email me separately about my consultation services. You may leave the interactive (Zoom) session at any time.  
 
 
-> Brief pre-workshop survey. Please complete this now. <<insert link to pre-workshop survey>>
+> Brief pre-workshop survey. Please complete this now. \<\< insert link to pre-workshop survey \>\>
 
 **Do**
 

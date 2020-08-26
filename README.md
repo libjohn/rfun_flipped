@@ -50,8 +50,8 @@ See <https://rfun.library.duke.edu/portfolio/r_flipped/>
   - Part 1b - \[Basic\] [Data wrangling with
     dplyr](https://warpwire.duke.edu/w/6_YDAA/): (Part 1b of 2)
     
-      - i - *background*: [RStudio: Cloud or download and run locally,
-        or cloud versions](https://warpwire.duke.edu/w/p_YDAA/)
+      - i - *background*: [RStudio: download and run locally, or cloud
+        versions](https://warpwire.duke.edu/w/p_YDAA/)
       - ii - *background*: [RStudio
         IDE](https://warpwire.duke.edu/w/wfYDAA/)
       - iii - *background*: ggplot for visualization [(briefly). See
