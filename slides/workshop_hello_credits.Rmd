@@ -1,18 +1,7 @@
 ---
-title: "quickStart with R"
-subtitle: "R for data science: getting started, EDA, data wrangling"
-author: "John Little"
-date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: 
-      - default
-      - default-fonts
-      - duke-blue
-      - hygge-duke
-      - libs/cc-fonts.css
-      - libs/figure-captions.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -20,31 +9,44 @@ output:
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+xaringanExtra::use_tachyons()
 library(countdown)
 ```
 class: middle
+.sans-serif[
+.tc.bg-light-silver.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
+.f2[ 
+R for computational sciences
+]
+.f3[  
+quickStart: Projects, data wrangling, EDA, viz
+]  
+.f6[
+Sept 1: &nbsp; 1pm to 3pm
+]]
 
-## R for computational sciences
+1.  If you did not already, please take the pre-workshop survey  .tr[ 
+https://is.gd/dE81Va 
+]
 
-### quickStart: Projects, data wrangling, EDA, viz
-
-John Little  
-.scriptsize[Data Science Librarian]  
-.scriptsize[Center for Data & Visualization Services]  
-.scriptsize[Duke University Libraries]
-
-Sept 9: &nbsp; 1pm to 3pm
-
-1.  If you did not already, please take the pre-workshop survey
-
-    - https://is.gd/dE81Va
-
-1. This is a flipped workshop.  You have watched the videos (part 1a and 1b) and are bringing questions.  The videos and code resources are here:  https://rfun.library.duke.edu/portfolio/r_flipped/
-
-1. We will start as the countdown reaches zero....
+2. This is a flipped workshop.  You have watched the videos (part 1a and 1b) and are bringing questions.  See videos and code resources .tr[
+https://rfun.library.duke.edu/portfolio/r_flipped
+]
+3. We will start exercises and answer questions as the countdown reaches zero....
 
 
 ```{r echo=FALSE}
 countdown(minutes = 20, seconds = 15)
 ```
+
+.f6[
+.b[ John Little ]  
+Data Science Librarian  
+Center for Data & Visualization Services  
+Duke University Libraries
+]
+
+
+
+]
 
