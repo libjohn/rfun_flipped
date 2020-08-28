@@ -1,6 +1,7 @@
 ---
 output:
   xaringan::moon_reader:
+    css: xaringan-themer.css
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -9,44 +10,64 @@ output:
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+library(xaringanthemer)
+library(xaringanExtra)
 xaringanExtra::use_tachyons()
 library(countdown)
 ```
+
+```{r themes, warning=FALSE, include=FALSE}
+style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
+```
 class: middle
-.sans-serif[
-.tc.bg-light-silver.b--dark-blue.ba.bw2.br3.shadow-5.ph4.mt5[
-.f2[ 
-R for computational sciences
-]
-.f3[  
+.tc.bg-light-silver.b--navyf.ba.bw1.br4.shadow-5.ph4.mt1[
+
+### R for computational sciences
+
+.f3.near-white[  
 quickStart: Projects, data wrangling, EDA, viz
 ]  
+
+**Flipped Workshop**  
 .f6[
-Sept 1: &nbsp; 1pm to 3pm
-]]
-
-1.  If you did not already, please take the pre-workshop survey  .tr[ 
-https://is.gd/dE81Va 
+Sept 1, 1 to 3pm
 ]
+]  
 
-2. This is a flipped workshop.  You have watched the videos (part 1a and 1b) and are bringing questions.  See videos and code resources .tr[
-https://rfun.library.duke.edu/portfolio/r_flipped
-]
-3. We will start exercises and answer questions as the countdown reaches zero....
+.pull-left[
+1. Did you already **take** the pre-workshop **survey**?  
+2. **You have watched the videos** .black-30[(part 1a and 1b)] and now **have questions** 
 
+3. We will start exercises and answer questions as the countdown reaches zero...f
+]  
+.pull-right[ <br>
+.f6.right[https://is.gd/dE81Va]  
+  
+.f6.right[<br>videos & code:  https://rfun.library.duke.edu/portfolio/r_flipped]  
+]  
+
+.f6.black-40[
+https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
+https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
+Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
 
 ```{r echo=FALSE}
-countdown(minutes = 20, seconds = 15)
+countdown::countdown(minutes = 20, seconds = 15)
 ```
 
-.f6[
-.b[ John Little ]  
-Data Science Librarian  
-Center for Data & Visualization Services  
-Duke University Libraries
-]
 
+---
 
+## second
 
-]
+and stuff
 
+---
+class: inverse
+
+## third 
+
+and stuff
