@@ -60,4 +60,12 @@ library.duke.edu/<a href="https://library.duke.edu/data">data</a>]
 countdown::countdown(minutes = 20, seconds = 15)
 ```
 
+---
+background-image: url(../images/who_we_are.svg)
+background-size: contain
+
+---
+background-image: url(../images/who_we_are_facet.svg)
+background-size: contain
+
 
