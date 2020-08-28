@@ -1,7 +1,9 @@
 ---
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: 
+      - xaringan-themer.css
+      - styles/my-theme.css 
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -35,12 +37,12 @@ Sept 1, 1 to 3pm
 ]  
 
 .pull-left[
-1. Did you already **take** the pre-workshop **survey**?  
-2. **You have watched the videos** .black-30[(part 1a and 1b)] and now **have questions** 
+1. Did you already **complete** the pre-workshop **survey**?  
+2. **You watched the videos** .black-30[(part 1a and 1b)] and **have questions** 
 
-3. We will start exercises and answer questions as the countdown reaches zero...f
+3. We will start exercises and answer questions as the countdown reaches zero...
 ]  
-.pull-right[ <br>
+.pull-right[
 .f6.right[https://is.gd/dE81Va]  
   
 .f6.right[<br>videos & code:  https://rfun.library.duke.edu/portfolio/r_flipped]  
@@ -59,15 +61,3 @@ countdown::countdown(minutes = 20, seconds = 15)
 ```
 
 
----
-
-## second
-
-and stuff
-
----
-class: inverse
-
-## third 
-
-and stuff
