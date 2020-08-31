@@ -39,7 +39,7 @@ quickStart: Projects, data wrangling, EDA, viz
 
 **Flipped Workshop**  
 .f6[
-Sept 1, 1 to 3pm
+Sept 1, 10am to noon
 ]
 ]  
 
