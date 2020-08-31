@@ -12,6 +12,9 @@ output:
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
 library(xaringanthemer)
 library(xaringanExtra)
 xaringanExtra::use_tachyons()
@@ -20,6 +23,10 @@ library(countdown)
 
 ```{r themes, warning=FALSE, include=FALSE}
 style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
+
+form_data <- read_csv("data/_20200901 Pre-Workshop Survey.csv", 
+    col_types = cols(Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")), 
+    skip = 1)
 ```
 class: middle
 .tc.bg-light-silver.b--navyf.ba.bw1.br4.shadow-5.ph4.mt1[
@@ -61,11 +68,144 @@ countdown::countdown(minutes = 20, seconds = 15)
 ```
 
 ---
+## Duke University: Land Acknowledgement
+
+I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catwaba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.   I wish to recognizing this history as an honest attempt to break the cycle of colonization and continued erasure of Indigenous and Black peoples.  There is value in acknowledging the history of the spaces and places we occupy.  I hope we can glimpse an understanding of these histories by recognizing our origins and collective journeys.
+
+---
 background-image: url(../images/who_we_are.svg)
 background-size: contain
 
 ---
 background-image: url(../images/who_we_are_facet.svg)
 background-size: contain
+
+---
+```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+response_rate <- length(form_data) / 80
+
+form_data %>% 
+  mutate(day = lubridate::yday(Timestamp)) %>%
+  count(day) %>% 
+  ggplot(aes(day, n)) +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(minor_breaks = NULL) +
+  scale_x_continuous(minor_breaks = NULL, 
+                     breaks = seq(238, 244, 1),
+                     labels = c("Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon")) +
+  ylim(0,8) +
+  labs(title = "Response rate over time",
+       subtitle = "n = 22 ; Resposne rate: 28%", y = "",
+       caption = "Source:  CDVS Pre-workshop survey") 
+
+
+```
+
+---
+```{r experience plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+form_data %>% 
+  pivot_longer(coder:shell_cli, names_to = "question", values_to = "answer") %>% 
+  mutate(question = factor(question, levels = c("rdbms", "shell_cli", 
+                                                "version_control", "models", "coder"))) %>% 
+  mutate(answer = factor(answer, levels = c("Daily", "Weekly", "Monthly",
+                                            "Several Times per year",
+                                            "Less than once per year",
+                                            "Never"))) %>% 
+  ggplot(aes(question)) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Self-reported tool usage",
+       subtitle = "Respondent's use of a tool / technology / technique",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey") +
+  # theme(plot.title.position = "plot")
+  theme_ipsum(grid = "X")
+```
+
+---
+```{r skills level plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+form_data %>% 
+  pivot_longer(import_data:answer_technical_questions, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c("import_data", "edit_scripts",
+                                       "subset_data", "projects",
+                                       "reproducibility", "apply_learning",
+                                       "answer_technical_questions", "overcome_problems"))) %>%
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(title = "Self-reported R skills",
+       subtitle = "Respondent feels capable of completing a Tidyverse task",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey",
+       fill = "") +
+  # theme_minimal() +
+  theme_ipsum(grid = "X") 
+  # theme(plot.title.position = "plot",
+  #       panel.grid.major.y = element_blank()) 
+```
+---
+```{r data mgt plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+form_data %>% 
+  mutate(data_mgt = if_else(data_mgt == "Nor sure", "Not Sure", data_mgt)) %>% 
+  ggplot(aes(fct_infreq(data_mgt))) +
+  geom_bar() +
+  geom_bar(data = . %>% filter(data_mgt == "Unsatisfied"), aes(data_mgt), fill = "dark orange") + 
+  scale_y_continuous(breaks = seq(0, 10, 3), minor_breaks = NULL) +
+  theme_minimal() +
+  labs(title = "Satisfaction with current Data Management workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey") +
+  theme_minimal() +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+```
+
+```{r dta mgt theme_alt, fig.cap="foo", fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg", include=FALSE}
+plot_theme_alt <- form_data %>%
+  mutate(data_mgt = if_else(data_mgt == "Nor sure", "Not Sure", data_mgt)) %>% 
+  ggplot(aes(fct_infreq(data_mgt))) +
+  geom_bar() +
+  geom_bar(data = . %>% filter(data_mgt == "Unsatisfied"), aes(data_mgt), fill = "dark orange") + 
+  scale_y_continuous(breaks = seq(0, 10, 3), minor_breaks = NULL) +
+  theme_ft_rc(grid = "Y")  +
+  labs(title = "Satisfaction with current Data Management workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey") #+
+  # theme(plot.title.position = "plot",
+  #       panel.grid.major.x = element_blank())
+
+ggsave("images/plot_theme_alt.svg")
+```
+
+
+---
+background-image: url(images/plot_theme_alt.svg)
+
+---
+class: center, middle
+## Microsoft Teams: Rfun
+
+Rfun on MS Teams is a professional learning community for Duke U.
+
+_Teams like Slack_
+
+Join with code **ko8ovx2**
+
+![](images/teams-join-or-create-team.png)
+
+Or, https://is.gd/rfun_teams
+
 
 
