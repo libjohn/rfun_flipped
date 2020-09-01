@@ -92,11 +92,11 @@ form_data %>%
   geom_point() +
   scale_y_continuous(minor_breaks = NULL) +
   scale_x_continuous(minor_breaks = NULL, 
-                     breaks = seq(238, 244, 1),
-                     labels = c("Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon")) +
+                     breaks = seq(238, 245, 1),
+                     labels = c("Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue")) +
   ylim(0,13) +
   labs(title = "Response rate over time",
-       subtitle = "n = 30 ; Resposne rate: 37%", y = "",
+       subtitle = "n = 31 ; Resposne rate: 39%", y = "",
        caption = "Source:  CDVS Pre-workshop survey") 
 
 
