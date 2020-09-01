@@ -94,9 +94,9 @@ form_data %>%
   scale_x_continuous(minor_breaks = NULL, 
                      breaks = seq(238, 244, 1),
                      labels = c("Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon")) +
-  ylim(0,8) +
+  ylim(0,13) +
   labs(title = "Response rate over time",
-       subtitle = "n = 26 ; Resposne rate: 33%", y = "",
+       subtitle = "n = 30 ; Resposne rate: 37%", y = "",
        caption = "Source:  CDVS Pre-workshop survey") 
 
 
@@ -160,7 +160,7 @@ form_data %>%
   ggplot(aes(fct_infreq(data_mgt))) +
   geom_bar() +
   geom_bar(data = . %>% filter(data_mgt == "Unsatisfied"), aes(data_mgt), fill = "dark orange") + 
-  scale_y_continuous(breaks = seq(0, 10, 3), minor_breaks = NULL) +
+  scale_y_continuous(breaks = seq(0, 15, 3), minor_breaks = NULL) +
   theme_minimal() +
   labs(title = "Satisfaction with current Data Management workflow",
        subtitle = "self reported",
@@ -177,7 +177,7 @@ plot_theme_alt <- form_data %>%
   ggplot(aes(fct_infreq(data_mgt))) +
   geom_bar() +
   geom_bar(data = . %>% filter(data_mgt == "Unsatisfied"), aes(data_mgt), fill = "dark orange") + 
-  scale_y_continuous(breaks = seq(0, 10, 3), minor_breaks = NULL) +
+  scale_y_continuous(breaks = seq(0, 15, 3), minor_breaks = NULL) +
   theme_ft_rc(grid = "Y")  +
   labs(title = "Satisfaction with current Data Management workflow",
        subtitle = "self reported",
