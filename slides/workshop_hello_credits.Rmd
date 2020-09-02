@@ -19,14 +19,35 @@ library(xaringanthemer)
 library(xaringanExtra)
 xaringanExtra::use_tachyons()
 library(countdown)
+library(googlesheets4)
 ```
-
 ```{r themes, warning=FALSE, include=FALSE}
 style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
+# form_data <- read_csv("data/_20200901 Pre-Workshop Survey.csv", 
+#     col_types = cols(Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")), 
+#     skip = 1)
 
-form_data <- read_csv("data/_20200901 Pre-Workshop Survey.csv", 
-    col_types = cols(Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")), 
-    skip = 1)
+# *** RUN gs4_auth() in the console ***
+gs4_auth_configure()
+pre_workshop <- 
+  read_sheet("https://docs.google.com/spreadsheets/d/166YyZkuBEZbYXrcKH4HgRyC23J8YGY_WvzHUXwWgY-w/edit#gid=1479904289")
+post_workshop <- 
+  read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
+
+mynames_pre <- read_csv("data/colnames_preworkshop.csv")
+mynames_post <- read_csv("data/colnames_postworkshop.csv")
+
+colnames(pre_workshop) <- mynames_pre$value
+colnames(post_workshop) <- mynames_post$value
+
+pre_workshop <- pre_workshop %>%
+  mutate(survey_type = "pre")
+post_workshop <- post_workshop %>% 
+  filter(!str_detect(search4answers, "NOTE")) %>% 
+  mutate(survey_type = "post") %>% 
+  select(-what_worked, -continue_curriculum, -add_curriculum)
+
+form_data <- pre_workshop
 ```
 class: middle
 .tc.bg-light-silver.b--navyf.ba.bw1.br4.shadow-5.ph4.mt1[
