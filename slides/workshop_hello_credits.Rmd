@@ -28,7 +28,7 @@ style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
 #     skip = 1)
 
 # *** RUN gs4_auth() in the console ***
-gs4_auth_configure()
+# gs4_auth_configure()
 pre_workshop <- 
   read_sheet("https://docs.google.com/spreadsheets/d/166YyZkuBEZbYXrcKH4HgRyC23J8YGY_WvzHUXwWgY-w/edit#gid=1479904289")
 post_workshop <- 
