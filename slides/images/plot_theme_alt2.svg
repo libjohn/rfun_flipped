@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 720.00 504.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, polygon, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ=='>
+    <rect x='28.23' y='38.85' width='686.29' height='420.02' />
+  </clipPath>
+</defs>
+<polyline points='28.23,439.79 714.52,439.79 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<polyline points='28.23,153.41 714.52,153.41 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<rect x='52.74' y='57.95' width='147.06' height='381.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #595959;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<rect x='216.15' y='248.87' width='147.06' height='190.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #595959;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<rect x='379.55' y='344.33' width='147.06' height='95.46' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #595959;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<rect x='542.95' y='344.33' width='147.06' height='95.46' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #595959;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<rect x='52.74' y='57.95' width='147.06' height='381.84' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #FF8C00;' clip-path='url(#cpMjguMjN8NzE0LjUyfDQ1OC44OHwzOC44NQ==)' />
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='504.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='18.41' y='442.94' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>0</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='18.41' y='156.56' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>3</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='104.51' y='470.11' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='43.53px' lengthAdjust='spacingAndGlyphs'>Unsatisfied</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='272.80' y='470.11' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='33.75px' lengthAdjust='spacingAndGlyphs'>Satisfied</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='438.89' y='470.11' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='28.37px' lengthAdjust='spacingAndGlyphs'>Neutral</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='584.44' y='470.11' style='font-size: 8.80px; fill: #4D4D4D; font-family: Arial;' textLength='64.07px' lengthAdjust='spacingAndGlyphs'>Very Unsatisfied</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='5.48' y='31.06' style='font-size: 11.00px; font-family: Arial;' textLength='61.14px' lengthAdjust='spacingAndGlyphs'>self reported</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='5.48' y='14.93' style='font-size: 13.20px; font-family: Arial;' textLength='272.91px' lengthAdjust='spacingAndGlyphs'>Satisfaction with current Vizualization workflow</text></g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8NTA0LjAwfDAuMDA=)'><text x='569.76' y='496.67' style='font-size: 8.80px; font-family: Arial;' textLength='144.76px' lengthAdjust='spacingAndGlyphs'>Source:  CDVS Pre-workshop survey</text></g>
+</svg>

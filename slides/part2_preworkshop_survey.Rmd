@@ -1,0 +1,293 @@
+---
+output: html_notebook
+  # xaringan::moon_reader:
+  #   css: 
+  #     - xaringan-themer.css
+  #     - styles/my-theme.css 
+  #   lib_dir: libs
+  #   nature:
+  #     highlightStyle: github
+  #     highlightLines: true
+  #     countIncrementalSlides: false
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
+library(xaringanthemer)
+library(xaringanExtra)
+xaringanExtra::use_tachyons()
+library(countdown)
+library(googlesheets4)
+```
+```{r themes, warning=FALSE, include=FALSE}
+style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
+# form_data <- read_csv("data/_20200901 Pre-Workshop Survey.csv", 
+#     col_types = cols(Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")), 
+#     skip = 1)
+
+# *** RUN gs4_auth() in the console ***
+# gs4_auth_configure()
+pre_workshop <- 
+  read_sheet("https://docs.google.com/spreadsheets/d/1pbW7altQx4mF5C2CZBvwQEnGEeLKnyXM-LG89cHp1Xo/edit#gid=1628675293")
+# post_workshop <- 
+#   read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
+```
+```{r themes, warning=FALSE, include=FALSE}
+mynames_pre <- read_csv("data/colnames_part2_preworkshop.csv")
+# mynames_post <- read_csv("data/colnames_postworkshop.csv")
+
+colnames(pre_workshop) <- mynames_pre$value
+# colnames(post_workshop) <- mynames_post$value
+
+pre_workshop <- pre_workshop %>%
+  mutate(survey_type = "pre")
+# post_workshop <- post_workshop %>% 
+#   filter(!str_detect(search4answers, "NOTE")) %>% 
+#   mutate(survey_type = "post") %>% 
+#   select(-what_worked, -continue_curriculum, -add_curriculum)
+```
+
+
+class: middle
+.tc.bg-light-silver.b--navyf.ba.bw1.br4.shadow-5.ph4.mt1[
+
+### R for computational sciences
+
+.f3.near-white[  
+quickStart: Projects, data wrangling, EDA, viz
+]  
+
+**Flipped Workshop**  
+.f6[
+Sept 1, 10am to noon
+]
+]  
+
+.pull-left[
+1. Did you already **complete** the pre-workshop **survey**?  
+2. **You watched the videos** .black-30[(part 1a and 1b)] and **have questions** 
+
+3. We will start exercises and answer questions as the countdown reaches zero...
+]  
+.pull-right[
+.f6.right[https://is.gd/dE81Va]  
+  
+.f6.right[<br>videos & code:  https://rfun.library.duke.edu/portfolio/r_flipped]  
+]  
+
+.f6.black-40[
+https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
+https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
+Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 20, seconds = 15)
+```
+
+---
+## Duke University: Land Acknowledgement
+
+I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
+
+---
+background-image: url(../images/who_we_are.svg)
+background-size: contain
+
+---
+background-image: url(../images/who_we_are_facet.svg)
+background-size: contain
+
+---
+```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+response_rate <- nrow(pre_workshop) / 50
+
+pre_workshop %>% 
+  mutate(day = lubridate::yday(Timestamp)) %>%
+  mutate(day_label = case_when(
+    day == 246 ~ "Wed",
+    day == 247 ~ "Thu"
+  )) %>% 
+  count(day) %>% 
+  ggplot(aes(day, n)) +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(minor_breaks = NULL,
+                     breaks = c(3:4)) +
+  scale_x_continuous(minor_breaks = NULL, 
+                     breaks = seq(246, 247, 1),
+                     labels = c("Wed", "Thu")) +
+  ylim(0,5) +
+  labs(title = "Response rate over time",
+       subtitle = "n = 8 ; Resposne rate: 16%", y = "",
+       caption = "Source:  CDVS Pre-workshop survey") 
+
+
+```
+
+---
+```{r experience plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+pre_workshop %>% 
+  pivot_longer(coder:rdbms, names_to = "question", values_to = "answer") %>% 
+  mutate(question = factor(question, levels = c("coder", "viz_tools", 
+                                                "version_control", "shell_cli", "rdbms"))) %>% 
+  mutate(answer = factor(answer, levels = c("Daily", "Weekly", "Monthly",
+                                            "Several Times per year",
+                                            "Less than once per year",
+                                            "Never"))) %>% 
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(title = "Self-reported tool usage",
+       subtitle = "Respondent's use of a tool / technology / technique",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey") +
+  # theme(plot.title.position = "plot")
+  theme_ipsum(grid = "X")
+```
+
+```{r}
+pre_workshop %>% 
+  pivot_longer(import_data:join, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>% 
+   mutate(question  = factor(question,
+                            levels = c("import_data", "edit_scripts",
+                                       "make_plots", "ggplot2",
+                                       "interactive", "pivot",
+                                       "join"))) %>% 
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(title = "Self-reported R skills",
+       subtitle = "Respondent can complete a Tidyverse task",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey",
+       fill = "") +
+  theme_ipsum(grid = "X") 
+  
+```
+
+
+---
+```
+{r skills level plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+pre_workshop %>% 
+  pivot_longer(import_data:join, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c("import_data", "edit_scripts",
+                                       "make_plots", "ggplot2",
+                                       "interactive", "pivot",
+                                       "join")))  %>%
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(title = "Self-reported R skills",
+       subtitle = "Respondent feels capable of completing a Tidyverse task",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey",
+       fill = "") +
+  # theme_minimal() +
+  theme_ipsum(grid = "X") 
+  # theme(plot.title.position = "plot",
+  #       panel.grid.major.y = element_blank()) 
+```
+---
+```{r data mgt plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+plot_workflow <- pre_workshop %>% 
+  ggplot(aes(fct_infreq(viz_workflow))) +
+  geom_bar() +
+  geom_bar(data = . %>% filter(viz_workflow == "Unsatisfied"), aes(viz_workflow), fill = "dark orange") + 
+  scale_y_continuous(breaks = seq(0, 15, 3), minor_breaks = NULL) +
+  theme_minimal() +
+  labs(title = "Satisfaction with current Vizualization workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey") +
+  theme_minimal() +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+
+plot_workflow
+ggsave("images/plot_theme_alt2.svg")
+```
+
+---
+background-image: url(images/plot_theme_alt2.svg)
+
+---
+class: center, middle
+## Microsoft Teams: Rfun
+
+Rfun on MS Teams is a professional learning community for Duke U.
+
+_Teams like Slack_
+
+Join with code **ko8ovx2**
+
+![](images/teams-join-or-create-team.png)
+
+Or, https://is.gd/rfun_teams
+
+
+---
+### So let's chat
+
+We're happy to consult with you.   We can make the details relvant to your project
+
+Title | URL
+--- | ---
+Schedule me for consultations | https://is.gd/littleconsult
+Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
+
+
+### Resources
+
+It's all online
+
+Title | URL
+--- | ---
+rfun_flipped codebase       | https://github.com/libjohn/rfun_flipped
+exercise in rfun-intro repo | https://github.com/libjohn/intro2r-code
+link to the media library   | https://warpwire.duke.edu/w/n_YDAA
+Rfun                        | https://rfun.library.duke.edu
+our Center for data & Viz   | https://library.duke.edu/data
+
+
+---
+class: middle
+
+.center[
+## Reprex
+
+_The most efficient way to get help_
+
+REPROducible EXample and Code
+
+https://reprex.tidyverse.org
+]
+
+--
+
+- Use the smallest, simplest, most built-in data possible
+- Include commands on a strict “need to run” basis
+
+
+
