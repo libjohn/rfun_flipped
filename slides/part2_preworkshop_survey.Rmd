@@ -1,4 +1,8 @@
 ---
+title: "R for Computational Sciences"
+subtitle: "Part 2.  Viz, pivot, join, models"
+author: "John Little"
+institute: "Cente for Data & Viz"
 output: 
   xaringan::moon_reader:
     css:
@@ -94,11 +98,11 @@ countdown::countdown(minutes = 20, seconds = 15)
 I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
 
 ---
-background-image: url(../images/who_we_are.svg)
+background-image: url(images/who_we_are_part2.svg)
 background-size: contain
 
 ---
-background-image: url(../images/who_we_are_facet.svg)
+background-image: url(images/who_we_are_facet_part2.svg)
 background-size: contain
 
 ---
@@ -194,6 +198,15 @@ plot_workflow <- pre_workshop %>%
         panel.grid.major.x = element_blank())
 
 plot_workflow
+```
+
+```{r alt_plot, include=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
+plot_workflow +
+  theme_ft_rc(grid = "Y")  +
+  labs(title = "Satisfaction with current Data Management workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey")
 ggsave("images/plot_theme_alt2.svg")
 ```
 
