@@ -8,9 +8,13 @@ output: html_notebook
 
 <center>[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)</center>
 
+These exercises support your learning after watching the [instructional video](https://warpwire.duke.edu/w/80YEAA/)
+
 ```{r setup}
 library(tidyverse)
 ```
+
+The dataset, `mpg`, is an onboard dataset, part of the `ggplot2` package.  You can learn more about it by searching the help tab for "mpg", or type `?mpg` in the console.
 
 ```{r}
 mpg
@@ -19,7 +23,13 @@ mpg
 
 ## Your Turn 1
 
-Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
+IN THE code-chunk, **below**, manually type the following code:
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+
+
+Pay strict attention to spelling, capitalization, and parentheses!  Try not to copy and paste, just this once.
 
 ```{r}
 
@@ -86,7 +96,7 @@ mpg %>%
 Save the last plot
 
 ```{r}
-ggsave()
+ggsave(_____)
 # or right-click the image
 ```
 

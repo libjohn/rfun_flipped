@@ -113,7 +113,8 @@ pre_workshop %>%
   mutate(day = lubridate::yday(Timestamp)) %>%
   mutate(day_label = case_when(
     day == 246 ~ "Wed",
-    day == 247 ~ "Thu"
+    day == 247 ~ "Thu",
+    day == 248 ~ "Fri"
   )) %>% 
   count(day) %>% 
   ggplot(aes(day, n)) +
@@ -122,11 +123,11 @@ pre_workshop %>%
   scale_y_continuous(minor_breaks = NULL,
                      breaks = c(3:4)) +
   scale_x_continuous(minor_breaks = NULL, 
-                     breaks = seq(246, 247, 1),
-                     labels = c("Wed", "Thu")) +
-  ylim(0,5) +
+                     breaks = seq(246, 248, 1),
+                     labels = c("Wed", "Thu", "Fri")) +
+  ylim(0,8) +
   labs(title = "Response rate over time",
-       subtitle = "n = 8 ; Resposne rate: 13%", y = "",
+       subtitle = "n = 8 ; Resposne rate: 18%", y = "",
        caption = "Source:  CDVS Pre-workshop survey") 
 
 

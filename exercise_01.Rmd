@@ -33,7 +33,7 @@ b. Insert a code chunk and import (`read_csv()`) the brodhead practice data from
     
 
 ```{r}
-brodhead <- read.csv("data/brodheadCenter.csv")
+brodhead <- read_csv("data/brodheadCenter.csv")
 ```
 
 

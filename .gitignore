@@ -2,6 +2,8 @@
 rsconnect
 
 # A few specific files
+exercise_01.nb.html
+exercises_02_viz.nb.html
 
 # History files
 .Rhistory
