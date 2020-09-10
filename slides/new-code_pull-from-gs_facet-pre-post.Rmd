@@ -3,16 +3,49 @@ title: "Compare Pre/post"
 author: "John Little"
 ---
 
-This code requires running `worhshop_hellp_credits.Rmd` first, to buid environment variables that this notebook can draw from.
 
 ```{r}
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
+library(googlesheets4)
+```
+
+
+
+
+```{r}
+# pre_workshop 
+# post_workshop 
+
+pre_workshop <- 
+  read_sheet("https://docs.google.com/spreadsheets/d/1pbW7altQx4mF5C2CZBvwQEnGEeLKnyXM-LG89cHp1Xo/edit#gid=1628675293")
+post_workshop <- 
+  read_sheet("https://docs.google.com/spreadsheets/d/1QsSpx4VT4gETSe4olAVy6lBj-KhvdSPpD5Xkd9kBTso/edit#gid=342600337")
+```
+
+
+```{r}
+colnames(pre_workshop)
 colnames(post_workshop)
 ```
 
 ```{r}
-pre_workshop 
-post_workshop 
+mynames_pre <- read_csv("data/colnames_part2_preworkshop.csv")
+mynames_post <- read_csv("data/colnames_part2_postworkshop.csv")
+
+colnames(pre_workshop) <- mynames_pre$value
+# colnames(post_workshop) <- mynames_post$value
+
+pre_workshop <- pre_workshop %>%
+  mutate(survey_type = "pre")
+# post_workshop <- post_workshop %>% 
+#   filter(!str_detect(search4answers, "NOTE")) %>% 
+#   mutate(survey_type = "post") %>% 
+#   select(-what_worked, -continue_curriculum, -add_curriculum)
 ```
+
+
 
 ```{r}
 survey_df <- bind_rows(pre_workshop, post_workshop)
