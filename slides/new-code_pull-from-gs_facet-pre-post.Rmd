@@ -106,7 +106,7 @@ pre_workshop %>%
   theme_ipsum(grid = "X")
 ```
 
-```{r fig.height=7, message=FALSE, warning=FALSE}
+```{r fig.height=7, fig.width=12, message=FALSE, warning=FALSE}
 # form_data %>% # import, edit, subset, project, repro, apply, answer tech, overcome probs
 survey_df %>% 
   mutate(survey_type = case_when(
@@ -131,16 +131,18 @@ survey_df %>%
   coord_flip() +
   facet_wrap(~ fct_rev(survey_type), dir = "v") +
   scale_fill_brewer(palette = "Spectral") +
+  scale_y_continuous(labels = scales::percent) +
   labs(title = "Self-reported R skills",
        subtitle = "Respondent feels capable of completing a Tidyverse task",
-       x = "", y = "Percent",
+       x = "", y = "",
        caption = "Source:  Pre & Post workshop surveys",
        fill = "") +
-  theme_ipsum(grid = "X")
+  theme_ipsum(grid = "X") +
+  theme(plot.title.position = "plot")
 ```
 
 ```{r}
-ggsave("images/pre_post_survey.svg")
+ggsave("images/pre_post_survey.svg", width = 12, height = 7)
 ```
 
 
