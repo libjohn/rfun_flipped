@@ -171,7 +171,7 @@ survey_df %>%
   geom_bar(position = "fill") +
   coord_flip() +
   scale_fill_manual(values = c("dark orange", "gray63")) +
-  scale_y_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = scales::percent, breaks = c(0, 0.5, 1)) +
   facet_wrap(~ answer, nrow = 1) +
   guides(fill = guide_legend(reverse = TRUE)) + #FALSE) 
   labs(title = "Self-reported R skills",
