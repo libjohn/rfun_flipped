@@ -146,3 +146,100 @@ ggsave("images/pre_post_survey.svg", width = 12, height = 7)
 ```
 
 
+
+```{r fig.height=5, fig.width=12, message=FALSE, warning=FALSE}
+survey_df %>% 
+  mutate(survey_type = case_when(
+    survey_type == "pre" ~ "Pre-workshop",
+    survey_type == "post" ~ "Post-workshop"
+  )) %>% 
+  select(survey_type, make_plots:join) %>% 
+  pivot_longer(make_plots:join, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = if_else(answer == "Strongly Agree", "Strongly agree", answer)) %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c(#"import_data", "edit_scripts",
+                                       "make_plots", "ggplot2",
+                                       "interactive", "pivot",
+                                       "join"))) %>%
+  ggplot(aes(fct_rev(question), fill = survey_type)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  scale_fill_manual(values = c("dark orange", "gray63")) +
+  scale_y_continuous(labels = scales::percent) +
+  facet_wrap(~ answer, nrow = 1) +
+  guides(fill = guide_legend(reverse = TRUE)) + #FALSE) 
+  labs(title = "Self-reported R skills",
+       subtitle = "Respondents feel capable of completing a Tidyverse task",
+       x = "", y = "", fill = "Suvey",
+       caption = "Source:  Pre & Post workshop surveys",
+       fill = "") +
+  theme_ipsum(grid = "X") +
+  theme(plot.title.position = "plot", legend.position = "top")
+```
+        
+
+```{r}
+ggsave("images/pre_post_survey2.svg", width = 12, height = 5)
+```
+
+
+```{r}
+survey_df %>% 
+  mutate(survey_type = case_when(
+    survey_type == "pre" ~ "Pre-workshop survey",
+    survey_type == "post" ~ "Post-workshop survey"
+  )) %>% 
+  pivot_longer(make_plots:join, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = if_else(answer == "Strongly Agree", "Strongly agree", answer)) %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c(#"import_data", "edit_scripts",
+                                       "make_plots", "ggplot2",
+                                       "interactive", "pivot",
+                                       "join"))) %>%
+  ggplot(aes(fct_rev(question), fill = answer, group = survey_type)) +
+  geom_bar(position = position_dodge2()) 
+```
+
+
+```{r fig.width=12}
+survey_df %>% 
+  mutate(survey_type = case_when(
+    survey_type == "pre" ~ "Pre-workshop survey",
+    survey_type == "post" ~ "Post-workshop survey"
+  )) %>% 
+  select(survey_type, make_plots:join) %>% 
+  pivot_longer(make_plots:join, 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = if_else(answer == "Strongly Agree", "Strongly agree", answer)) %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c(#"import_data", "edit_scripts",
+                                       "make_plots", "ggplot2",
+                                       "interactive", "pivot",
+                                       "join"))) %>%
+  ggplot(aes(fct_rev(question), fill = survey_type)) +
+  geom_bar(position = "dodge2") +
+  coord_flip() +
+  scale_fill_manual(values = c("forest green", "firebrick")) +
+  facet_wrap(~ answer, nrow = 1) +
+  guides(fill = FALSE) #guide_legend(reverse = TRUE))
+```
+
+
+
