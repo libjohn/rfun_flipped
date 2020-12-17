@@ -31,11 +31,15 @@ brodhead %>%
 #### Alternative Answer
 
 ```{r}
-brodhead %>% 
-  filter(cost == min(cost)) %>% 
-  select(name, type, itemType, cost)
-  
+lowest_cost_item <- brodhead %>% 
+  arrange(cost) %>% 
+  select(name) %>% 
+  slice_head() %>% 
+  pull()
+lowest_cost_item  
 ```
+
+The lowest cost item can be found at `r lowest_cost_item`.
 
 2. Which restaurant has the most expensive item(s)?  What are those item(s)?
 
@@ -105,7 +109,8 @@ length(eight_dollar_items$itemName)
 ```{r}
 brodhead %>% 
   mutate(halfPrice = (cost / 2)) %>% 
-  select(name, itemName, cost, halfPrice)
+  select(name, itemName, cost, halfPrice) %>% 
+  mutate(halfPrice = scales::dollar(halfPrice))
 ```
 
 
