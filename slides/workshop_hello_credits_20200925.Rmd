@@ -100,12 +100,13 @@ background-image: url(images/who_we_are_20200925.svg)
 background-size: contain
 
 ---
+exclude: true
 background-image: url(images/who_we_are_facet_20200925.svg)
 background-size: contain
 
 ---
 ```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
-response_rate <- nrow(pre_workshop) / 32
+response_rate <- nrow(pre_workshop) / 30
 
 pre_workshop %>% 
   mutate(day = lubridate::yday(Timestamp)) %>%
@@ -113,14 +114,15 @@ pre_workshop %>%
   ggplot(aes(day, n)) +
   geom_line() +
   geom_point() +
-  scale_y_continuous(minor_breaks = NULL) +
+  scale_y_continuous(minor_breaks = NULL, limits = c(0,3)) +
+  # scale_y_continuous(breaks = scales::pretty_breaks()) +
   scale_x_continuous(minor_breaks = NULL, 
                      breaks = seq(263, 268, 1),
                      labels = c("Sat", "Sun", "Mon", "Tues", "Wed", "Thur")) +
-  ylim(0,3) +
+  # ylim(0,3) +
   labs(title = "Response rate over time",
-       subtitle = "n = 3 ; Response rate: 9%", y = "",
-       caption = "Source:  CDVS Pre-workshop survey") 
+       subtitle = "n = 4 ; Response rate: 13%", y = "",
+       caption = "Source:  CDVS Pre-workshop survey")
 
 
 ```
@@ -186,7 +188,7 @@ data_mgt_plot <- pre_workshop %>%
   # ggplot(aes(fct_infreq(data_mgt))) +
   ggplot(aes(fct_relevel(viz_workflow, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied"))) +
   geom_bar() +
-  # geom_bar(data = . %>% filter(viz_workflow == "Neutral"), aes(data_mgt), fill = "dark orange") + 
+  geom_bar(data = . %>% filter(viz_workflow == "Unsatisfied"), aes(viz_workflow), fill = "dark orange") + 
   # geom_bar(data = . %>% filter(viz_workflow == "Not applicable"), fill = "grey70") +
   scale_y_continuous(breaks = seq(0, 3, 3), minor_breaks = NULL) +
   theme_minimal() +
@@ -275,5 +277,9 @@ Include commands on a strict “need to run” basis
 
 ---
 background-image: url(images/pre_post_survey2.svg)
+background-size: contain
+
+---
+backgroud-image: url(images/pre_post_survey2_20200918.svg)
 background-size: contain
 
