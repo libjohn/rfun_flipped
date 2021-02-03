@@ -241,10 +241,9 @@ It's all online
 Title | URL
 --- | ---
 rfun_flipped codebase       | https://github.com/libjohn/rfun_flipped
-exercise in rfun-intro repo | https://github.com/libjohn/intro2r-code
-link to the media library   | https://warpwire.duke.edu/w/n_YDAA
+exercises                   | https://github.com/libjohn/intro2r_exercises
 Rfun                        | https://rfun.library.duke.edu
-our Center for data & Viz   | https://library.duke.edu/data
+Center for data & Viz       | https://library.duke.edu/data
 
 
 ---
