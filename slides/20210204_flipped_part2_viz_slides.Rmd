@@ -34,7 +34,7 @@ style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
 # *** RUN gs4_auth() in the console ***
 # gs4_auth_configure()
 pre_workshop <- 
-  read_sheet("https://docs.google.com/spreadsheets/d/1tVOVlVVqjaGIN0JFJAGorGzEob3B3vF947H6zLa6jmQ/edit#gid=526532007")
+  read_sheet("https://docs.google.com/spreadsheets/d/1UhAb48YDtvPDvnPzKH1ztmJ9lizJHASYxg0oDmC_e8k/edit#gid=461890744")
 # post_workshop <- 
 #   read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
 
@@ -62,21 +62,13 @@ quickStart: Viz, pivot, join, models
 
 **Flipped Workshop**  
 .f6[
-Sept 25, 2pm to 4pm
+Feb 04, 1:30pm to 3:30pm
 ]
 ]  
 
-.pull-left[
-1. Did you already **complete** the pre-workshop **survey**?  
-2. **You watched the videos** .black-30[(part 2, et. al.)] and **have questions** 
-
+1. Please **complete** the pre-workshop **survey**  (check your email)
+2. **You watched the videos** .black-30[(Viz, join, pivot, & regression)] and **have questions**  
 3. We will start exercises and answer questions as the countdown reaches zero...
-]  
-.pull-right[
-.f6.right[https://is.gd/N377It]  
-  
-.f6.right[<br>videos & code:  https://rfun.library.duke.edu/portfolio/r_flipped]  
-]  
 
 .f6.black-40[
 https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
@@ -96,7 +88,7 @@ countdown::countdown(minutes = 20, seconds = 00)
 I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
 
 ---
-background-image: url(images/who_we_are_20200925.svg)
+background-image: url(images/who_we_are_20210204.svg)
 background-size: contain
 
 ---
@@ -106,7 +98,7 @@ background-size: contain
 
 ---
 ```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
-response_rate <- nrow(pre_workshop) / 30
+response_rate <- nrow(pre_workshop) / 51
 
 pre_workshop %>% 
   mutate(day = lubridate::yday(Timestamp)) %>%
@@ -114,14 +106,14 @@ pre_workshop %>%
   ggplot(aes(day, n)) +
   geom_line() +
   geom_point() +
-  scale_y_continuous(minor_breaks = NULL, limits = c(0,3)) +
+  scale_y_continuous(minor_breaks = NULL, limits = c(0,5)) +
   # scale_y_continuous(breaks = scales::pretty_breaks()) +
   scale_x_continuous(minor_breaks = NULL, 
-                     breaks = seq(263, 268, 1),
-                     labels = c("Sat", "Sun", "Mon", "Tues", "Wed", "Thur")) +
+                     breaks = seq(26, 33, 1),
+                     labels = c("Tues", "Wed", "Thur", "Fri", "Sat", "Sun", "Mon", "Tues")) +
   # ylim(0,3) +
   labs(title = "Response rate over time",
-       subtitle = "n = 4 ; Response rate: 13%", y = "",
+       subtitle = "n = 11 ; Response rate: 21%", y = "",
        caption = "Source:  CDVS Pre-workshop survey")
 
 
@@ -274,12 +266,7 @@ Use the smallest, simplest, most built-in data possible
 Include commands on a strict “need to run” basis
 ]
 
-
 ---
-background-image: url(images/pre_post_survey2.svg)
-background-size: contain
-
----
-backgroud-image: url(images/pre_post_survey2_20200918.svg)
+background-image: url(images/pre_post_survey2_20210204.svg)
 background-size: contain
 
