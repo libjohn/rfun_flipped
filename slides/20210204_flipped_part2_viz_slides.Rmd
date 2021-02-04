@@ -98,7 +98,7 @@ background-size: contain
 
 ---
 ```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
-response_rate <- nrow(pre_workshop) / 51
+response_rate <- nrow(pre_workshop) / 48
 
 pre_workshop %>% 
   mutate(day = lubridate::yday(Timestamp)) %>%
@@ -109,11 +109,11 @@ pre_workshop %>%
   scale_y_continuous(minor_breaks = NULL, limits = c(0,5)) +
   # scale_y_continuous(breaks = scales::pretty_breaks()) +
   scale_x_continuous(minor_breaks = NULL, 
-                     breaks = seq(26, 33, 1),
-                     labels = c("Tues", "Wed", "Thur", "Fri", "Sat", "Sun", "Mon", "Tues")) +
+                     breaks = seq(26, 35, 1),
+                     labels = c("Tues", "Wed", "Thur", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thurs")) +
   # ylim(0,3) +
   labs(title = "Response rate over time",
-       subtitle = "n = 11 ; Response rate: 21%", y = "",
+       subtitle = "n = 14 ; Response rate: 29%", y = "",
        caption = "Source:  CDVS Pre-workshop survey")
 
 
@@ -180,7 +180,7 @@ data_mgt_plot <- pre_workshop %>%
   # ggplot(aes(fct_infreq(data_mgt))) +
   ggplot(aes(fct_relevel(viz_workflow, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied"))) +
   geom_bar() +
-  geom_bar(data = . %>% filter(viz_workflow == "Unsatisfied"), aes(viz_workflow), fill = "dark orange") + 
+  geom_bar(data = . %>% filter(viz_workflow == "Neutral"), aes(viz_workflow), fill = "dark orange") + 
   # geom_bar(data = . %>% filter(viz_workflow == "Not applicable"), fill = "grey70") +
   scale_y_continuous(breaks = seq(0, 3, 3), minor_breaks = NULL) +
   theme_minimal() +
