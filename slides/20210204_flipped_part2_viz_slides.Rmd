@@ -98,7 +98,10 @@ background-size: contain
 
 ---
 ```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
-response_rate <- nrow(pre_workshop) / 48
+response_total <- nrow(pre_workshop)
+response_rate <- scales::percent(nrow(pre_workshop) / 48)
+response_subtitle <- glue::glue('n = {response_total} ; Response rate: {response_rate}')
+
 
 pre_workshop %>% 
   mutate(day = lubridate::yday(Timestamp)) %>%
@@ -113,7 +116,7 @@ pre_workshop %>%
                      labels = c("Tues", "Wed", "Thur", "Fri", "Sat", "Sun", "Mon", "Tues", "Wed", "Thurs")) +
   # ylim(0,3) +
   labs(title = "Response rate over time",
-       subtitle = "n = 14 ; Response rate: 29%", y = "",
+       subtitle = response_subtitle, y = "",
        caption = "Source:  CDVS Pre-workshop survey")
 
 
