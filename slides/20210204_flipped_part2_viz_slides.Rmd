@@ -99,7 +99,7 @@ background-size: contain
 ---
 ```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
 response_total <- nrow(pre_workshop)
-response_rate <- scales::percent(nrow(pre_workshop) / 48)
+response_rate <- scales::percent(nrow(pre_workshop) / 46)
 response_subtitle <- glue::glue('n = {response_total} ; Response rate: {response_rate}')
 
 
@@ -109,7 +109,7 @@ pre_workshop %>%
   ggplot(aes(day, n)) +
   geom_line() +
   geom_point() +
-  scale_y_continuous(minor_breaks = NULL, limits = c(0,5)) +
+  scale_y_continuous(minor_breaks = NULL, limits = c(0,7)) +
   # scale_y_continuous(breaks = scales::pretty_breaks()) +
   scale_x_continuous(minor_breaks = NULL, 
                      breaks = seq(26, 35, 1),
@@ -181,9 +181,9 @@ pre_workshop %>%
 data_mgt_plot <- pre_workshop %>% 
   # mutate(data_mgt = if_else(data_mgt == "Nor sure", "Not Sure", data_mgt)) %>% 
   # ggplot(aes(fct_infreq(data_mgt))) +
-  ggplot(aes(fct_relevel(viz_workflow, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied"))) +
+  ggplot(aes(fct_relevel(viz_workflow, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"))) +
   geom_bar() +
-  geom_bar(data = . %>% filter(viz_workflow == "Neutral"), aes(viz_workflow), fill = "dark orange") + 
+  geom_bar(data = . %>% filter(viz_workflow == "Unsatisfied"), aes(viz_workflow), fill = "dark orange") + 
   # geom_bar(data = . %>% filter(viz_workflow == "Not applicable"), fill = "grey70") +
   scale_y_continuous(breaks = seq(0, 3, 3), minor_breaks = NULL) +
   theme_minimal() +
