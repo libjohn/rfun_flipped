@@ -35,21 +35,20 @@ style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
 # gs4_auth_configure()
 pre_workshop <- 
   read_sheet("https://docs.google.com/spreadsheets/d/1UhAb48YDtvPDvnPzKH1ztmJ9lizJHASYxg0oDmC_e8k/edit#gid=461890744")
-# post_workshop <- 
-#   read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
+post_workshop <-
+  read_sheet("https://docs.google.com/spreadsheets/d/1PJopgiSjM1kyff7rbMZKzFSieQc3tB8HwJC4WbeQis0/edit#gid=1000078200")
 
 mynames_pre <- read_csv("data/colnames_part2_preworkshop.csv")
-# mynames_post <- read_csv("data/colnames_postworkshop.csv")
+mynames_post <- read_csv("data/colnames_part2_postworkshop.csv")
 
 colnames(pre_workshop) <- mynames_pre$value
-# colnames(post_workshop) <- mynames_post$value
+colnames(post_workshop) <- mynames_post$value
 
 pre_workshop <- pre_workshop %>%
   mutate(survey_type = "pre")
-# post_workshop <- post_workshop %>% 
-#   filter(!str_detect(search4answers, "NOTE")) %>% 
-#   mutate(survey_type = "post") %>% 
-#   select(-what_worked, -continue_curriculum, -add_curriculum)
+post_workshop <- post_workshop %>%
+  mutate(survey_type = "post") 
+
 ```
 class: middle
 .tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
@@ -104,12 +103,12 @@ response_subtitle <- glue::glue('n = {response_total} ; Response rate: {response
 
 
 pre_workshop %>% 
-  mutate(day = lubridate::yday(Timestamp)) %>%
+  mutate(day = lubridate::yday(timestamp)) %>%
   count(day) %>% 
   ggplot(aes(day, n)) +
   geom_line() +
   geom_point() +
-  scale_y_continuous(minor_breaks = NULL, limits = c(0,7)) +
+  scale_y_continuous(minor_breaks = NULL, limits = c(0,8)) +
   # scale_y_continuous(breaks = scales::pretty_breaks()) +
   scale_x_continuous(minor_breaks = NULL, 
                      breaks = seq(26, 35, 1),
@@ -125,9 +124,10 @@ pre_workshop %>%
 ---
 ```{r experience plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
 pre_workshop %>% 
-  pivot_longer(coder:shell_cli, names_to = "question", values_to = "answer") %>% 
-  mutate(question = factor(question, levels = c("coder", "viz_tools", 
-                                                "version_control", "shell_cli", "rdbms"))) %>% 
+  pivot_longer(starts_with("tools_"), names_to = "question", values_to = "answer") %>% 
+  mutate(question = str_extract(question, ("(?<=tools_)\\w+"))) %>% 
+  mutate(question = factor(question, levels = c("coder", "viz", 
+                                                "version_ctrl", "cli", "rdbms"))) %>% 
   mutate(answer = factor(answer, levels = c("Daily", "Weekly", "Monthly",
                                             "Several Times per year",
                                             "Less than once per year",
@@ -139,7 +139,7 @@ pre_workshop %>%
   scale_y_continuous(labels = scales::percent) +
   labs(title = "Self-reported tool usage",
        subtitle = "Respondent's use of a tool / technology / technique",
-       x = "", y = "Percent",
+       x = "", y = "Percent", fill = "",
        caption = "Source:  CDVS Pre-workshop survey") +
   theme_ipsum(grid = "X") +
   theme(plot.title.position = "plot") 
@@ -149,16 +149,15 @@ pre_workshop %>%
 
 ```{r, skills level plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
 pre_workshop %>% 
-  pivot_longer(import_data:join, 
-               names_to = "question", 
-               values_to = "answer") %>% 
+  pivot_longer(ends_with("_experience"), names_to = "question", values_to = "answer") %>% 
   mutate(answer = factor(answer, 
                          levels = c("Strongly agree", "Agree", 
                                     "Neutral", "Disagree", 
                                     "Strongly disagree"))) %>%
+  mutate(question = str_extract(question, "\\w+(?=_experience)")) %>% 
   mutate(question  = factor(question,
-                            levels = c("import_data", "edit_scripts",
-                                       "make_plots", "ggplot2",
+                            levels = c("import", "scripts",
+                                       "baser_viz", "ggplot2",
                                        "interactive", "pivot",
                                        "join"))) %>%
   ggplot(aes(fct_rev(question))) +
@@ -179,11 +178,11 @@ pre_workshop %>%
 
 ```{r data mgt plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
 data_mgt_plot <- pre_workshop %>% 
-  # mutate(data_mgt = if_else(data_mgt == "Nor sure", "Not Sure", data_mgt)) %>% 
-  # ggplot(aes(fct_infreq(data_mgt))) +
-  ggplot(aes(fct_relevel(viz_workflow, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"))) +
+  ggplot(aes(fct_relevel(viz_workflow_satify, "Very unsatisfied", "Unsatisfied", 
+                         "Neutral", "Satisfied", "Very Satisfied"))) +
   geom_bar() +
-  geom_bar(data = . %>% filter(viz_workflow == "Unsatisfied"), aes(viz_workflow), fill = "dark orange") + 
+  geom_bar(data = . %>% filter(viz_workflow_satify == "Unsatisfied"), 
+           aes(viz_workflow_satify), fill = "dark orange") + 
   # geom_bar(data = . %>% filter(viz_workflow == "Not applicable"), fill = "grey70") +
   scale_y_continuous(breaks = seq(0, 3, 3), minor_breaks = NULL) +
   theme_minimal() +
@@ -269,6 +268,37 @@ Include commands on a strict “need to run” basis
 ]
 
 ---
-background-image: url(images/pre_post_survey2_20210204.svg)
+```{r big picture, fig.height=15, fig.width=20, message=FALSE, warning=FALSE, include=FALSE}
+pre_post_tbl <- bind_rows(pre_workshop, post_workshop)
+
+pre_post_tbl %>% 
+  select(timestamp, survey_type, ends_with("_experience")) %>% 
+  pivot_longer(ends_with("_experience"),
+               names_to = "experience") %>% 
+  filter(experience != "import_experience" & experience != "scripts_experience") %>% ################################
+  mutate(value = str_to_title(value)) %>% 
+  mutate(value = fct_relevel(value, levels = c("Strongly Disagree",
+                                       "Disagree",
+                                       "Neutral", "Agree", 
+                                       "Strongly Agree"))) %>% 
+  mutate(experience = str_extract(experience, "\\w+(?=_)")) %>% 
+  # mutate(experience = fct_relevel(experience, levels = c(
+  #   "import", "subset", "scripts", "projects", "reproducible")
+  # )) %>% 
+  ggplot(aes(value)) +
+    geom_bar(aes(fill = value), color = "black") +
+    facet_grid(experience ~ fct_rev(str_to_title(survey_type)))+ 
+    scale_fill_brewer(palette = "BrBG") + 
+    scale_y_continuous(breaks = c(0,2,4,6)) +
+    scale_x_discrete(labels = scales::label_wrap(10)) +
+    hrbrthemes::theme_ipsum(grid = "Y", ticks = TRUE) +
+    theme(legend.position="none", plot.title.position = "plot") +
+  labs(title = "Comparison of Pre & Post survey results",
+       x = "", y = "",
+       caption = "Source: Registrant surveys at time of workshop")
+
+ggsave("images/bigpicture.svg", width = 15, height = 10, units = "in")
+```
+background-image: url(images/bigpicture.svg)
 background-size: contain
 
