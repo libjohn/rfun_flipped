@@ -14,10 +14,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-## workshop_rfun_flipped
-
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4908856.svg)](https://doi.org/10.5281/zenodo.4908856)
+
+[![Lifecycle Badge](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) 
+
+
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/libjohn/rfun_flipped/master?urlpath=rstudio)
 <!-- badges: end -->
+
+## workshop_rfun_flipped
 
 Due to COVID-19, This repo supports preparation for remote [zoom-based teaching. I'm flipping the workshop.](https://rfun.library.duke.edu/portfolio/r_flipped/)
 

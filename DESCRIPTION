@@ -1,0 +1,39 @@
+Type: Compendium
+Package: Compendium title
+Title: quickStart with R - a flipped Tidyverse workshop series
+Version: 1.1.0
+Authors@R: 
+    person(given = "John",
+           family = "Little",
+           role = c("aut", "cre"),
+           email = "John.Little@Duke.edu")
+Description: This two-part workshop introduces the fundamentals of data science through R and the tidyverse for EDA and visualization
+License: CC BY-NC
+Depends: 
+    babynames,
+    broom,
+    countdown,
+    dplyr,
+    ggplot2,
+    glue,
+    googlesheets4,
+    hrbrthemes,
+    htmltools,
+    knitr,
+    lubridate,
+    moderndive,
+    patchwork,
+    plotly,
+    RColorBrewer,
+    rmarkdown,
+    scales,
+    skimr,
+    tidyverse,
+    xaringan,
+    xaringanExtra,
+    xaringanthemer
+Remotes: 
+    gadenbuie/countdown,
+    gadenbuie/xaringanExtra
+Encoding: UTF-8
+LazyData: true

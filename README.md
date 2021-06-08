@@ -1,15 +1,21 @@
 README
 ================
 John Little
-2020-08-26
+2021-06-08
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-## workshop\_rfun\_flipped
-
 <!-- badges: start -->
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4908856.svg)](https://doi.org/10.5281/zenodo.4908856)
+
+[![Lifecycle
+Badge](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+
+[![Launch Rstudio
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/libjohn/rfun_flipped/master?urlpath=rstudio)
 <!-- badges: end -->
+
+## workshop\_rfun\_flipped
 
 Due to COVID-19, This repo supports preparation for remote [zoom-based
 teaching. I’m flipping the
@@ -44,62 +50,62 @@ techniques.
 
 See <https://rfun.library.duke.edu/portfolio/r_flipped/>
 
-  - Part 1a - QuickStart \[Basic\] [Introduction to
+-   Part 1a - QuickStart \[Basic\] [Introduction to
     R](https://warpwire.duke.edu/w/pfYDAA/): (Part 1a of 2)
 
-  - Part 1b - \[Basic\] [Data wrangling with
+-   Part 1b - \[Basic\] [Data wrangling with
     dplyr](https://warpwire.duke.edu/w/6_YDAA/): (Part 1b of 2)
-    
-      - i - *background*: [RStudio: download and run locally, or cloud
+
+    -   i - *background*: [RStudio: download and run locally, or cloud
         versions](https://warpwire.duke.edu/w/p_YDAA/)
-      - ii - *background*: [RStudio
+    -   ii - *background*: [RStudio
         IDE](https://warpwire.duke.edu/w/wfYDAA/)
-      - iii - *background*: ggplot for visualization [(briefly). See
+    -   iii - *background*: ggplot for visualization [(briefly). See
         QuickStart](https://warpwire.duke.edu/w/pfYDAA/?start=520&end=598)
-      - iv - *background*: [R Packages and the
+    -   iv - *background*: [R Packages and the
         Tidyverse](https://warpwire.duke.edu/w/z_YDAA/)
-      - v - *background*: [assignment and
+    -   v - *background*: [assignment and
         pipes](https://warpwire.duke.edu/w/4fYDAA/)
-      - A - *detailed explanation*: [Get data &
+    -   A - *detailed explanation*: [Get data &
         code](https://warpwire.duke.edu/w/s_YDAA/)
-      - B - *detailed explanation*: [R Markdown for flexible reports and
+    -   B - *detailed explanation*: [R Markdown for flexible reports and
         literate coding](https://warpwire.duke.edu/w/S_cDAA/)
-      - C - **Basic (part 1): Data wrangling with dplyr** (see Part 1b,
+    -   C - **Basic (part 1): Data wrangling with dplyr** (see Part 1b,
         above)
-      - D - *detailed explanation*: [Exploratory Data Analysis (EDA)
+    -   D - *detailed explanation*: [Exploratory Data Analysis (EDA)
         with skimr](https://warpwire.duke.edu/w/jfcDAA/)
-      - E - *detailed explanation*: [Project
+    -   E - *detailed explanation*: [Project
         reproducibility](https://warpwire.duke.edu/w/q_YDAA/)
 
 #### Exercises (Part 1)
 
-  - [Subsetting and wrangling Data
+-   [Subsetting and wrangling Data
     (Interactive)](https://rstudio.cloud/learn/primers/2)
-  - Download the [intro2r-code
+-   Download the [intro2r-code
     repository](https://github.com/libjohn/intro2r-code). Then, complete
     practice exercises: exercise\_00.Rmd and exercise\_01.Rmd
 
 #### Part 2: Additional background and explanatory videos
 
-  - Part 2 \[Basic\] [Visualization with
+-   Part 2 \[Basic\] [Visualization with
     ggplot2](https://warpwire.duke.edu/w/6_YDAA/) (Part 2 of 2)
-    
-      - G - *background / in brief*: [interactive viz with
+
+    -   G - *background / in brief*: [interactive viz with
         plotly](https://warpwire.duke.edu/w/80YEAA/?start=1632&end=1677)
-      - H - *detailed explanation*: [left\_join. merging
+    -   H - *detailed explanation*: [left\_join. merging
         data](https://warpwire.duke.edu/w/ffcDAA/)
-      - I - *detailed explanation*: [Tidy and pivot
+    -   I - *detailed explanation*: [Tidy and pivot
         data](https://warpwire.duke.edu/w/g_cDAA/)
-      - J - *brief explanation*: [Models and linear
+    -   J - *brief explanation*: [Models and linear
         regression](https://warpwire.duke.edu/w/pfYDAA/?start=1170&end=1377)
 
 #### Exercises (Part 2)
 
-  - [Interactive: visualization
+-   [Interactive: visualization
     exercises](https://rstudio.cloud/learn/primers/3) on Bar Charts,
     Histograms, Boxplots, Scatterplots, Overplotting, etc.
-  - [Angela Zoss’s ggplot
+-   [Angela Zoss’s ggplot
     exercies](https://github.com/data-and-visualization/ggplot2-S20)
-  - 01\_exercises [from Mastering the
+-   01\_exercises [from Mastering the
     Tidyverse](https://github.com/libjohn/workshop_ggplot2)
-  - [Interactive: Join Data](https://rstudio.cloud/learn/primers/4)
+-   [Interactive: Join Data](https://rstudio.cloud/learn/primers/4)
