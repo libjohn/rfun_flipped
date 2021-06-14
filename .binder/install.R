@@ -14,9 +14,8 @@ install.packages("broom")
 remotes::install_github("gadenbuie/xaringanthemer")
 remotes::install_github("gadenbuie/xaringanExtra")
 remotes::install_github("thomasp85/patchwork")
-remotes::install_github("skimr")
-remotes::install_github("countdown")
+remotes::install_github("ropensci/skimr")
+remotes::install_github("gadenbuie/countdown")
 #  "glue",
 #  "scales",
 # install.packages("lubridate")
-# install.packages("devtools")
