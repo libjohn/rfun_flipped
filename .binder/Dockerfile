@@ -1,4 +1,4 @@
-FROM rocker/binder:4.0.2
+FROM rocker/binder:3.5.2
 LABEL maintainer='Unknown'
 USER root
 COPY . ${HOME}
