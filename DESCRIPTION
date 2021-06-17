@@ -1,7 +1,7 @@
 Type: Compendium
 Package: Compendium title
 Title: quickStart with R - a flipped Tidyverse workshop series
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     person(given = "John",
            family = "Little",
