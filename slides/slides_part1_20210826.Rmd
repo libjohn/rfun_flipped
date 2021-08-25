@@ -295,6 +295,83 @@ Include commands on a strict “need to run” basis
 
 
 ---
+class: middle, center
+# Pipes and Assignment
+
+---
+class: middle, center
+
+# Assignment
+
+Give an object name particular value
+
+## `<-`
+
+"gets value from"
+
+`answer <- 5 * 5`
+
+&nbsp;  
+
+Keyboard shortcut:  _alt-dash_
+
+---
+class: middle, center
+
+# Pipe
+
+Chain functions together (a tidyverse or magrittr conjunction)
+
+## `%>%`  
+
+"and then"
+
+`answer %>% sqrt()`
+
+
+&nbsp;  
+
+Keyboard shortcut:  _Ctrl/Cmd-Shift-M_
+
+
+---
+class: middle  
+
+# Scripting terminology
+
+
+- R Projects
+
+- R Markdown (.Rmd) v R scripts (.R)
+
+_R Markdown & Jupyter notebooks are an example of literate coding_
+
+
+---
+class: middle 
+
+# RStudio Projects 
+
+.pull-left[  
+
+&nbsp;  
+
+In **RStudio**, using _Projects_ (.proj) is a way to manage and organize discrete coding projects. 
+
+- Each folder/directory can be a project
+- Works well with _Version Control_
+- Promotes **relative file paths**
+    - Avoids `setwd()`
+- Promotes **reproducibility** by _Restart R and Run all chunks_
+    - Avoids `rm(list=ls())` -- not as effective as you want it to be
+]
+
+.pull-right[
+![](images/rstudio_projects.PNG "RStudio projects")
+
+]
+
+---
 exclude: TRUE
 background-image: url(images/pre_post_survey2_20210128.svg)
 background-size: contain
