@@ -6,7 +6,7 @@ institute: "Center for Data & Vizualization Sciences"
 params: 
   workshop_date: "Aug. 26"
   workshop_time: "2-4pm"
-  registered: 65
+  registered: 70
   goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1Lwz0EhuDVUruqeL3LgCSvBb0rVhvDF83TCJrAbTEhm4/edit?resourcekey#gid=894819352"
   days_label: !r c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed")
   days_of_year_number_range: !r seq(232, 237, 1)

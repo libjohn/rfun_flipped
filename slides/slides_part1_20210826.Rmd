@@ -4,7 +4,7 @@ subtitle: "Part 1. getting started, EDA, data wrangling"
 author: "John Little"
 institute: "Center for Data & Vizualization Sciences"
 params: 
-  registered: 75
+  registered: 80
   goog_sheet: "https://docs.google.com/spreadsheets/d/15f66TJr2ILAsukf7Jfbul-hCc3E-RypCTUD0BnxnmiY/edit?resourcekey#gid=1334483039"
   goog_post:  ""
   days_label: !r c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed")
