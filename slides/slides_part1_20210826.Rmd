@@ -198,10 +198,11 @@ orange_bar <- fct_count(pre_workshop$data_mgt_satisfy, sort = TRUE) %>%
 
 
 data_mgt_plot <- pre_workshop %>% 
-  mutate(data_mgt = if_else(data_mgt_satisfy == "Nor sure", "Not Sure", data_mgt_satisfy)) %>% 
-  ggplot(aes(fct_relevel(data_mgt_satisfy, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied"))) +
+  mutate(data_mgt_satisfy = if_else(data_mgt_satisfy == "Nor sure", "Not Sure", data_mgt_satisfy)) %>% 
+  ggplot(aes(fct_relevel(data_mgt_satisfy, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very satisfied"))) +
   geom_bar() +
-  geom_bar(data = . %>% filter(data_mgt_satisfy == orange_bar), aes(data_mgt_satisfy), 
+  geom_bar(data = . %>% filter(data_mgt_satisfy == orange_bar), 
+           aes(data_mgt_satisfy), 
            fill = "darkorange", color = "darkorange") + 
   geom_bar(data = . %>% filter(data_mgt_satisfy == "Not sure"), fill = "grey70") +
   scale_y_continuous(breaks = seq(0, 15, 3), minor_breaks = NULL) +

@@ -201,7 +201,7 @@ orange_bar <- fct_count(pre_workshop$viz_workflow_satify, sort = TRUE) %>%
 
 
 data_mgt_plot <- pre_workshop %>% 
-  ggplot(aes(fct_relevel(viz_workflow_satify, "Very unsatisfied", "Unsatisfied", 
+  ggplot(aes(fct_relevel(viz_workflow_satify, "Very Unsatisfied", "Unsatisfied", 
                          "Neutral", "Satisfied", "Very Satisfied"))) +
   geom_bar() +
   geom_bar(data = . %>% filter(viz_workflow_satify %in% orange_bar), 
