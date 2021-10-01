@@ -1,0 +1,421 @@
+---
+title: "R for Computational Sciences"
+subtitle: "Part 1. getting started, EDA, data wrangling"
+author: "John Little"
+institute: "Center for Data & Vizualization Sciences"
+params: 
+  registered: 80
+  goog_sheet: "https://docs.google.com/spreadsheets/d/1hSB3DeyIZTsjyOudk-p8fMqjuKcIheQAodljFKoCNSw/edit?resourcekey#gid=198808613"
+  goog_post:  ""
+  days_label: !r c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thurs", "Fri")
+  days_of_year_number_range: !r seq(260, 267, 1)
+output:
+  xaringan::moon_reader:
+    css: 
+      - xaringan-themer.css
+      - styles/my-theme.css 
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
+library(xaringanthemer)
+library(xaringanExtra)
+xaringanExtra::use_tachyons()
+library(countdown)
+library(googlesheets4)
+```
+```{r themes, warning=FALSE, include=FALSE}
+style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
+# form_data <- read_csv("data/_20200901 Pre-Workshop Survey.csv", 
+#     col_types = cols(Timestamp = col_datetime(format = "%m/%d/%Y %H:%M")), 
+#     skip = 1)
+
+# *** RUN gs4_auth() in the console ***
+# gs4_auth_configure()
+pre_workshop <- read_sheet(params$goog_sheet)
+post_workshop <-
+  read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
+
+# mynames_pre <- read_csv("data/colnames_preworkshop_20200918.csv")
+# # mynames_post <- read_csv("data/colnames_postworkshop.csv")
+mynames_pre  <- read_csv("data/colnames_part1_preworkshop_2021fall.csv")
+mynames_post <- read_csv("data/colnames_part1_postworkshop_2021fall.csv")
+
+colnames(pre_workshop) <- mynames_pre$value
+colnames(post_workshop) <- mynames_post$value
+
+pre_workshop <- pre_workshop %>%
+  mutate(survey_type = "pre")
+post_workshop <- post_workshop %>%
+  mutate(survey_type = "post") 
+# post_workshop <- post_workshop %>% 
+#   filter(!str_detect(search4answers, "NOTE")) %>% 
+#   mutate(survey_type = "post") %>% 
+#   select(-what_worked, -continue_curriculum, -add_curriculum)
+```
+class: middle
+.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+
+### R for computational sciences
+
+.f3.near-white[  
+quickStart: Projects, data wrangling, EDA, viz
+]  
+
+**Flipped Workshop**  
+.f6[
+Sept 24, 2pm to 4pm
+]
+]  
+
+1. Did you already **complete** the pre-workshop **survey**?  (check your email)
+2. **You watched the videos** .black-30[(part 1a and 1b)] and have questions  
+3. We will start exercises and answer questions as the countdown reaches zero...
+
+
+.f6.black-40[
+https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
+https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
+Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
+
+```{r echo=FALSE}
+countdown::countdown(minutes = 20, seconds = 15)
+```
+
+---
+## Duke University: Land Acknowledgement
+
+I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
+
+---
+background-image: url(images/who_we_are2_20210924.svg)
+background-size: contain
+<!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
+<!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
+
+---
+background-image: url(images/who_we_are_facet_20210924.svg)
+background-size: contain
+<!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
+<!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
+
+---
+```{r response rate plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+response_rate <- nrow(pre_workshop) / params$registered
+
+pre_workshop %>% 
+  mutate(day = lubridate::yday(timestamp)) %>%
+  count(day) %>% 
+  ggplot(aes(day, n)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(minor_breaks = NULL, 
+                     breaks = params$days_of_year_number_range,
+                     labels = params$days_label) +
+  # scale_y_continuous(minor_breaks = NULL, breaks = scales::pretty_breaks()) +
+  scale_y_continuous(breaks = c(1:4)) +
+  # expand_limits(y = c(0,5)) +
+  labs(title = "Response rate over time",
+       subtitle = glue::glue("n = {nrow(pre_workshop)} ; {scales::percent(response_rate)} response rate"),
+       y = "", x = "",
+       caption = "Source:  CDVS Pre-workshop survey") 
+
+
+```
+
+---
+```{r experience plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+pre_workshop %>% 
+  pivot_longer(starts_with("tools_"), names_to = "question", values_to = "answer") %>% 
+  mutate(question = str_extract(question, "(?<=tools_)\\w+")) %>% 
+  mutate(question = factor(question, levels = c("coder", "models", 
+                                                "version_ctrl", "cli", "rdbms"),
+                           labels = c("Coder", "Models", "Version control", "CLI", "RDBMS"))) %>% 
+  mutate(answer = factor(answer, levels = c("Daily", "Weekly", "Monthly",
+                                            "Several Times per year",
+                                            "Less than once per year",
+                                            "Never"))) %>% 
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title = "Self-reported tool usage",
+       subtitle = "Respondent's use of a tool / technology / technique",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey") +
+  theme_ipsum(grid = "X") +
+  theme(plot.title.position = "plot") 
+```
+
+---
+
+```{r, skills level plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+pre_workshop %>% 
+  pivot_longer(ends_with("_experience"), 
+               names_to = "question", 
+               values_to = "answer") %>% 
+  mutate(answer = factor(answer, 
+                         levels = c("Strongly agree", "Agree", 
+                                    "Neutral", "Disagree", 
+                                    "Strongly disagree"))) %>%
+  mutate(question  = factor(question,
+                            levels = c("import_experience", "scripts_experience", "subset_experience",
+                                       "projects_experience", "reproducible_experience", "apply_learning"),
+                            labels = c("Import data", "Edit scripts",
+                                       "Subset data", "Projects",
+                                       "Reproducibility", "Apply learning"))) %>%
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Spectral") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title = "Self-reported R skills",
+       subtitle = "Respondents feel capable of completing a Tidyverse task",
+       x = "", y = "Percent",
+       caption = "Source:  CDVS Pre-workshop survey",
+       fill = "") +
+  theme_ipsum(grid = "X") +
+  theme(plot.title.position = "plot")
+```
+
+---
+
+```{r data mgt plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+
+orange_bar <- fct_count(pre_workshop$data_mgt_satisfy, sort = TRUE) %>% 
+  slice_head(n = 1) %>% 
+  pull(f)
+
+
+data_mgt_plot <- pre_workshop %>% 
+  mutate(data_mgt_satisfy = if_else(data_mgt_satisfy == "Nor sure", "Not Sure", data_mgt_satisfy)) %>% 
+  ggplot(aes(fct_relevel(data_mgt_satisfy, "Very unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very satisfied"))) +
+  geom_bar() +
+  geom_bar(data = . %>% filter(data_mgt_satisfy == orange_bar), 
+           aes(data_mgt_satisfy), 
+           fill = "darkorange", color = "darkorange") + 
+  geom_bar(data = . %>% filter(data_mgt_satisfy == "Not sure"), fill = "grey70") +
+  scale_y_continuous(breaks = seq(0, 15, 3), minor_breaks = NULL) +
+  theme_minimal() +
+  labs(title = "Satisfaction with current Data Management workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey")
+
+data_mgt_plot +
+  theme_minimal() +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+```
+
+---
+background-color:  	#2A2A2A
+background-size: contain
+
+```{r dta mgt theme_alt, fig.cap="foo", fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg", echo=FALSE}
+data_mgt_plot +
+  theme_ft_rc(grid = "Y") +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+
+# ggsave("images/plot_theme_alt.svg")
+```
+
+
+---
+exclude: true
+background-image: url(images/plot_theme_alt.svg)
+background-size: cover
+
+---
+exclude: true
+class: center, middle
+## Microsoft Teams: Rfun
+
+Rfun on MS Teams is a professional learning community for Duke U.
+
+_Teams like Slack_
+
+Join with code **ko8ovx2**
+
+![](images/teams-join-or-create-team.png)
+
+Or, https://is.gd/rfun_teams
+
+
+---
+### So let's chat
+
+We're happy to consult with you.   We can make the details relevant to your project
+
+Title | URL
+--- | ---
+Schedule me for consultations | https://is.gd/littleconsult
+Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
+
+
+### Resources
+
+It's all online
+
+Title | URL
+--- | ---
+rfun_flipped codebase       | https://github.com/libjohn/rfun_flipped
+exercises                   | https://github.com/libjohn/intro2r_exercises
+Rfun                        | https://rfun.library.duke.edu
+Center for data & Viz       | https://library.duke.edu/data
+
+
+---
+class: middle, center
+
+## Reprex
+
+_The most efficient way to get help_
+
+REPRoducible EXample and Code
+
+https://reprex.tidyverse.org
+
+--
+
+.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+Use the smallest, simplest, most built-in data possible
+
+Include commands on a strict “need to run” basis
+]
+
+
+---
+class: middle, center
+# Pipes and Assignment
+
+---
+class: middle, center
+
+# Assignment
+
+Give an object name particular value
+
+## `<-`
+
+"gets value from"
+
+`answer <- 5 * 5`
+
+&nbsp;  
+
+Keyboard shortcut:  _alt-dash_
+
+---
+class: middle, center
+
+# Pipe
+
+Chain functions together (a tidyverse or magrittr conjunction)
+
+## `%>%`  
+
+"and then"
+
+`answer %>% sqrt()`
+
+
+&nbsp;  
+
+Keyboard shortcut:  _Ctrl/Cmd-Shift-M_
+
+
+---
+class: middle  
+
+# Scripting terminology
+
+
+- R Projects
+
+- R Markdown (.Rmd) v R scripts (.R)
+
+_R Markdown & Jupyter notebooks are an example of literate coding_
+
+
+---
+class: middle 
+
+# RStudio Projects 
+
+.pull-left[  
+
+&nbsp;  
+
+In **RStudio**, using _Projects_ (.proj) is a way to manage and organize discrete coding projects. 
+
+- Each folder/directory can be a project
+- Works well with _Version Control_
+- Promotes **relative file paths**
+    - Avoids `setwd()`
+- Promotes **reproducibility** by _Restart R and Run all chunks_
+    - Avoids `rm(list=ls())` -- not as effective as you want it to be
+]
+
+.pull-right[
+![](images/rstudio_projects.PNG "RStudio projects")
+
+]
+
+---
+exclude: TRUE
+background-image: url(images/pre_post_survey2_20210128.svg)
+background-size: contain
+
+<!-- from:  https://github.com/libjohn/analysis_workshop_surveys/blob/master/04_viz-flipped.Rmd -->
+
+
+---
+```{r big picture, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, echo=FALSE, dev='svg'}
+pre_post_tbl <- bind_rows(pre_workshop, post_workshop)
+
+pre_post_tbl %>% 
+  select(timestamp, survey_type, ends_with("_experience")) %>% 
+  pivot_longer(ends_with("_experience"),
+               names_to = "experience") %>% 
+  # filter(experience != "import_experience" & experience != "scripts_experience") %>% 
+  mutate(value = str_to_title(value)) %>% 
+  mutate(value = fct_relevel(value, levels = c("Strongly Disagree",
+                                       "Disagree",
+                                       "Neutral", "Agree", 
+                                       "Strongly Agree"))) %>% 
+  mutate(experience = str_extract(experience, "\\w+(?=_)")) %>% 
+  ggplot(aes(value)) +
+    geom_bar(aes(fill = value), color = "black") +
+    facet_grid(experience ~ fct_rev(str_to_title(survey_type)))+ 
+    scale_fill_brewer(palette = "BrBG") + 
+    scale_y_continuous(breaks = c(0,2,4,6)) +
+    scale_x_discrete(labels = scales::label_wrap(10)) +
+    hrbrthemes::theme_ipsum(grid = "Y", ticks = TRUE) +
+    theme(legend.position="none", plot.title.position = "plot") +
+  labs(title = "Comparison of Pre & Post survey results",
+       x = "", y = "",
+       caption = "Source: Registrant surveys at time of workshop")
+
+# ggsave("images/bigpicture.svg", width = 15, height = 10, units = "in")
+```
+
+
+
+
+
+
+
