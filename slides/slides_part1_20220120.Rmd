@@ -5,25 +5,33 @@ author: "John Little"
 institute: "Center for Data & Vizualization Sciences"
 params: 
   registered: 80
-  goog_sheet: "https://docs.google.com/spreadsheets/d/1hSB3DeyIZTsjyOudk-p8fMqjuKcIheQAodljFKoCNSw/edit?resourcekey#gid=198808613"
+  goog_sheet: "https://docs.google.com/spreadsheets/d/17evhukqNwb8a4TCx5vp6vlmSy3cYAjDh5jjppLbDkkM/edit#gid=1544437031"
   goog_post:  ""
   days_label: !r c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thurs", "Fri")
-  days_of_year_number_range: !r seq(260, 267, 1)
+  days_of_year_number_range: !r seq(14, 21, 1)
 output:
   xaringan::moon_reader:
     css: 
-      - xaringan-themer.css
-      - styles/my-theme.css 
+      - mystyles/xaringan-themer.css          #  fonts I do want https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html
+      - mystyles/adirondack/story.css         # https://story.xaprb.com/slides/adirondack/
+      - mystyles/adirondack/apron.css         # layout 
+      #- mystyles/adirondack/adirondack.css   # fonts I don't want
+      - mystyles/adirondack/descartes.css     # image positon 
+      - mystyles/adirondack/tachyons.min.css  # color, font weights, boxes
+      # - mystyles/adirondack/monoblock.css   # part of story/adirondack
+      - mystyles/my-theme.css    
     lib_dir: libs
     nature:
-      ratio: '16:9'
+      slideNumberFormat: "%current%"
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      ratio: 16:9
+      countIncrementalSlides: true
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
+library(gt)
 library(lubridate)
 library(hrbrthemes)
 library(xaringanthemer)
@@ -31,6 +39,8 @@ library(xaringanExtra)
 xaringanExtra::use_tachyons()
 library(countdown)
 library(googlesheets4)
+library(htmltools)
+tagList(rmarkdown::html_dependency_font_awesome())
 ```
 ```{r themes, warning=FALSE, include=FALSE}
 style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
@@ -61,37 +71,57 @@ post_workshop <- post_workshop %>%
 #   mutate(survey_type = "post") %>% 
 #   select(-what_worked, -continue_curriculum, -add_curriculum)
 ```
+
+layout: true
+
+
+.footercc[
+<i class="fab fa-creative-commons"></i>&nbsp; <i class="fab fa-creative-commons-by"></i> <a href = "https://JohnLittle.info"><span class = "opacity30">https://</span>JohnLittle<span class = "opacity30">.info</span></a> 
+<span class = "opacity30"> | <a href="https://github.com/libjohn/rfun_flipped">https://github.com/libjohn/rfun_flipped</a> | `r Sys.Date()` </span>
+]
+
+---
+
 class: middle
-.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+.tc.bg-moon-gray.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
 
 ### R for computational sciences
 
 .f3.near-white[  
-quickStart: Projects, data wrangling, EDA, viz
+getting started, EDA, data wrangling
 ]  
 
-**Flipped Workshop**  
+.b[Flipped Workshop]  
 .f6[
 Jan 20, 10am to Noon
 ]
 ]  
 
-1. Did you already **complete** the pre-workshop **survey**?  (check your email)
-2. **You watched the videos** .black-30[(part 1a and 1b)] and have questions  
+.f3[
+1. Did you already .b[complete] the pre-workshop .b[survey]?  (check your email)
+2. .b[You watched the videos] and have questions  
 3. We will start exercises and answer questions as the countdown reaches zero...
-
-
-.f6.black-40[
-https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
-https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
-Data Science Librarian  
-Center for Data & Visualization Sciences  
-Duke University Libraries  
-library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
+]
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = 20, seconds = 15)
 ```
+
+---
+class: img-right-full
+
+![](images/cdvs_webpage_screenshot_url.png)
+
+# Whoami
+
+
+
+.absolute.t-30pct.f3[John Little  
+Data Science Librarian  
+Host of .b[Rfun.library.duke.edu]  
+Center for Data & Visualization Sciences  ]
+
+
 
 ---
 ## Duke University: Land Acknowledgement
@@ -124,7 +154,7 @@ pre_workshop %>%
                      breaks = params$days_of_year_number_range,
                      labels = params$days_label) +
   # scale_y_continuous(minor_breaks = NULL, breaks = scales::pretty_breaks()) +
-  scale_y_continuous(breaks = c(1:4)) +
+  scale_y_continuous(breaks = c(1:9)) +
   # expand_limits(y = c(0,5)) +
   labs(title = "Response rate over time",
        subtitle = glue::glue("n = {nrow(pre_workshop)} ; {scales::percent(response_rate)} response rate"),
@@ -256,9 +286,11 @@ Or, https://is.gd/rfun_teams
 
 
 ---
-### Consulting and Assistance
+
+# Consulting and Assistance
 
 We're happy to consult with you.   We can make the details relevant to your project
+
 
 Title | URL
 --- | ---
@@ -266,13 +298,15 @@ Schedule me for consultations | https://is.gd/littleconsult
 Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
 
 
-### Resources
+---
+
+# Resources
 
 It's all online
 
 Title | URL
 --- | ---
-rfun_flipped codebase       | https://github.com/libjohn/rfun_flipped
+Code for this workshop      | https://github.com/libjohn/rfun_flipped
 exercises                   | https://github.com/libjohn/intro2r_exercises
 Rfun                        | https://rfun.library.duke.edu
 Center for data & Viz       | https://library.duke.edu/data
@@ -280,7 +314,7 @@ Center for data & Viz       | https://library.duke.edu/data
 ---
 class: middle, center
 
-## Reprex
+# Reprex
 
 _The most efficient way to get help_
 
@@ -290,7 +324,7 @@ https://reprex.tidyverse.org
 
 --
 
-.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+.tc.bg-moon-gray.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
 Use the smallest, simplest, most built-in data possible
 
 Include commands on a strict “need to run” basis
@@ -298,11 +332,25 @@ Include commands on a strict “need to run” basis
 
 
 ---
-class: middle, center
+
+class: center
+
+
 # Pipes and Assignment
 
+<br>
+
+<br>
+
+.tc.bg-moon-gray.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+
+A couple things to remember...  
+
+]
+
 ---
-class: middle, center
+
+class: center
 
 # Assignment
 
@@ -318,7 +366,7 @@ Give an object name particular value
 
 &nbsp;  
 
-Keyboard shortcut for `<-`:  _alt-dash_
+Keyboard shortcut for `<-` is  _alt-dash_
 
 ---
 class: middle, center
@@ -342,31 +390,44 @@ Keyboard shortcut:  _Ctrl/Cmd-Shift-M_
 
 # Definitions
 
-R is a **data-first programming language** with mature sense of the _data life-cycle_ and reproducibility
+R is a .b[data-first programming language] with mature sense of the .i[data life-cycle] and reproducibility
 
-**R** - programming language / compiler / kernel  
-**RStudio** - an IDE or Integrated Development Environment  
-**Tidyverse** - a coherent and opinionated system of packages for data manipulation, exploration, and visualization.  
-**Tidy data** - a foundational concept governing the shape of your data.  https://vita.had.co.nz    
+.b[R] - programming language / language interpreter   
+.b[RStudio] - an IDE or Integrated Development Environment  
+.b[Tidyverse] - a coherent and opinionated system of packages for data manipulation, exploration, and visualization.  
+
+---
+
+# Definitions
+
+.b[Tidy data] - a foundational concept governing the shape of your data.  https://vita.had.co.nz    
+
+.center[<img src = "images/tidy-data.png" alt = "tidy data" height = "300" />  ]
+
+.f7.moon-gray[Image Credit:  [_R for Data Science_](https://r4ds.had.co.nz/tidy-data.html#tidy-data-1)]
+
+
 
 ---
 
 # Outline
 
-**Reproducibility**  
+.b[
+Reproducibility  
 
-**RStudio projects**   
+RStudio projects  
 
-**Literate coding**  
+Literate coding  
 
-**5 dplyr verbs**
+5 dplyr verbs  
+]
 
 ---
 class: middle
 
 # Reproducibility
 
-Obtaining computational results using the same input data, computational steps, methods, code, and conditions of analysis
+.center[_Obtaining computational results using the same <br/>input data, computational steps, methods, code, and conditions of analysis_]
 
 
 ---
@@ -376,9 +437,9 @@ class: middle
 
 .pull-left[Managing each project in a discrete directory that can be easily shared with others.  That is, your projects can work on other computers without rewriting the code.
 
-- Enables the use of relative paths instead of `setwd()`
+.f4[- Enables the use of relative paths instead of `setwd()`
 - Using R Markdown to **Restart R and run all chunks** instead of `rm(lists = ls())`
-- Integrates with **version control** (e.g. _Git_)
+- Integrates with **version control** (e.g. _Git_)]
 
 ]
 
@@ -391,16 +452,16 @@ class: middle
 
 # Literate coding
 
-Using a single document, integrate and intersperse prose with code.  Explain your analysis with natural language. Render various outputs from the same document.  
+_Integrate and intersperse prose with code.  Explain your analysis with natural language. Ideally, render various outputs from the same code-prose document_  
 
-_R Markdown & Jupyter notebooks are an example of literate coding_
+R Markdown & Jupyter notebooks are an example of literate coding
 
 ---
 class: middle
 
 # Why
 
-Using lierate code techniques within RStudio projects helps you easily avoid a big enemy of reproducibility:  workflows which are dependent on cut & paste mousing 
+Using .i.b[reproducibility] and .i.b[literate code] techniques within .i.b[RStudio projects] + .i.b[version control] enables better workflows;   workflows that are not dependent on cut & paste mousing
 
 Today, we'll use .Rmd files to render R Markdown notebooks
 
@@ -435,9 +496,7 @@ There are many [more dplyr functions](https://dplyr.tidyverse.org/reference/)
 
 ---
 
-# `filter`
-
-Subset **Rows** by variables
+# `filter` .f5[Subset **Rows** by variables]
 
 `starwars %>% filter(eye_color == "orange")`
 
@@ -446,15 +505,11 @@ Subset **Rows** by variables
 
 ---
 
-# `select`
-
-subset by columns (variables)
+# `select` .f5[subset by columns (variables)]
 
 ```
 starwars %>% select(hair_color, eye_color)
-
 starwars %>% select(2:4)
-
 starwars %>% select(name:mass, 10, 7, 4:6)
 ```
 
@@ -462,15 +517,11 @@ starwars %>% select(name:mass, 10, 7, 4:6)
 
 ---
 
-# `arrange` 
-
-Sort **Rows** by variables
+# `arrange`  .f5[Sort **Rows** by variables]
 
 ```
 starwars %>% arrange(eye_color)
-
 starwars %>% arrange(desc(eye_color))
-
 starwars %>% arrange(desc(eye_color), hair_color)
 ```
 
@@ -478,46 +529,37 @@ starwars %>% arrange(desc(eye_color), hair_color)
 
 ---
 
-# `mutate` 
-
-Change cell values
+# `mutate`  .f5[Change cell values]
 
 ```
 starwars %>% mutate(big_mass = mass * 100)
 starwars %>% mutate(BMI = (mass / (height/100)^2))
-
 starwars %>% mutate(
        nickname = str_c("Big", str_to_upper(hair_color), 
                         sep = " "))
 ```
 
-<img src ="images/mutate.svg" alt = "mutate" height="300" />
+<img src ="images/mutate.svg" alt = "mutate" height="200" />
 
 ---
 
-# `count`
-
-Count observations by group
+## `count` .f5[Count observations by group]
 
 ```r
 starwars %>% count(gender)
 ```
 
-# `summarize`
-
-Reduce multiple values down to a single line
+## `summarize` .f5[Reduce multiple values down to a single line]
 
 ```r
 starwars %>% 
   drop_na(height) %>% 
-  summarise(n(), n_distinct(height), 
-            min(height), max(height))
+  summarise(n(), n_distinct(height), min(height), max(height))
 
 starwars %>% 
   drop_na(height) %>% 
   group_by(gender) %>% 
-  summarise(Total = n(), n_distinct(height), 
-            min(height), max(height))
+  summarise(Total = n(), n_distinct(height), min(height))
 ```
 
 ---
@@ -559,6 +601,40 @@ pre_post_tbl %>%
 
 # ggsave("images/bigpicture.svg", width = 15, height = 10, units = "in")
 ```
+
+---
+layout: false
+class:  middle, center
+
+<br>
+
+.bg-washed-blue.b--navy.ba.bw2.br3.shadow-5.ph4.mt5[
+
+![Rfun](images/rfun.png# fl l-4 w-2-12th)
+
+## John R Little
+
+.seagull[
+.f5[Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+]
+]
+
+.f7[https://johnlittle.info  
+https://Rfun.library.duke.edu  
+https://library.duke.edu/data  
+]
+]
+
+
+
+<i class="fab fa-creative-commons fa-2x"></i> &nbsp; <i class="fab fa-creative-commons-by fa-2x"></i><br> 
+.f6.moon-gray[Creative Commons:  Attribution 4.0]  
+.f7.moon-gray[https://creativecommons.org/licenses/by-nc/4.0]
+
+
+
 
 
 
