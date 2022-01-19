@@ -502,6 +502,12 @@ There are many [more dplyr functions](https://dplyr.tidyverse.org/reference/)
 
 <img src ="images/filter_by_rows.svg" alt = "mutate" height="300" />
 
+---
+
+# filter  
+
+![](images/filter_by_rows.svg)
+
 
 ---
 
