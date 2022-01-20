@@ -4,7 +4,7 @@ subtitle: "Part 1. getting started, EDA, data wrangling"
 author: "John Little"
 institute: "Center for Data & Vizualization Sciences"
 params: 
-  registered: 80
+  registered: 87
   goog_sheet: "https://docs.google.com/spreadsheets/d/17evhukqNwb8a4TCx5vp6vlmSy3cYAjDh5jjppLbDkkM/edit#gid=1544437031"
   goog_post:  ""
   days_label: !r c("Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thurs", "Fri")
@@ -97,12 +97,6 @@ Jan 20, 10am to Noon
 ]
 ]  
 
-.f3[
-1. Did you already .b[complete] the pre-workshop .b[survey]?  (check your email)
-2. .b[You watched the videos] and have questions  
-3. We will start exercises and answer questions as the countdown reaches zero...
-]
-
 ```{r echo=FALSE}
 countdown::countdown(minutes = 20, seconds = 15)
 ```
@@ -129,19 +123,19 @@ Center for Data & Visualization Sciences  ]
 I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
 
 ---
-background-image: url(images/who_we_are2_20210924.svg)
+background-image: url(images/who_we_are_20220120.svg)
 background-size: contain
 <!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
 
 ---
-background-image: url(images/who_we_are_facet_20210924.svg)
+background-image: url(images/who_we_are_facet_20220120.svg)
 background-size: contain
 <!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
 
 ---
-```{r response rate plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+```{r response rate plot, echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE, dev="svg"}
 response_rate <- nrow(pre_workshop) / params$registered
 
 pre_workshop %>% 
@@ -154,8 +148,9 @@ pre_workshop %>%
                      breaks = params$days_of_year_number_range,
                      labels = params$days_label) +
   # scale_y_continuous(minor_breaks = NULL, breaks = scales::pretty_breaks()) +
-  scale_y_continuous(breaks = c(1:9)) +
-  # expand_limits(y = c(0,5)) +
+  expand_limits(y = 0) + 
+  scale_y_continuous(breaks = c(0:9)) +
+  theme_ipsum(grid = "Y") +
   labs(title = "Response rate over time",
        subtitle = glue::glue("n = {nrow(pre_workshop)} ; {scales::percent(response_rate)} response rate"),
        y = "", x = "",
