@@ -98,7 +98,7 @@ Jan 20, 10am to Noon
 ]  
 
 ```{r echo=FALSE}
-countdown::countdown(minutes = 20, seconds = 15)
+countdown::countdown(minutes = 15, seconds = 00)
 ```
 
 ---
