@@ -284,13 +284,22 @@ Or, https://is.gd/rfun_teams
 
 # Consulting and Assistance
 
-We're happy to consult with you.   We can make the details relevant to your project
-
 
 Title | URL
 --- | ---
 Schedule me for consultations | https://is.gd/littleconsult
 Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
+
+<br />  
+  
+<br />  
+
+.center[
+We're happy to consult with you   
+
+
+In a consultation, let us help make the details of R relevant to your project  
+]
 
 
 ---
@@ -389,7 +398,7 @@ R is a .b[data-first programming language] with mature sense of the .i[data life
 
 .b[R] - programming language / language interpreter   
 .b[RStudio] - an IDE or Integrated Development Environment  
-.b[Tidyverse] - a coherent and opinionated system of packages for data manipulation, exploration, and visualization.  
+.b[Tidyverse] - a coherent and opinionated system of packages for data manipulation, exploration, and visualization    
 
 ---
 
