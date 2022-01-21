@@ -10,11 +10,20 @@ output:
     df_print: paged
 ---
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 htmltools::img(src = knitr::image_uri("images/Rlogo.png"), 
                alt = 'Rfun logo', 
                style = 'position:absolute; top:0; right:0; padding:10px;')
 ```
+<!-- CSS style -->
+```{css, echo=FALSE}
+.myccfoot {
+  font-size: 85%;
+  text-align: right;
+}
+
+```
+
 
 This code can be found at https://github.com/libjohn/rfun_flipped/blob/master/ggplot_quick.Rmd
 
@@ -525,10 +534,3 @@ htmltools::div(class = "myccfoot", htmlTemplate("template/footer.html"))
 ```
 
 
-<style>
-.myccfoot {
-  font-size: 85%;
-  text-align: right;
-}
-  
-</style>
