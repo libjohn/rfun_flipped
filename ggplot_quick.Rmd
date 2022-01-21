@@ -8,7 +8,6 @@ output:
     toc: yes
     toc_float: yes
     df_print: paged
-    css: style/for_captions.css
 ---
 
 ```{r, echo=FALSE}
@@ -17,7 +16,7 @@ htmltools::img(src = knitr::image_uri("images/Rlogo.png"),
                style = 'position:absolute; top:0; right:0; padding:10px;')
 ```
 
-This code can be found at https://github.com/libjohn/workshop_rfun_flipped/ggplot2_quick.Rmd
+This code can be found at https://github.com/libjohn/rfun_flipped/blob/master/ggplot_quick.Rmd
 
 ## Load library packages
 
@@ -519,10 +518,17 @@ Interactive Exercises from [RStudio Primers -- Visualization](https://rstudio.cl
 
 [Interactive web-based data visualization with R, plotly, and shiny.](https://plotly-r.com/) Carson Sievert
 
+
 ```{r echo=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 htmltools::div(class = "myccfoot", htmlTemplate("template/footer.html"))
 ```
 
 
-
+<style>
+.myccfoot {
+  font-size: 85%;
+  text-align: right;
+}
+  
+</style>
