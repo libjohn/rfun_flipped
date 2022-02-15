@@ -98,7 +98,7 @@ Feb 15, 2022, 10am to Noon
 ]  
 
 ```{r echo=FALSE}
-countdown::countdown(minutes = 15, seconds = 00)
+countdown::countdown(minutes = 10, seconds = 00)
 ```
 
 ---
