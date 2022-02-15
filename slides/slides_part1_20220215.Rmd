@@ -7,8 +7,8 @@ params:
   registered: 58
   goog_sheet: "https://docs.google.com/spreadsheets/d/1RhVhYXHi2ApCSL0kGoAklJTv0ypSZqwTKX0s8Tx2l0s/edit#gid=1215831876"
   goog_post:  ""
-  days_label: !r c("Thurs", "Fri", "Sat", "Sun", "Mon")
-  days_of_year_number_range: !r seq(41, 45, 1)
+  days_label: !r c("Thurs", "Fri", "Sat", "Sun", "Mon", "Tues")
+  days_of_year_number_range: !r seq(41, 46, 1)
 output:
   xaringan::moon_reader:
     css: 
