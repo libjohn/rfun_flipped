@@ -130,7 +130,7 @@ background-size: contain
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
 
 ---
-background-image: url(images/who_we_are_facetwrap_2022-09-15_18880.svg)
+background-image: url(images/who_we_are_facetwrap_2022-09-15_13304.svg)
 background-size: contain
 <!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
