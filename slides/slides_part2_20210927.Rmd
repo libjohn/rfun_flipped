@@ -7,9 +7,9 @@ params:
   workshop_date: "Sept. 27"
   workshop_time: "2-4pm"
   registered: 70
-  goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1iSJmrFwpBSt-YSFBzZOkiAJbQOjJ9rswZXZnwqGreus/edit?resourcekey#gid=1609068335"
-  days_label: !r c("Sun", "Mon", "Tue", "Wed", "Fri", "Sat", "Sun", "Mon")
-  days_of_year_number_range: !r seq(263, 270, 1)
+  goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit?resourcekey#gid=275920804"
+  # days_label: !r c("Sun", "Mon", "Tue", "Wed", "Fri", "Sat", "Sun", "Mon")
+  # days_of_year_number_range: !r seq(263, 270, 1)
   countdown_minutes: 20
 output:
   xaringan::moon_reader:
@@ -96,14 +96,14 @@ countdown::countdown(minutes = params$countdown_minutes, seconds = 00)
 I would like to take a moment to honor the land in Durham, NC.  Duke University sits on the ancestral lands of the Shakori, Eno and Catawba people. This institution of higher education is built on land stolen from those peoples.  These tribes were here before the colonizers arrived.  Additionally this land has borne witness to over 400 years of the enslavement, torture, and systematic mistreatment of African people and their descendants.  Recognizing this history is an honest attempt to breakout beyond persistent patterns of colonization and to rewrite the erasure of Indigenous and Black peoples.  There is value in acknowledging the history of our occupied spaces and places.  I hope we can glimpse an understanding of these histories by recognizing the origins of collective journeys.
 
 ---
-background-image: url(images/who_we_are2_20210927.svg)
+background-image: url(images/who_we_are_2022-09-22_10600.svg)
 background-size: contain
 <!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
 
 ---
 exclude: false
-background-image: url(images/who_we_are_facet_20210927.svg)
+background-image: url(images/who_we_are_facetwrap_2022-09-22_10600.svg)
 background-size: contain
 <!-- generated from analysis_workshop_attendance/libcal_roster.Rmd -->
 <!-- https://github.com/libjohn/workshop_attendance/blob/master/libcal_roster.Rmd -->
@@ -114,6 +114,12 @@ response_total <- nrow(pre_workshop)
 response_rate <- scales::percent(nrow(pre_workshop) / params$registered)
 response_subtitle <- glue::glue('n = {response_total} ; {response_rate} response rate')
 
+my_labels_df <- pre_workshop %>% 
+  mutate(day = lubridate::yday(timestamp)) %>% 
+  mutate(day_label = lubridate::wday(timestamp, label = TRUE)) |>
+  select(day_label, day) |> 
+  distinct()
+
 
 pre_workshop %>% 
   mutate(day = lubridate::yday(timestamp)) %>%
@@ -121,12 +127,14 @@ pre_workshop %>%
   ggplot(aes(day, n)) +
   geom_line() +
   geom_point() +
-  scale_y_continuous(minor_breaks = NULL, limits = c(0,8)) +
+  scale_y_continuous(minor_breaks = NULL, limits = c(0,4)) +
   # scale_y_continuous(breaks = scales::pretty_breaks()) +
+  # scale_x_continuous(minor_breaks = NULL, 
+  #                    breaks = params$days_of_year_number_range,
+  #                    labels = params$days_label) +
   scale_x_continuous(minor_breaks = NULL, 
-                     breaks = params$days_of_year_number_range,
-                     labels = params$days_label) +
-  # ylim(0,3) +
+                     breaks = my_labels_df$day,
+                     labels = my_labels_df$day_label) +
   labs(title = "Response rate over time",
        subtitle = response_subtitle, y = "",
        caption = "Source:  CDVS Pre-workshop survey")
