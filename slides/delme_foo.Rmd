@@ -6,7 +6,7 @@ institute: "Center for Data & Vizualization Sciences"
 params: 
   workshop_date: "Sept. 22"
   workshop_time: "1-3pm"
-  registered: 62
+  registered: 63
   goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit?resourcekey#gid=275920804"
   goog_post:  ""
   countdown_minutes: 15
@@ -53,12 +53,12 @@ style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
 # gs4_auth_configure()
 pre_workshop <- read_sheet(params$goog_sheet_pre_workshop)
 post_workshop <-
-  read_sheet("https://docs.google.com/spreadsheets/d/18-xeU5YAOr0iu7Pk22Zrb0BziLuoVe8nyCyd1-O2R7U/edit#gid=123486400")
+  read_sheet("https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit#gid=275920804")
 
 # mynames_pre <- read_csv("data/colnames_preworkshop_20200918.csv")
 # # mynames_post <- read_csv("data/colnames_postworkshop.csv")
-mynames_pre  <- read_csv("data/colnames_part1_preworkshop_2021fall.csv")
-mynames_post <- read_csv("data/colnames_part1_postworkshop_2021fall.csv")
+mynames_pre <- read_csv("data/colnames_part2_preworkshop.csv")
+mynames_post <- read_csv("data/colnames_part2_postworkshop.csv")
 
 colnames(pre_workshop) <- mynames_pre$value
 colnames(post_workshop) <- mynames_post$value
@@ -209,5 +209,174 @@ pre_workshop %>%
   theme(plot.title.position = "plot")
 ```
 
+---
+
+```{r data mgt plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
+orange_bar <- fct_count(pre_workshop$viz_workflow_satify, sort = TRUE) %>% 
+  mutate(max = max(n)) %>% 
+  filter(n == max) %>% 
+  # slice_head(n = 1) %>% 
+  pull(f)
+
+
+data_mgt_plot <- pre_workshop %>% 
+  ggplot(aes(fct_relevel(viz_workflow_satify, "Very Unsatisfied", "Unsatisfied", 
+                         "Neutral", "Satisfied", "Very Satisfied"))) +
+  geom_bar() +
+  geom_bar(data = . %>% filter(viz_workflow_satify %in% orange_bar), 
+           aes(viz_workflow_satify), fill = "darkorange", color = "darkorange") + 
+  scale_y_continuous(breaks = seq(0, 3, 3), minor_breaks = NULL) +
+  theme_minimal() +
+  labs(title = "Satisfaction with current visualization tool workflow",
+       subtitle = "self reported",
+       x = "", y = "",
+       caption = "Source:  CDVS Pre-workshop survey")
+
+data_mgt_plot +
+  theme_minimal() +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+```
+
+---
+background-color:  	#2A2A2A
+background-size: contain
+
+
+```{r dta mgt theme_alt, fig.cap="foo", fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg", echo=FALSE}
+data_mgt_plot +
+  theme_ft_rc(grid = "Y") +
+  theme(plot.title.position = "plot",
+        panel.grid.major.x = element_blank())
+
+# ggsave("images/plot_theme_alt.svg")
+```
+
+
+---
+exclude: true
+background-image: url(images/plot_theme_alt.svg)
+
+---
+exclude: true
+class: center, middle
+## Microsoft Teams: Rfun
+
+Rfun on MS Teams is a professional learning community for Duke U.
+
+_Teams like Slack_
+
+Join with code **ko8ovx2**
+
+![](images/teams-join-or-create-team.png)
+
+Or, https://is.gd/rfun_teams
+
+
+---
+### CDVS questions & consulting
+
+Title | URL
+--- | ---
+Schedule me for consultations | https://is.gd/littleconsult
+Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
+
+
+### Resources
+
+Title | URL
+--- | ---
+rfun_flipped codebase       | https://github.com/libjohn/rfun_flipped
+exercises                   | https://github.com/libjohn/intro2r_exercises
+Rfun                        | https://rfun.library.duke.edu
+Center for data & Viz       | https://library.duke.edu/data
+
+
+---
+class: middle, center
+
+## Reprex
+
+_The most efficient way to get help_
+
+REPROducible EXample and Code
+
+https://reprex.tidyverse.org
+
+--
+
+.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+Use the smallest, simplest, most built-in data possible
+
+Include commands on a strict “need to run” basis
+]
+
+---
+exclude: true
+background-size: contain
+```{r big picture, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, echo=FALSE, dev='svg'}
+pre_post_tbl <- bind_rows(pre_workshop, post_workshop)
+
+pre_post_tbl %>% 
+  select(timestamp, survey_type, ends_with("_experience")) %>% 
+  pivot_longer(ends_with("_experience"),
+               names_to = "experience") %>% 
+  filter(experience != "import_experience" & experience != "scripts_experience") %>% ################################
+  mutate(value = str_to_title(value)) %>% 
+  mutate(value = fct_relevel(value, levels = c("Strongly Disagree",
+                                       "Disagree",
+                                       "Neutral", "Agree", 
+                                       "Strongly Agree"))) %>% 
+  mutate(experience = str_extract(experience, "\\w+(?=_)")) %>% 
+  # mutate(experience = fct_relevel(experience, levels = c(
+  #   "import", "subset", "scripts", "projects", "reproducible")
+  # )) %>% 
+  ggplot(aes(value)) +
+    geom_bar(aes(fill = value), color = "black") +
+    facet_grid(experience ~ fct_rev(str_to_title(survey_type)))+ 
+    scale_fill_brewer(palette = "BrBG") + 
+    scale_y_continuous(breaks = c(0,2,4,6)) +
+    scale_x_discrete(labels = scales::label_wrap(10)) +
+    hrbrthemes::theme_ipsum(grid = "Y", ticks = TRUE) +
+    theme(legend.position="none", plot.title.position = "plot") +
+  labs(title = "Comparison of Pre & Post survey results",
+       x = "", y = "",
+       caption = "Source: Registrant surveys at time of workshop")
+
+# ggsave("images/bigpicture.svg", width = 15, height = 10, units = "in")
+```
+<!-- _background-image: url(images/bigpicture.svg) -->
+<!-- _background-size: contain -->
+
+---
+layout: false
+class:  middle, center
+
+<br>
+
+.bg-washed-blue.b--navy.ba.bw2.br3.shadow-5.ph4.mt5[
+
+![Rfun](images/rfun.png# fl l-4 w-2-12th)
+
+## John R Little
+
+.seagull[
+.f5[Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+]
+]
+
+.f7[https://johnlittle.info  
+https://Rfun.library.duke.edu  
+https://library.duke.edu/data  
+]
+]
+
+
+
+<i class="fab fa-creative-commons fa-2x"></i> &nbsp; <i class="fab fa-creative-commons-by fa-2x"></i><br> 
+.f6.moon-gray[Creative Commons:  Attribution 4.0]  
+.f7.moon-gray[https://creativecommons.org/licenses/by-nc/4.0]
 
 
