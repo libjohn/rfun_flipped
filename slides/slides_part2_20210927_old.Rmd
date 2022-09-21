@@ -6,33 +6,31 @@ institute: "Center for Data & Vizualization Sciences"
 params: 
   workshop_date: "Sept. 22"
   workshop_time: "1-3pm"
-  registered: 63
+  registered: 62
   goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit?resourcekey#gid=275920804"
-  goog_post:  ""
-  countdown_minutes: 15
+  # days_label: !r c("Sun", "Mon", "Tue", "Wed", "Fri", "Sat", "Sun", "Mon")
+  # days_of_year_number_range: !r seq(263, 270, 1)
+  countdown_minutes: 20
 output:
   xaringan::moon_reader:
     css: 
-      - mystyles/xaringan-themer.css          #  fonts I do want https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html
+      - xaringan-themer.css
       - mystyles/adirondack/story.css         # https://story.xaprb.com/slides/adirondack/
-      - mystyles/adirondack/apron.css         # layout 
-      #- mystyles/adirondack/adirondack.css   # fonts I don't want
+      - mystyles/adirondack/apron.css         # layout     
       - mystyles/adirondack/descartes.css     # image positon 
-      - mystyles/adirondack/tachyons.min.css  # color, font weights, boxes
-      # - mystyles/adirondack/monoblock.css   # part of story/adirondack
-      - mystyles/my-theme.css    
+      - mystyles/adirondack/tachyons.min.css  # color, font weights, boxes        
+      - styles/my-theme.css 
     lib_dir: libs
     nature:
       slideNumberFormat: "%current%"
       highlightStyle: github
       highlightLines: true
-      ratio: 16:9
+      ratio: '16:9'
       countIncrementalSlides: true
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
-library(gt)
 library(lubridate)
 library(hrbrthemes)
 library(xaringanthemer)
@@ -51,12 +49,11 @@ style_duo_accent(primary_color = "#012169", secondary_color = "#005587")
 
 # *** RUN gs4_auth() in the console ***
 # gs4_auth_configure()
-pre_workshop <- read_sheet(params$goog_sheet_pre_workshop)
+pre_workshop <- 
+  read_sheet(params$goog_sheet_pre_workshop)
 post_workshop <-
-  read_sheet("https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit#gid=275920804")
+  read_sheet("https://docs.google.com/spreadsheets/d/1iSJmrFwpBSt-YSFBzZOkiAJbQOjJ9rswZXZnwqGreus/edit?resourcekey#gid=1609068335")
 
-# mynames_pre <- read_csv("data/colnames_preworkshop_20200918.csv")
-# # mynames_post <- read_csv("data/colnames_postworkshop.csv")
 mynames_pre <- read_csv("data/colnames_part2_preworkshop.csv")
 mynames_post <- read_csv("data/colnames_part2_postworkshop.csv")
 
@@ -67,20 +64,11 @@ pre_workshop <- pre_workshop %>%
   mutate(survey_type = "pre")
 post_workshop <- post_workshop %>%
   mutate(survey_type = "post") 
+
 ```
 
-layout: true
-
-
-.footercc[
-<i class="fab fa-creative-commons"></i>&nbsp; <i class="fab fa-creative-commons-by"></i> <a href = "https://JohnLittle.info"><span class = "opacity30">https://</span>JohnLittle<span class = "opacity30">.info</span></a> 
-<span class = "opacity30"> | <a href="https://github.com/libjohn/rfun_flipped">https://github.com/libjohn/rfun_flipped</a> | `r Sys.Date()` </span>
-]
-
----
-
 class: middle
-.tc.bg-moon-gray.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
+.tc.bg-light-silver.b--navy.f.ba.bw1.br4.shadow-5.ph4.mt1[
 
 ### R for computational sciences
 
@@ -88,14 +76,21 @@ class: middle
 quickStart: Viz, pivot, join, models
 ]  
 
-.b[Flipped Workshop]  
+**Flipped Workshop**  
 .f6[
 `r params$workshop_date`, `r params$workshop_time`
-
 ]
-]
+]  
 
 Please **complete** the pre-workshop **survey**  (check your email)
+
+.f6.black-40[
+https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
+https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
+Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = params$countdown_minutes, seconds = 00)
@@ -274,7 +269,9 @@ Or, https://is.gd/rfun_teams
 
 
 ---
-### CDVS questions & consulting
+### So let's chat
+
+We're happy to consult with you.   We can make the details relvant to your project
 
 Title | URL
 --- | ---
@@ -283,6 +280,8 @@ Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://libra
 
 
 ### Resources
+
+It's all online
 
 Title | URL
 --- | ---
@@ -347,36 +346,4 @@ pre_post_tbl %>%
 ```
 <!-- _background-image: url(images/bigpicture.svg) -->
 <!-- _background-size: contain -->
-
----
-layout: false
-class:  middle, center
-
-<br>
-
-.bg-washed-blue.b--navy.ba.bw2.br3.shadow-5.ph4.mt5[
-
-![Rfun](images/rfun.png# fl l-4 w-2-12th)
-
-## John R Little
-
-.seagull[
-.f5[Data Science Librarian  
-Center for Data & Visualization Sciences  
-Duke University Libraries  
-]
-]
-
-.f7[https://johnlittle.info  
-https://Rfun.library.duke.edu  
-https://library.duke.edu/data  
-]
-]
-
-
-
-<i class="fab fa-creative-commons fa-2x"></i> &nbsp; <i class="fab fa-creative-commons-by fa-2x"></i><br> 
-.f6.moon-gray[Creative Commons:  Attribution 4.0]  
-.f7.moon-gray[https://creativecommons.org/licenses/by-nc/4.0]
-
 

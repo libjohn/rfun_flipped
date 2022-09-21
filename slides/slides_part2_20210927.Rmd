@@ -7,7 +7,7 @@ params:
   workshop_date: "Sept. 22"
   workshop_time: "1-3pm"
   registered: 62
-  goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit?resourcekey#gid=275920804"
+  goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit#gid=275920804"
   # days_label: !r c("Sun", "Mon", "Tue", "Wed", "Fri", "Sat", "Sun", "Mon")
   # days_of_year_number_range: !r seq(263, 270, 1)
   countdown_minutes: 20
@@ -147,6 +147,32 @@ pre_workshop %>%
 
 
 ```
+
+---
+test
+```{r}
+pre_workshop %>% 
+  pivot_longer(starts_with("tools_"), names_to = "question", values_to = "answer") %>% 
+  mutate(question = str_extract(question, ("(?<=tools_)\\w+"))) %>% 
+  mutate(question = factor(question, levels = c("coder", "viz", 
+                                                "version_ctrl", "cli", "rdbms"))) %>% 
+  mutate(answer = factor(answer, levels = c("Daily", "Weekly", "Monthly",
+                                            "Several Times per year",
+                                            "Less than once per year",
+                                            "Never"))) %>% 
+  ggplot(aes(fct_rev(question))) +
+  geom_bar(aes(fill = answer), position = "fill") 
+  # coord_flip() +
+  # scale_fill_brewer(palette = "Dark2") +
+  # scale_y_continuous(labels = scales::percent) +
+  # labs(title = "Self-reported tool usage",
+  #      subtitle = "Respondent's use of a tool / technology / technique",
+  #      x = "", y = "Percent", fill = "",
+  #      caption = "Source:  CDVS Pre-workshop survey") +
+  # theme_ipsum(grid = "X") +
+  # theme(plot.title.position = "plot") 
+```
+
 
 ---
 ```{r experience plot, echo=FALSE, fig.height=9, fig.width=16, message=FALSE, warning=FALSE, dev="svg"}
