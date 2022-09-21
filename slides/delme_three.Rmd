@@ -29,6 +29,7 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
+library(gt)
 library(lubridate)
 library(hrbrthemes)
 library(xaringanthemer)
