@@ -44,7 +44,7 @@ layout: true
 
 .footercc[
 &lt;i class="fab fa-creative-commons"&gt;&lt;/i&gt;&amp;nbsp; &lt;i class="fab fa-creative-commons-by"&gt;&lt;/i&gt; &lt;a href = "https://JohnLittle.info"&gt;&lt;span class = "opacity30"&gt;https://&lt;/span&gt;JohnLittle&lt;span class = "opacity30"&gt;.info&lt;/span&gt;&lt;/a&gt; 
-&lt;span class = "opacity30"&gt; | &lt;a href="https://github.com/libjohn/rfun_flipped"&gt;https://github.com/libjohn/rfun_flipped&lt;/a&gt; | 2022-09-21 &lt;/span&gt;
+&lt;span class = "opacity30"&gt; | &lt;a href="https://github.com/libjohn/rfun_flipped"&gt;https://github.com/libjohn/rfun_flipped&lt;/a&gt; | 2022-09-22 &lt;/span&gt;
 ]
 
 ---
@@ -66,9 +66,17 @@ Sept. 22, 1-3pm
 
 Please **complete** the pre-workshop **survey**  (check your email)
 
-<div class="countdown" id="timer_ae1e28bd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+.f6.black-40[
+https://&lt;a href = "https://johnlittle.info"&gt;JohnLittle&lt;/a&gt;.info  
+https://&lt;a href = "https://Rfun.library.duke.edu"&gt;Rfun.library.duke&lt;/a&gt;.edu  
+Data Science Librarian  
+Center for Data &amp; Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/&lt;a href="https://library.duke.edu/data"&gt;data&lt;/a&gt;]  
+
+<div class="countdown" id="timer_c8b68d78" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -132,19 +140,14 @@ Or, https://is.gd/rfun_teams
 
 
 ---
-### So let's chat
-
-We're happy to consult with you.   We can make the details relvant to your project
+### Consulting and Questions
 
 Title | URL
 --- | ---
 Schedule me for consultations | https://is.gd/littleconsult
 Consulting &amp; [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
 
-
 ### Resources
-
-It's all online
 
 Title | URL
 --- | ---
@@ -172,6 +175,41 @@ Use the smallest, simplest, most built-in data possible
 
 Include commands on a strict “need to run” basis
 ]
+
+---
+
+## Format of ggplot2 code
+
+```r
+
+ggplot(data = my_df,
+       mapping = aes(x = my_df$var_x, y = my_df$var_y, color = my_df$var_z)) +
+  geom_col() +
+  geom_line() +
+  scale_color_brewer(palette = "&lt;palette_name&gt;") +
+  labs(title = "foo", subtitle = "sub_foo",
+       x = "new_X", y = "new_Y",
+       caption = "source of data")
+
+```
+
+---
+
+## Format of ggplot2 code
+
+```r
+
+my_df |&gt; 
+  ggplot(aes(var_x, var_y)) +
+  geom_col(aes(color = var_z)) +
+  geom_line(color = "navy", size = 2, alpha = 0.5) +
+  scale_color_brewer(palette = "&lt;palette_name&gt;") +
+  labs(title = "foo", subtitle = "sub_foo",
+       x = "new_X", y = "new_Y",
+       caption = "source of data")
+
+```
+
 
 ---
 exclude: true

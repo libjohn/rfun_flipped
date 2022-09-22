@@ -6,9 +6,9 @@ institute: "Center for Data & Vizualization Sciences"
 params: 
   workshop_date: "Sept. 22"
   workshop_time: "1-3pm"
-  registered: 62
+  registered: 64
   goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit#gid=275920804"
-  countdown_minutes: 20
+  countdown_minutes: 15
   goog_post:  ""
 output:
   xaringan::moon_reader:
@@ -87,6 +87,14 @@ quickStart: Viz, pivot, join, models
 ]  
 
 Please **complete** the pre-workshop **survey**  (check your email)
+
+.f6.black-40[
+https://<a href = "https://johnlittle.info">JohnLittle</a>.info  
+https://<a href = "https://Rfun.library.duke.edu">Rfun.library.duke</a>.edu  
+Data Science Librarian  
+Center for Data & Visualization Sciences  
+Duke University Libraries  
+library.duke.edu/<a href="https://library.duke.edu/data">data</a>]  
 
 ```{r echo=FALSE}
 countdown::countdown(minutes = params$countdown_minutes, seconds = 00)
@@ -265,19 +273,14 @@ Or, https://is.gd/rfun_teams
 
 
 ---
-### So let's chat
-
-We're happy to consult with you.   We can make the details relvant to your project
+### Consulting and Questions
 
 Title | URL
 --- | ---
 Schedule me for consultations | https://is.gd/littleconsult
 Consulting & [AskData@Duke.edu](mailto:AskData@Duke.edu)         | https://library.duke.edu/data/consulting
 
-
 ### Resources
-
-It's all online
 
 Title | URL
 --- | ---
@@ -305,6 +308,41 @@ Use the smallest, simplest, most built-in data possible
 
 Include commands on a strict “need to run” basis
 ]
+
+---
+
+## Format of ggplot2 code
+
+```r
+
+ggplot(data = my_df,
+       mapping = aes(x = my_df$var_x, y = my_df$var_y, color = my_df$var_z)) +
+  geom_col() +
+  geom_line() +
+  scale_color_brewer(palette = "<palette_name>") +
+  labs(title = "foo", subtitle = "sub_foo",
+       x = "new_X", y = "new_Y",
+       caption = "source of data")
+
+```
+
+---
+
+## Format of ggplot2 code
+
+```r
+
+my_df |> 
+  ggplot(aes(var_x, var_y)) +
+  geom_col(aes(color = var_z)) +
+  geom_line(color = "navy", size = 2, alpha = 0.5) +
+  scale_color_brewer(palette = "<palette_name>") +
+  labs(title = "foo", subtitle = "sub_foo",
+       x = "new_X", y = "new_Y",
+       caption = "source of data")
+
+```
+
 
 ---
 exclude: true
