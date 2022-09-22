@@ -8,12 +8,12 @@ params:
   workshop_time: "1-3pm"
   registered: 64
   goog_sheet_pre_workshop: "https://docs.google.com/spreadsheets/d/1s1AMfjeU76N56zwY521pVMUX0VoxL6WHZBT2c_3L4bM/edit#gid=275920804"
-  countdown_minutes: 15
+  countdown_minutes: 10
   goog_post:  ""
 output:
   xaringan::moon_reader:
     css: 
-      - mystyles/xaringan-themer.css          #  fonts I do want https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html
+      - mystyles/xaringan-themer.css          # fonts https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html
       - mystyles/adirondack/story.css         # https://story.xaprb.com/slides/adirondack/
       - mystyles/adirondack/apron.css         # layout 
       - mystyles/adirondack/descartes.css     # image positon 
