@@ -1,0 +1,252 @@
+---
+title: "R for data science"
+subtitle: "Getting started with Tidyverse R,<br/> RStudio, and Quarto"
+author: 
+  - name: John R Little
+    affiliations:
+      - name: Duke University
+        department: Center for Data & Vizualization Sciences
+date: 'today'
+# date-modified: 'today'
+date-format: long
+logo:  images/rfun.png
+format: 
+  revealjs: 
+    theme: [solarized, mystyles/custom.scss]
+    footer: "CC BY 4.0 John R Little"
+---
+
+# R for data science
+
+Getting started with Tidyverse R, RStudio, and Quarto
+
+John R Little\
+[Center for Data & Visualization Sciences]{.muted .mediumtext}\
+[Duke University]{.muted .mediumtext}
+
+`r lubridate::stamp("1999 March 1")(lubridate::today())`
+
+[Get code, data, and slides for today's workshop\
+- https://github.com/libjohn/rfun_flipped\
+- https://github.com/libjohn/intro2r-code]{.muted .mediumtext}
+
+```{r}
+#| echo: false
+library(countdown)
+library(countdown)
+library(htmltools)
+tagList(rmarkdown::html_dependency_font_awesome())
+countdown(minutes = 15, seconds = 00)
+```
+
+## Topics
+
+-   How to use R
+-   How reproducibility is easily accomplished
+-   How to learn R efficiently
+    -   Part 1 (today): focus on data wrangling with dplyr
+    -   [Part 2: visualization with ggplot2, briefly: EDA, interactive plots, linear regression models]{.muted}
+    -   [Part 3: iterations & custom functions]{.muted}
+    -   [Part 4: case study in wrangling and visualization by ingesting multiple excel worksheets from multiple excel workbooks]{.muted}
+
+## R, the Tidyverse, and Quarto
+
+R is a programming language
+
+1.  A data-first programing language → computational thinking
+2.  The Tidyverse (and Tidymodels) is designed for humans
+3.  Quarto Notebooks: a publishing system
+    a.  Publish high-quality articles, reports, presentations (slide-decks), websites, blogs, and books in HTML, PDF, MS Word, ePub, and more.
+    b.  Works with other languages and IDEs
+
+## Reproducibility
+
+[**Reproducibility** - Obtaining computational results using the same input data, computational steps, methods, code, and conditions of analysis. [^1]]{.smalltext} [**Replicability** - Obtaining consistent results across studies aimed at answering the same scientific question, each of which has obtained its own data.]{.smalltext}
+
+[^1]: [National Academies of Sciences, Engineering, and Medicine (NASEM)]{.smalltext}
+
+Goals of a tool-based, first-class approach
+
+-   Do as much as possible with code
+
+-   Integrate prose with code[; visualize inline]{.muted}
+
+-   Generate reports for target audience
+
+-   Iterate efficiently[; {purrr}]{.muted}
+
+## Tidy data
+
+::: columns
+::: {.column width="50%"}
+-   Each variable is a column
+
+-   Each observation is a row
+
+-   Each type of observational unit is a table
+:::
+
+::: {.column width="50%"}
+![[Image Credit: https://r4ds.hadley.nz]{.extrasmalltext .muted .absolute bottom=0 right=20}](images/tidy-data.png){fig-alt="Tidy data image from https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure"}
+:::
+:::
+
+[Citation: https://doi.org/10.18637/jss.v059.i10]{.smalltext}\
+[Preprint: https://vita.had.co.nz/papers/tidy-data.pdf]{.smalltext}
+
+[See more in [*R for Data Science*](https://r4ds.hadley.nz/) by Wickham and Grolemund]{.smalltext}
+
+## Tidyverse
+
+-   A dialect of R
+
+-   Easier to learn because of consistency and documentation
+
+-   Assumptions
+
+    -   Data have semantic meaning that can be documented grammatically
+
+    -   Tidy data are wrangled, visualized, and iterated easily via grammar
+
+    -   50-80% of any data project is data wrangling\
+        [{dplyr} & {tidyr}]{.muted}
+
+## Pipe [\| data pipe \| data sentence]{.muted}
+
+::: {layout="[[-1], [1], [-1], [1], [-1], [1]]"}
+A conjunction ("and then"), read left to right, creating a "data sentence"
+
+`%>%` [({magrittr}\|{tidyverse})]{.muted} or `|>` [(base R)]{.muted}
+
+```{r}
+#| echo: true
+#| eval: false
+Starwars |>
+    select(name, skin_color, homeworld)
+```
+:::
+
+## Assignment
+
+::: {layout="[[-1], [1], [-1], [1], [-1], [1]]"}
+
+An object name “gets value from” a data pipe
+
+`<-`
+
+```{r}
+#| echo: true
+#| eval: false
+small_df <- starwars |>
+     filter(gender == "feminine")
+
+```
+
+:::
+
+## Project
+
+-   Keep stuff organized in the same directory\
+    [e.g. data, analysis, scripts, documentation, and outputs]{.muted}
+
+-   In the notebook, refer to subdirectories via relative paths\
+    [better than `setwd()`]{.muted}
+
+-   Shareability, portability, legibility, and **reproducibility**\
+    [Use Restart-R-and-Run instead of `rm(list=ls())`]{.muted}
+
+## Notebooks
+
+[Literate coding]{.muted}
+
+-   Intersperse prose and code
+
+-   Integrated outputs with analysis
+
+-   Render reports from code
+
+## {`dplyr`}
+
+::: {layout="[[1], [-1], [1], [-1]]"}
+[`library(dplyr)` or `library(tidyverse)`. Use {dplyr} to wrangle data]{.mediumtext}
+
+::: columns
+::: {.column width="25%"}
+`select`
+
+`filter`
+
+`arrange`
+
+`mutate`
+
+`group_by`
+
+`summarize`
+:::
+
+::: {.column width="75%"}
+subset by column
+
+subset by row
+
+sort
+
+generate new variables
+
+\
+
+column totals [(or subtotals with `group_by`)]{.muted}
+:::
+:::
+:::
+
+## Upcoming workshops
+
+-   Visualization with ggplot2 (and interactive graphics) & Modeling (syntax)
+
+-   Iteration and custom functions
+
+-   Quarto and Observable interactivity
+
+## Rfun resources
+
+-   Web scraping
+-   Slide decks
+-   Text mining, sentiment analysis, etc.
+-   Dashboards ; interactivity
+-   DBI: i.e. SQL without knowing SQL (working with databases)
+-   git/GitHub
+
+## Next steps
+
+Best way to learn [and/or]{.muted} **consultations**
+
+-   Take a small subset of a project you know well <br/> then recreate it in R
+-   If you get stuck, schedule me for a free consultation <br/> walk-ins welcome
+-   Documentation: {package-name}.tidyverse.org [(https://dplyr.tidyverse.org)]{.smalltext .muted}
+-   Ask questions at RStudio Community ; R for DS online learning community ; R Ladies RTP
+-   Formulate questions as **REP**roducible **EX**amples [(REPREX.tidyverse.org)]{.smalltext .muted}
+
+## Fin {transition="zoom"}
+
+::: {layout="[[-1], [1, 5]]"}
+
+![](images/rfun.png)
+
+John R Little\
+Data Science Librarian\
+[Center for Data & Visualization Sciences\
+Duke University Libraries]{.muted .mediumtext}\
+[https://JohnLittle.info ● https://Rfun.library.duke.edu ● https://Library.duke.edu/data]{.muted .smalltext}
+
+:::
+
+<center>
+<i class="fab fa-creative-commons fa-2x"></i> <i class="fab fa-creative-commons-by fa-2x"></i>\
+[Creative Commons: Attribution 4.0 ● https://creativecommons.org/licenses/by-nc/4.0]{.muted .smalltext}
+</center>
+
+::: footer
+:::
+
