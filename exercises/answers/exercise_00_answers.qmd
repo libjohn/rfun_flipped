@@ -26,7 +26,7 @@ library(tidyverse)
 ```{r}
 #| message: false
 #| warning: false
-brodhead  <- read_csv("../data/brodheadCenter.csv")
+brodhead  <- read_csv("../../data/brodheadCenter.csv")
 ```
 
 3.  Display your new `brodhead` data frame?

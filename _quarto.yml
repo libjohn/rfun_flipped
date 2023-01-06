@@ -1,7 +1,7 @@
 project:
   title: "Workshop: Rfun -flipped"
-  render: 
-    - "*.qmd"
+  # render: 
+  #   - "*.qmd"
   output-dir: _output
   
 author: 
