@@ -1,6 +1,11 @@
-# README
+---
+author: "John Little"
+date: "`r Sys.Date()`"
 
-John Little 2022-01-06
+editor: source
+---
+
+# README
 
 <!-- badges: start -->
 
@@ -28,16 +33,26 @@ I recommend installing R and RStudio ([how-to video](https://www.youtube.com/wat
 
 ### quickStart with R
 
-The `quickstart.qmd`{=} (or \_output/quickstart.html) represents the general outline of the flipped workshop -- i.e. what we can reasonably cover in [two 2-hour workshops (videos available.)](https://rfun.library.duke.edu/portfolio/r_flipped/) In fact, the `quickstart.qmd`{=} file is the basic guide I follow when people sign-up for my workshops. Meanwhile the `outline.qmd`{=} (or \_output/outline.qmd) file represents the grand overview of how to reach *Tidy data fluency with R* (book forthcoming). You can find an HTML report of the outline in the \_output directory. I serve these files out of github because I want you to immediately start using practical reproducible approaches and I want you to have the code locally. A book is great and I recommend many in the outline, but my goal is to get you working with code, today.
+The `quickstart.qmd` (or \_output/quickstart.html) represents the general outline of the flipped workshop -- i.e. what we can reasonably cover in [two 2-hour workshops (videos available.)](https://rfun.library.duke.edu/portfolio/r_flipped/) In fact, the `quickstart.qmd` file is the basic guide I follow when people sign-up for my workshops. Meanwhile the `outline.qmd` (or \_output/outline.qmd) file represents the grand overview of how to reach *Tidy data fluency with R* (book forthcoming). You can find an HTML report of the outline in the \_output directory. I serve these files out of github because I want you to immediately start using practical reproducible approaches and I want you to have the code locally. A book is great and I recommend many in the outline, but my goal is to get you working with code, today.
 
 #### The workshop
 
 This is a two-part workshop. In **Part 1** you'll learn the fundamentals of R, everything you need to know to quickly get started. You'll learn how to wrangle data for analysis, gain a brief introduction to visualization, practice Exploratory Data Analysis (EDA), and how to generate reports. In **Part 2** you'll learn about visualization using ggplot2, how to make interactive charts for use in dashboards, how to reshape and merge data, and be introduced to models.
 
-**Part 1 has no prerequisites** and no prior experience is necessary. By the end of part 1 you will import data, edit and save scripts, subset data, use projects to organize your work, and develop self-help techniques.
+##### Part 1 
+No prerequisites and no prior experience is necessary. By the end of part 1 you will import data, edit and save scripts, subset data, use projects to organize your work, and develop self-help techniques.
+
+- quickstart.qmd
+
+##### Part 2
+
+- ggplot_quick.qmd
+- longer_wider.qmd
+- regression.qmd
+
 
 ## videos
 
 For access to videos, see the Rfun [*quickStart with R*](https://rfun.library.duke.edu/portfolio/r_flipped/) page.
 
-#### 
+
