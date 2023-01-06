@@ -1,8 +1,7 @@
 ---
 author: "John Little"
-date: "`r Sys.Date()`"
-
 editor: source
+license:  CC BY-NC
 ---
 
 # README
