@@ -5,7 +5,7 @@ author:
   - name: John R Little
     affiliations:
       - name: Duke University
-        department: Center for Data & Vizualization Sciences
+      - department: Center for Data & Vizualization Sciences
 date: 'today'
 # date-modified: 'today'
 date-format: long
@@ -14,6 +14,7 @@ format:
   revealjs: 
     theme: [solarized, mystyles/custom.scss]
     footer: "CC BY 4.0 John R Little"
+    license: CC BY
 ---
 
 # R for data science
