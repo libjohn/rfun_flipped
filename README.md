@@ -6,7 +6,7 @@ John Little 2021-06-17
 
 <!-- all versions DOI:  10.5281/zenodo.4908855 -->
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%252Fzenodo.4908855%20(Latest%20Version%20Release)-blue "DOI")](https://doi.org/10.5281/zenodo.4908855)<br/>
+[![DOI](https://img.shields.io/badge/DOI-10.5281%20zenodo.4908855%20(Latest%20Version%20Release)-blue "DOI")](https://doi.org/10.5281/zenodo.4908855)<br/>
 
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--3600--0972-A6CE39?logo=ORCID&logoColor=A6CE39 "ORCID")](https://orcid.org/0000-0002-3600-0972)<br/>
 
