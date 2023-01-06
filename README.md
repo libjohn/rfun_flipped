@@ -49,9 +49,12 @@ No prerequisites and no prior experience is necessary. By the end of part 1 you 
 - longer_wider.qmd
 - regression.qmd
 
-
-## videos
+## Videos
 
 For access to videos, see the Rfun [*quickStart with R*](https://rfun.library.duke.edu/portfolio/r_flipped/) page.
+
+## Notes
+
+There are URLs in the _outline_ and _quickstart_ files (and elsewhere).  Among those links you can find links to various static and interactive exercises.  And, I have a useful set of exercises at the [intro2r-code github repo](https://github.com/libjohn/intro2r-code).
 
 
