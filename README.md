@@ -24,7 +24,7 @@ This repo supports preparation for remote [zoom-based teaching. I'm flipping the
 
 R and the Tidyverse are a data-first coding language that enables reproducible workflows. In this two-part workshop, you'll learn the fundamentals of R, everything you need to know to quickly get started.
 
-I recommend installing R and RStudio ([how-to video](https://www.youtube.com/watch?v=udPgQWHDpz8)) on your local machine. There are cloud versions of RStudio that will work. The cloud version has some very minor differences that, in my experience, are monumental differences for beginners. Therefore I recommend installing the R/RStudio locally if possible. Anyway, I think the flexibility of a local install outweighs the minor convenience of a cloud instance. I will not cover the differences in the workshop.
+I recommend installing R and RStudio ([how-to video](https://www.youtube.com/watch?v=udPgQWHDpz8)) on your local machine. There are cloud versions of RStudio that will work. The cloud version has some very minor differences that, in my experience, are monumental differences for beginners. Therefore I recommend installing the R/RStudio locally if possible. Anyway, I think the flexibility of a local install outweighs the minor convenience of a cloud instance. I will not cover the differences in the workshop. Still another way is to use the cloud copy of this github repo by launching the binder.org button (above) -- You may need to be very patient while the launch configuration initiates (2-20 minutes. YMMV.)
 
 ### quickStart with R
 
