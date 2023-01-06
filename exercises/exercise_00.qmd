@@ -28,7 +28,7 @@ Goals:
 library(tidyverse)
 ```
 
-2.  Fill in the blanks. Using what you've seen in class, if `data/brodheadCenter.csv` is a CSV (comma separated values) file, how would you load the file into a new object called `brodhead`?
+2.  Fill in the blanks. Using what you've seen in class, if `data/brodheadCenter.csv` is a CSV (comma separated values) file, how would you load the file into a new object called `brodhead`? Hint. the `data`{=} directory parallel and over from the `exercises`{=} directory. `..`{=} is a way to move up a directory. `../data`{=} is a way to indicate the location of the data directory. Then add the filename after the slash. Or use the Import Data wizard from the *Environment* tab -- but be sure to copy the code from the wizard into the code-chunk in the notebook.
 
 ```{r}
 #| eval: false
