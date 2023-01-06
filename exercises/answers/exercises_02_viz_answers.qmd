@@ -2,19 +2,27 @@
 title: "Visualize Data in R with ggplot2"
 subtitle: "Exercises"
 abstract: "These exercises are adapated in whole or in part based on the <i>Master the Tidyverse</i> work by Garrett Grolemund at RStudio.  \nCC BY Garrett Grolemund, RStudio ; BY-NC John Little"
+
+
+date-modified: 'today'
+date-format: long
+
+format: 
+  html:
+    footer: "CC BY 4.0 John R Little"
+
+license: CC BY    
 ---
 
-
-<center>[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)</center>
-
 ```{r setup}
+#| warning: false
+#| message: false
 library(tidyverse)
 ```
 
 ```{r}
 mpg
 ```
-
 
 ## Your Turn 1
 
@@ -27,7 +35,7 @@ ggplot(data = mpg) +
 
 ## Your Turn 2
 
-Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
+Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.
 
 ```{r fig.height=7}
 mpg %>% 
@@ -69,7 +77,6 @@ mpg %>%
   geom_histogram(aes(hwy), binwidth = 2)
 ```
 
-
 ## Your Turn 5
 
 Make a density plot of `hwy` colored by `class`.
@@ -107,13 +114,11 @@ mpg %>%
   geom_smooth(aes(displ, hwy))
 ```
 
-
 ## Your Turn 8
 
 Save the last plot.
 
-```r
+``` r
 ggsave("mylastplot.png")
 # or right-click the image
 ```
-
