@@ -61,9 +61,8 @@ Refactor existing workshop for smaller video segments and flipped presentation
         4.  **File structure** matters
             -   [*Practice of Reproducible Research*](http://www.practicereproducibleresearch.org/) by Kitzes, Turek, Deniz
 
-```{=html}
 <!-- -->
-```
+
     EXAMPLE File Structure...
 
     project_name (folder)
