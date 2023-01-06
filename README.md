@@ -6,13 +6,13 @@ John Little 2021-06-17
 
 <!-- all versions DOI:  10.5281/zenodo.4908855 -->
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%252Fzenodo.4908855%20(Latest%20Version%20Release)-blue "DOI")](https://doi.org/10.5281/zenodo.4908855)\
+[![DOI](https://img.shields.io/badge/DOI-10.5281%252Fzenodo.4908855%20(Latest%20Version%20Release)-blue "DOI")](https://doi.org/10.5281/zenodo.4908855)<br/>
 
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--3600--0972-A6CE39?logo=ORCID&logoColor=A6CE39 "ORCID")](https://orcid.org/0000-0002-3600-0972)\
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--3600--0972-A6CE39?logo=ORCID&logoColor=A6CE39 "ORCID")](https://orcid.org/0000-0002-3600-0972)<br/>
 
-[![Creative Commons CC BY-NC](https://img.shields.io/badge/Creative%20Commons-BY--NC-EF9421?logo=creative%20commons&logoColor=EF9421 "CC BY-NC")](https://creativecommons.org/licenses/by-nc-nd/4.0/)\
+[![Creative Commons CC BY-NC](https://img.shields.io/badge/Creative%20Commons-BY--NC-EF9421?logo=creative%20commons&logoColor=EF9421 "CC BY-NC")](https://creativecommons.org/licenses/by-nc-nd/4.0/)<br/>
 
-[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/libjohn/rfun_flipped/master?urlpath=rstudio)\
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/libjohn/rfun_flipped/master?urlpath=rstudio)<br/>
 
 <!-- badges: end -->
 
