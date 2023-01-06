@@ -1,21 +1,14 @@
 ---
 title: "ggplot2 - quick and easy"
-author: 
-  - name: John R Little
-    affiliations:
-      - name: Duke University
-      - department: Center for Data & Vizualization Sciences
-date: 'January 10, 2023'
+
 date-modified: 'today'
 date-format: long
+
 format: 
   html:
-    toc: true
-    theme: sandstone
-    df-print: paged
     footer: "CC BY 4.0 John R Little"
+
 license: CC BY-NC
-editor: visual    
 ---
 
 ```{r}

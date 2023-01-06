@@ -1,0 +1,255 @@
+---
+title: "Quickstart demo"
+
+date-modified: 'today'
+date-format: long
+
+format: 
+  html:
+    footer: "CC BY 4.0 John R Little"
+
+license: CC BY   
+---
+
+## Outline
+
+1.  Make a data folder
+
+2.  Drag fav.csv into the data folder
+
+3.  Make existing folder and RStudio project
+
+4.  Open an R Markdown Notebook
+
+5.  `library(tidyverses)` plus other libraries
+
+6.  IMPORT data
+
+    -   See Also *RStudio data import wizard*
+    -   ATTACH data
+
+7.  EDA: Visualize `ggplot(data = starwars, aes(hair_color)) + geom_bar()`
+
+8.  EDA: `skimr::skim(starwars)`
+
+9.  EDA: summary(fav_rating)
+
+10. `left_join(starwars, fivethirtyeight)`
+
+11. Transform data: five dplyr verbs ...
+
+    -   `filter`, `select`, `arrange`, `mutate`
+    -   `count` / `group_by` & `summarize`
+
+12. Interactive visualization: `ggplotly`
+
+13. linear regression / models (quick syntax introduction)
+
+14. Reports: notebooks, slides, dashboards, word document, PDF, book, etc.
+
+------------------------------------------------------------------------
+
+## 5. `library(tidyverses)` plus other libraries
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(skimr)
+library(plotly)
+library(moderndive)
+library(broom)
+```
+
+## 6. `read_csv(file_name.csv)`
+
+See Also [data import wizard](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
+
+```{r}
+#| message: false
+#| warning: false
+## fav_data <- read_csv("data/fav.csv")
+favorability <- read_csv("https://raw.githubusercontent.com/libjohn/intro2r-code/master/data/538_favorability_popularity.csv", skip = 11)
+```
+
+## 7 attached on-board data
+
+-   dplyr::starwars
+
+`dplyr::starwars`
+
+```{r}
+data("starwars")
+```
+
+## 8 Quick visualization
+
+Visualize with the `ggplot2` library.
+
+```{r}
+plot <- ggplot(data = starwars, 
+               aes(x = hair_color)) + 
+  geom_bar()
+plot
+```
+
+### One improvement
+
+Arrange bars by frequency using `forcats::fct_infreq()`
+
+```{r}
+plot1 <- ggplot(starwars, 
+                aes(fct_infreq(hair_color))) + 
+  geom_bar()
+plot1
+```
+
+## 9. `skimr::skim(starwars)`
+
+The `skimr` library presents summary EDA results using the `skim()` function
+
+```{r}
+skim(starwars)
+```
+
+## 10. summary
+
+```{r}
+summary(favorability)
+```
+
+## 11. `left_join(starwars, fivethirtyeight)`
+
+[Joins](https://dplyr.tidyverse.org/articles/two-table.html) or merges are part of the`dplyr` library.
+
+```{r}
+starwars %>% 
+  left_join(favorability, by = "name") %>% 
+  select(name, fav_rating, everything()) %>% 
+  arrange(-fav_rating)
+```
+
+## 12. Transform data:
+
+From the `dplyr` library, use the five verbs ...
+
+### `select` to subset data by columns
+
+```{r}
+starwars %>% 
+  select(name, gender, hair_color)
+```
+
+### `filter` to subset data rows
+
+```{r}
+starwars %>% 
+  filter(gender == "feminine")
+```
+
+### `arrange` to sort data
+
+```{r}
+starwars %>% 
+  arrange(desc(height), desc(name))
+```
+
+### `mutate` to add new variable or transform existing
+
+```{r}
+starwars %>%
+  drop_na(mass) %>% 
+  select(name, mass) %>% 
+  mutate(big_mass = mass * 2)
+```
+
+### `count` / `group_by` & `summarize`
+
+subtotals of variables
+
+```{r}
+starwars %>% 
+  count(gender)
+```
+
+Variable totals (and also, but not here, calculations)
+
+```{r}
+starwars %>% 
+  drop_na(mass) %>% 
+  summarise(sum(mass))
+```
+
+Variable subtotals and calculations
+
+> `group_by(gender, species) %>%  summarise(mean_height = mean(height), total = n())`
+
+```{r message=FALSE, warning=FALSE}
+starwars %>% 
+  drop_na(height) %>% 
+  group_by(gender, species) %>% 
+  summarise(mean_height = mean(height), total = n()) %>% 
+  arrange(desc(total)) %>%
+  drop_na(species) %>%
+  filter(total > 1) %>% 
+  select(species, gender, total, everything())
+```
+
+## 13. Interactive visualization
+
+from the `plotly` library
+
+```{r}
+ggplotly(plot1)
+```
+
+## 14. Regression / models
+
+Predict mass from height after eliminating Jabba from the data set. Here we'll use primarily base R, `moderndive` for model outputs, and tidyverse for the pipe `%>%` and `dplyr` for data transformations. Plus, alternatively, the `broom` library to manipulate models.
+
+```{r}
+model <- lm(mass ~ height, data = starwars %>% filter(mass < 500))
+model
+summary(model)
+```
+
+A nice *Explanation of Basic Regression* can be found in [chapter 5](https://moderndive.com/5-regression.html) of the book [*Statistical Inference via Data Science*](https://moderndive.com/). You can also use the `moderndive` library packages to access helpful functions such as: `get_correlatin()`, `get_regression_table()`, etc.
+
+You may also appreciate or prefer the [broom](https://broom.tidyverse.org) package for the very nice `tidy()`, `glance()`, and `augment()` functions.
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>% 
+  get_correlation(mass ~ height)
+```
+
+```{r}
+# tidy(model)
+get_regression_table(model)
+```
+
+```{r}
+# broom::glance(model)
+get_regression_summaries(model)
+```
+
+```{r}
+# broom::augment(model)
+get_regression_points(model)
+```
+
+### Visualize regression
+
+`mass` over `height` with a fitted linear regression line and confidence interval using `geom_smooth()`
+
+```{r}
+starwars %>% 
+  filter(mass < 500) %>%
+  ggplot(aes(height, mass)) +
+  geom_jitter() +
+  geom_smooth(method = "lm")
+```
+
+## 15. Render reports
+
+By changing the argument in the YAML header, you can render many report styles. A few popular examples include HTML, PDF, or MS Word and Power Point documents; Websites; slide-deck presentations; Books, and Interactivity. See more at the [comprehensive guide to report outputs via quarto](https://quarto.org/docs/guide/).

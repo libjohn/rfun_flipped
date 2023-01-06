@@ -1,0 +1,25 @@
+project:
+  title: "Workshop: Rfun -flipped"
+  render: 
+    - "*.qmd"
+  output-dir: _output
+  
+author: 
+  - name: John R Little
+    affiliations:
+      - name: Duke University
+      - department: Center for Data & Vizualization Sciences
+
+date: 'today'
+date-format: long
+
+format:
+  html:
+    theme: [sandstone, slides/mystyles/custom.scss]
+    # css: styles.css
+    toc: true
+    df-print: paged
+
+license: CC BY   
+editor: visual
+
