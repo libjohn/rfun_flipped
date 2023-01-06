@@ -3,7 +3,4 @@
 .RData
 .Ruserdata
 
-/data/
-*.html
-
 /.quarto/

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.179">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="John R Little">
+<meta name="dcterms.date" content="2023-01-06">
+
+<title>Pivot</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="longer_wider_files/libs/clipboard/clipboard.min.js"></script>
+<script src="longer_wider_files/libs/quarto-html/quarto.js"></script>
+<script src="longer_wider_files/libs/quarto-html/popper.min.js"></script>
+<script src="longer_wider_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="longer_wider_files/libs/quarto-html/anchor.min.js"></script>
+<link href="longer_wider_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="longer_wider_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="longer_wider_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="longer_wider_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="longer_wider_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<link href="longer_wider_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="longer_wider_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#load-library-packages" id="toc-load-library-packages" class="nav-link active" data-scroll-target="#load-library-packages">Load library packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#longer" id="toc-longer" class="nav-link" data-scroll-target="#longer">Longer</a></li>
+  <li><a href="#wider" id="toc-wider" class="nav-link" data-scroll-target="#wider">Wider</a></li>
+  <li><a href="#why-pivot-data" id="toc-why-pivot-data" class="nav-link" data-scroll-target="#why-pivot-data">Why pivot data?</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pivot</h1>
+<p class="subtitle lead">Tidy data</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    John R Little 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Duke University
+          </p>
+        <p class="affiliation">
+            
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 6, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<p><em>Reshape data to align your data format to your analysis.</em></p>
+<p>https://tidyr.tidyverse.org/</p>
+<p><em>Pivot</em> Vignette: https://tidyr.tidyverse.org/articles/pivot.html</p>
+<ul>
+<li>Make messy data into tidy data
+<ul>
+<li>Every variable is a column</li>
+<li>Every row is an observation</li>
+<li>Every cell is a single value</li>
+</ul></li>
+<li>Pivoting (i.e.&nbsp;reshaping)</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>tidyr</th>
+<th>gather</th>
+<th>spread</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&nbsp; NEW</td>
+<td><strong>pivot_longer</strong></td>
+<td><strong>pivot_wider</strong></td>
+</tr>
+<tr class="even">
+<td>reshape(2)</td>
+<td>melt</td>
+<td>cast</td>
+</tr>
+<tr class="odd">
+<td>spreadsheets</td>
+<td>unpivot</td>
+<td>pivot</td>
+</tr>
+<tr class="even">
+<td>databases</td>
+<td>fold</td>
+<td>unfold</td>
+</tr>
+</tbody>
+</table>
+<section id="load-library-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-library-packages">Load library packages</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Find practice datasets from the <a href="https://tidyr.tidyverse.org/reference/index.html#section-data">tidyr</a> package…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(relig_income)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(fish_encounters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="longer" class="level2">
+<h2 class="anchored" data-anchor-id="longer">Longer</h2>
+<blockquote class="blockquote">
+<p><code>pivot_longer()</code></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>relig_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["religion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["<$10k"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["$10-20k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["$20-30k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["$30-40k"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["$40-50k"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["$50-75k"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["$75-100k"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["$100-150k"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[">150k"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Don't know/refused"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"Agnostic","2":"27","3":"34","4":"60","5":"81","6":"76","7":"137","8":"122","9":"109","10":"84","11":"96"},{"1":"Atheist","2":"12","3":"27","4":"37","5":"52","6":"35","7":"70","8":"73","9":"59","10":"74","11":"76"},{"1":"Buddhist","2":"27","3":"21","4":"30","5":"34","6":"33","7":"58","8":"62","9":"39","10":"53","11":"54"},{"1":"Catholic","2":"418","3":"617","4":"732","5":"670","6":"638","7":"1116","8":"949","9":"792","10":"633","11":"1489"},{"1":"Don’t know/refused","2":"15","3":"14","4":"15","5":"11","6":"10","7":"35","8":"21","9":"17","10":"18","11":"116"},{"1":"Evangelical Prot","2":"575","3":"869","4":"1064","5":"982","6":"881","7":"1486","8":"949","9":"723","10":"414","11":"1529"},{"1":"Hindu","2":"1","3":"9","4":"7","5":"9","6":"11","7":"34","8":"47","9":"48","10":"54","11":"37"},{"1":"Historically Black Prot","2":"228","3":"244","4":"236","5":"238","6":"197","7":"223","8":"131","9":"81","10":"78","11":"339"},{"1":"Jehovah's Witness","2":"20","3":"27","4":"24","5":"24","6":"21","7":"30","8":"15","9":"11","10":"6","11":"37"},{"1":"Jewish","2":"19","3":"19","4":"25","5":"25","6":"30","7":"95","8":"69","9":"87","10":"151","11":"162"},{"1":"Mainline Prot","2":"289","3":"495","4":"619","5":"655","6":"651","7":"1107","8":"939","9":"753","10":"634","11":"1328"},{"1":"Mormon","2":"29","3":"40","4":"48","5":"51","6":"56","7":"112","8":"85","9":"49","10":"42","11":"69"},{"1":"Muslim","2":"6","3":"7","4":"9","5":"10","6":"9","7":"23","8":"16","9":"8","10":"6","11":"22"},{"1":"Orthodox","2":"13","3":"17","4":"23","5":"32","6":"32","7":"47","8":"38","9":"42","10":"46","11":"73"},{"1":"Other Christian","2":"9","3":"7","4":"11","5":"13","6":"13","7":"14","8":"18","9":"14","10":"12","11":"18"},{"1":"Other Faiths","2":"20","3":"33","4":"40","5":"46","6":"49","7":"63","8":"46","9":"40","10":"41","11":"71"},{"1":"Other World Religions","2":"5","3":"2","4":"3","5":"4","6":"2","7":"7","8":"3","9":"4","10":"4","11":"8"},{"1":"Unaffiliated","2":"217","3":"299","4":"374","5":"365","6":"341","7":"528","8":"407","9":"321","10":"258","11":"597"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["religion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["income"],"name":[2],"type":["chr"],"align":["left"]},{"label":["count"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Agnostic","2":"<$10k","3":"27"},{"1":"Agnostic","2":"$10-20k","3":"34"},{"1":"Agnostic","2":"$20-30k","3":"60"},{"1":"Agnostic","2":"$30-40k","3":"81"},{"1":"Agnostic","2":"$40-50k","3":"76"},{"1":"Agnostic","2":"$50-75k","3":"137"},{"1":"Agnostic","2":"$75-100k","3":"122"},{"1":"Agnostic","2":"$100-150k","3":"109"},{"1":"Agnostic","2":">150k","3":"84"},{"1":"Agnostic","2":"Don't know/refused","3":"96"},{"1":"Atheist","2":"<$10k","3":"12"},{"1":"Atheist","2":"$10-20k","3":"27"},{"1":"Atheist","2":"$20-30k","3":"37"},{"1":"Atheist","2":"$30-40k","3":"52"},{"1":"Atheist","2":"$40-50k","3":"35"},{"1":"Atheist","2":"$50-75k","3":"70"},{"1":"Atheist","2":"$75-100k","3":"73"},{"1":"Atheist","2":"$100-150k","3":"59"},{"1":"Atheist","2":">150k","3":"74"},{"1":"Atheist","2":"Don't know/refused","3":"76"},{"1":"Buddhist","2":"<$10k","3":"27"},{"1":"Buddhist","2":"$10-20k","3":"21"},{"1":"Buddhist","2":"$20-30k","3":"30"},{"1":"Buddhist","2":"$30-40k","3":"34"},{"1":"Buddhist","2":"$40-50k","3":"33"},{"1":"Buddhist","2":"$50-75k","3":"58"},{"1":"Buddhist","2":"$75-100k","3":"62"},{"1":"Buddhist","2":"$100-150k","3":"39"},{"1":"Buddhist","2":">150k","3":"53"},{"1":"Buddhist","2":"Don't know/refused","3":"54"},{"1":"Catholic","2":"<$10k","3":"418"},{"1":"Catholic","2":"$10-20k","3":"617"},{"1":"Catholic","2":"$20-30k","3":"732"},{"1":"Catholic","2":"$30-40k","3":"670"},{"1":"Catholic","2":"$40-50k","3":"638"},{"1":"Catholic","2":"$50-75k","3":"1116"},{"1":"Catholic","2":"$75-100k","3":"949"},{"1":"Catholic","2":"$100-150k","3":"792"},{"1":"Catholic","2":">150k","3":"633"},{"1":"Catholic","2":"Don't know/refused","3":"1489"},{"1":"Don’t know/refused","2":"<$10k","3":"15"},{"1":"Don’t know/refused","2":"$10-20k","3":"14"},{"1":"Don’t know/refused","2":"$20-30k","3":"15"},{"1":"Don’t know/refused","2":"$30-40k","3":"11"},{"1":"Don’t know/refused","2":"$40-50k","3":"10"},{"1":"Don’t know/refused","2":"$50-75k","3":"35"},{"1":"Don’t know/refused","2":"$75-100k","3":"21"},{"1":"Don’t know/refused","2":"$100-150k","3":"17"},{"1":"Don’t know/refused","2":">150k","3":"18"},{"1":"Don’t know/refused","2":"Don't know/refused","3":"116"},{"1":"Evangelical Prot","2":"<$10k","3":"575"},{"1":"Evangelical Prot","2":"$10-20k","3":"869"},{"1":"Evangelical Prot","2":"$20-30k","3":"1064"},{"1":"Evangelical Prot","2":"$30-40k","3":"982"},{"1":"Evangelical Prot","2":"$40-50k","3":"881"},{"1":"Evangelical Prot","2":"$50-75k","3":"1486"},{"1":"Evangelical Prot","2":"$75-100k","3":"949"},{"1":"Evangelical Prot","2":"$100-150k","3":"723"},{"1":"Evangelical Prot","2":">150k","3":"414"},{"1":"Evangelical Prot","2":"Don't know/refused","3":"1529"},{"1":"Hindu","2":"<$10k","3":"1"},{"1":"Hindu","2":"$10-20k","3":"9"},{"1":"Hindu","2":"$20-30k","3":"7"},{"1":"Hindu","2":"$30-40k","3":"9"},{"1":"Hindu","2":"$40-50k","3":"11"},{"1":"Hindu","2":"$50-75k","3":"34"},{"1":"Hindu","2":"$75-100k","3":"47"},{"1":"Hindu","2":"$100-150k","3":"48"},{"1":"Hindu","2":">150k","3":"54"},{"1":"Hindu","2":"Don't know/refused","3":"37"},{"1":"Historically Black Prot","2":"<$10k","3":"228"},{"1":"Historically Black Prot","2":"$10-20k","3":"244"},{"1":"Historically Black Prot","2":"$20-30k","3":"236"},{"1":"Historically Black Prot","2":"$30-40k","3":"238"},{"1":"Historically Black Prot","2":"$40-50k","3":"197"},{"1":"Historically Black Prot","2":"$50-75k","3":"223"},{"1":"Historically Black Prot","2":"$75-100k","3":"131"},{"1":"Historically Black Prot","2":"$100-150k","3":"81"},{"1":"Historically Black Prot","2":">150k","3":"78"},{"1":"Historically Black Prot","2":"Don't know/refused","3":"339"},{"1":"Jehovah's Witness","2":"<$10k","3":"20"},{"1":"Jehovah's Witness","2":"$10-20k","3":"27"},{"1":"Jehovah's Witness","2":"$20-30k","3":"24"},{"1":"Jehovah's Witness","2":"$30-40k","3":"24"},{"1":"Jehovah's Witness","2":"$40-50k","3":"21"},{"1":"Jehovah's Witness","2":"$50-75k","3":"30"},{"1":"Jehovah's Witness","2":"$75-100k","3":"15"},{"1":"Jehovah's Witness","2":"$100-150k","3":"11"},{"1":"Jehovah's Witness","2":">150k","3":"6"},{"1":"Jehovah's Witness","2":"Don't know/refused","3":"37"},{"1":"Jewish","2":"<$10k","3":"19"},{"1":"Jewish","2":"$10-20k","3":"19"},{"1":"Jewish","2":"$20-30k","3":"25"},{"1":"Jewish","2":"$30-40k","3":"25"},{"1":"Jewish","2":"$40-50k","3":"30"},{"1":"Jewish","2":"$50-75k","3":"95"},{"1":"Jewish","2":"$75-100k","3":"69"},{"1":"Jewish","2":"$100-150k","3":"87"},{"1":"Jewish","2":">150k","3":"151"},{"1":"Jewish","2":"Don't know/refused","3":"162"},{"1":"Mainline Prot","2":"<$10k","3":"289"},{"1":"Mainline Prot","2":"$10-20k","3":"495"},{"1":"Mainline Prot","2":"$20-30k","3":"619"},{"1":"Mainline Prot","2":"$30-40k","3":"655"},{"1":"Mainline Prot","2":"$40-50k","3":"651"},{"1":"Mainline Prot","2":"$50-75k","3":"1107"},{"1":"Mainline Prot","2":"$75-100k","3":"939"},{"1":"Mainline Prot","2":"$100-150k","3":"753"},{"1":"Mainline Prot","2":">150k","3":"634"},{"1":"Mainline Prot","2":"Don't know/refused","3":"1328"},{"1":"Mormon","2":"<$10k","3":"29"},{"1":"Mormon","2":"$10-20k","3":"40"},{"1":"Mormon","2":"$20-30k","3":"48"},{"1":"Mormon","2":"$30-40k","3":"51"},{"1":"Mormon","2":"$40-50k","3":"56"},{"1":"Mormon","2":"$50-75k","3":"112"},{"1":"Mormon","2":"$75-100k","3":"85"},{"1":"Mormon","2":"$100-150k","3":"49"},{"1":"Mormon","2":">150k","3":"42"},{"1":"Mormon","2":"Don't know/refused","3":"69"},{"1":"Muslim","2":"<$10k","3":"6"},{"1":"Muslim","2":"$10-20k","3":"7"},{"1":"Muslim","2":"$20-30k","3":"9"},{"1":"Muslim","2":"$30-40k","3":"10"},{"1":"Muslim","2":"$40-50k","3":"9"},{"1":"Muslim","2":"$50-75k","3":"23"},{"1":"Muslim","2":"$75-100k","3":"16"},{"1":"Muslim","2":"$100-150k","3":"8"},{"1":"Muslim","2":">150k","3":"6"},{"1":"Muslim","2":"Don't know/refused","3":"22"},{"1":"Orthodox","2":"<$10k","3":"13"},{"1":"Orthodox","2":"$10-20k","3":"17"},{"1":"Orthodox","2":"$20-30k","3":"23"},{"1":"Orthodox","2":"$30-40k","3":"32"},{"1":"Orthodox","2":"$40-50k","3":"32"},{"1":"Orthodox","2":"$50-75k","3":"47"},{"1":"Orthodox","2":"$75-100k","3":"38"},{"1":"Orthodox","2":"$100-150k","3":"42"},{"1":"Orthodox","2":">150k","3":"46"},{"1":"Orthodox","2":"Don't know/refused","3":"73"},{"1":"Other Christian","2":"<$10k","3":"9"},{"1":"Other Christian","2":"$10-20k","3":"7"},{"1":"Other Christian","2":"$20-30k","3":"11"},{"1":"Other Christian","2":"$30-40k","3":"13"},{"1":"Other Christian","2":"$40-50k","3":"13"},{"1":"Other Christian","2":"$50-75k","3":"14"},{"1":"Other Christian","2":"$75-100k","3":"18"},{"1":"Other Christian","2":"$100-150k","3":"14"},{"1":"Other Christian","2":">150k","3":"12"},{"1":"Other Christian","2":"Don't know/refused","3":"18"},{"1":"Other Faiths","2":"<$10k","3":"20"},{"1":"Other Faiths","2":"$10-20k","3":"33"},{"1":"Other Faiths","2":"$20-30k","3":"40"},{"1":"Other Faiths","2":"$30-40k","3":"46"},{"1":"Other Faiths","2":"$40-50k","3":"49"},{"1":"Other Faiths","2":"$50-75k","3":"63"},{"1":"Other Faiths","2":"$75-100k","3":"46"},{"1":"Other Faiths","2":"$100-150k","3":"40"},{"1":"Other Faiths","2":">150k","3":"41"},{"1":"Other Faiths","2":"Don't know/refused","3":"71"},{"1":"Other World Religions","2":"<$10k","3":"5"},{"1":"Other World Religions","2":"$10-20k","3":"2"},{"1":"Other World Religions","2":"$20-30k","3":"3"},{"1":"Other World Religions","2":"$30-40k","3":"4"},{"1":"Other World Religions","2":"$40-50k","3":"2"},{"1":"Other World Religions","2":"$50-75k","3":"7"},{"1":"Other World Religions","2":"$75-100k","3":"3"},{"1":"Other World Religions","2":"$100-150k","3":"4"},{"1":"Other World Religions","2":">150k","3":"4"},{"1":"Other World Religions","2":"Don't know/refused","3":"8"},{"1":"Unaffiliated","2":"<$10k","3":"217"},{"1":"Unaffiliated","2":"$10-20k","3":"299"},{"1":"Unaffiliated","2":"$20-30k","3":"374"},{"1":"Unaffiliated","2":"$30-40k","3":"365"},{"1":"Unaffiliated","2":"$40-50k","3":"341"},{"1":"Unaffiliated","2":"$50-75k","3":"528"},{"1":"Unaffiliated","2":"$75-100k","3":"407"},{"1":"Unaffiliated","2":"$100-150k","3":"321"},{"1":"Unaffiliated","2":">150k","3":"258"},{"1":"Unaffiliated","2":"Don't know/refused","3":"597"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="wider" class="level2">
+<h2 class="anchored" data-anchor-id="wider">Wider</h2>
+<blockquote class="blockquote">
+<p><code>pivot_wider()</code></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fish_encounters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["fish"],"name":[1],"type":["fct"],"align":["left"]},{"label":["station"],"name":[2],"type":["fct"],"align":["left"]},{"label":["seen"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"4842","2":"Release","3":"1"},{"1":"4842","2":"I80_1","3":"1"},{"1":"4842","2":"Lisbon","3":"1"},{"1":"4842","2":"Rstr","3":"1"},{"1":"4842","2":"Base_TD","3":"1"},{"1":"4842","2":"BCE","3":"1"},{"1":"4842","2":"BCW","3":"1"},{"1":"4842","2":"BCE2","3":"1"},{"1":"4842","2":"BCW2","3":"1"},{"1":"4842","2":"MAE","3":"1"},{"1":"4842","2":"MAW","3":"1"},{"1":"4843","2":"Release","3":"1"},{"1":"4843","2":"I80_1","3":"1"},{"1":"4843","2":"Lisbon","3":"1"},{"1":"4843","2":"Rstr","3":"1"},{"1":"4843","2":"Base_TD","3":"1"},{"1":"4843","2":"BCE","3":"1"},{"1":"4843","2":"BCW","3":"1"},{"1":"4843","2":"BCE2","3":"1"},{"1":"4843","2":"BCW2","3":"1"},{"1":"4843","2":"MAE","3":"1"},{"1":"4843","2":"MAW","3":"1"},{"1":"4844","2":"Release","3":"1"},{"1":"4844","2":"I80_1","3":"1"},{"1":"4844","2":"Lisbon","3":"1"},{"1":"4844","2":"Rstr","3":"1"},{"1":"4844","2":"Base_TD","3":"1"},{"1":"4844","2":"BCE","3":"1"},{"1":"4844","2":"BCW","3":"1"},{"1":"4844","2":"BCE2","3":"1"},{"1":"4844","2":"BCW2","3":"1"},{"1":"4844","2":"MAE","3":"1"},{"1":"4844","2":"MAW","3":"1"},{"1":"4845","2":"Release","3":"1"},{"1":"4845","2":"I80_1","3":"1"},{"1":"4845","2":"Lisbon","3":"1"},{"1":"4845","2":"Rstr","3":"1"},{"1":"4845","2":"Base_TD","3":"1"},{"1":"4847","2":"Release","3":"1"},{"1":"4847","2":"I80_1","3":"1"},{"1":"4847","2":"Lisbon","3":"1"},{"1":"4848","2":"Release","3":"1"},{"1":"4848","2":"I80_1","3":"1"},{"1":"4848","2":"Lisbon","3":"1"},{"1":"4848","2":"Rstr","3":"1"},{"1":"4849","2":"Release","3":"1"},{"1":"4849","2":"I80_1","3":"1"},{"1":"4850","2":"Release","3":"1"},{"1":"4850","2":"I80_1","3":"1"},{"1":"4850","2":"Rstr","3":"1"},{"1":"4850","2":"Base_TD","3":"1"},{"1":"4850","2":"BCE","3":"1"},{"1":"4850","2":"BCW","3":"1"},{"1":"4851","2":"Release","3":"1"},{"1":"4851","2":"I80_1","3":"1"},{"1":"4854","2":"Release","3":"1"},{"1":"4854","2":"I80_1","3":"1"},{"1":"4855","2":"Release","3":"1"},{"1":"4855","2":"I80_1","3":"1"},{"1":"4855","2":"Lisbon","3":"1"},{"1":"4855","2":"Rstr","3":"1"},{"1":"4855","2":"Base_TD","3":"1"},{"1":"4857","2":"Release","3":"1"},{"1":"4857","2":"I80_1","3":"1"},{"1":"4857","2":"Lisbon","3":"1"},{"1":"4857","2":"Rstr","3":"1"},{"1":"4857","2":"Base_TD","3":"1"},{"1":"4857","2":"BCE","3":"1"},{"1":"4857","2":"BCW","3":"1"},{"1":"4857","2":"BCE2","3":"1"},{"1":"4857","2":"BCW2","3":"1"},{"1":"4858","2":"Release","3":"1"},{"1":"4858","2":"I80_1","3":"1"},{"1":"4858","2":"Lisbon","3":"1"},{"1":"4858","2":"Rstr","3":"1"},{"1":"4858","2":"Base_TD","3":"1"},{"1":"4858","2":"BCE","3":"1"},{"1":"4858","2":"BCW","3":"1"},{"1":"4858","2":"BCE2","3":"1"},{"1":"4858","2":"BCW2","3":"1"},{"1":"4858","2":"MAE","3":"1"},{"1":"4858","2":"MAW","3":"1"},{"1":"4859","2":"Release","3":"1"},{"1":"4859","2":"I80_1","3":"1"},{"1":"4859","2":"Lisbon","3":"1"},{"1":"4859","2":"Rstr","3":"1"},{"1":"4859","2":"Base_TD","3":"1"},{"1":"4861","2":"Release","3":"1"},{"1":"4861","2":"I80_1","3":"1"},{"1":"4861","2":"Lisbon","3":"1"},{"1":"4861","2":"Rstr","3":"1"},{"1":"4861","2":"Base_TD","3":"1"},{"1":"4861","2":"BCE","3":"1"},{"1":"4861","2":"BCW","3":"1"},{"1":"4861","2":"BCE2","3":"1"},{"1":"4861","2":"BCW2","3":"1"},{"1":"4861","2":"MAE","3":"1"},{"1":"4861","2":"MAW","3":"1"},{"1":"4862","2":"Release","3":"1"},{"1":"4862","2":"I80_1","3":"1"},{"1":"4862","2":"Lisbon","3":"1"},{"1":"4862","2":"Rstr","3":"1"},{"1":"4862","2":"Base_TD","3":"1"},{"1":"4862","2":"BCE","3":"1"},{"1":"4862","2":"BCW","3":"1"},{"1":"4862","2":"BCE2","3":"1"},{"1":"4862","2":"BCW2","3":"1"},{"1":"4863","2":"Release","3":"1"},{"1":"4863","2":"I80_1","3":"1"},{"1":"4864","2":"Release","3":"1"},{"1":"4864","2":"I80_1","3":"1"},{"1":"4865","2":"Release","3":"1"},{"1":"4865","2":"I80_1","3":"1"},{"1":"4865","2":"Lisbon","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fish_encounters <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> station, <span class="at">values_from =</span> seen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["fish"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Release"],"name":[2],"type":["int"],"align":["right"]},{"label":["I80_1"],"name":[3],"type":["int"],"align":["right"]},{"label":["Lisbon"],"name":[4],"type":["int"],"align":["right"]},{"label":["Rstr"],"name":[5],"type":["int"],"align":["right"]},{"label":["Base_TD"],"name":[6],"type":["int"],"align":["right"]},{"label":["BCE"],"name":[7],"type":["int"],"align":["right"]},{"label":["BCW"],"name":[8],"type":["int"],"align":["right"]},{"label":["BCE2"],"name":[9],"type":["int"],"align":["right"]},{"label":["BCW2"],"name":[10],"type":["int"],"align":["right"]},{"label":["MAE"],"name":[11],"type":["int"],"align":["right"]},{"label":["MAW"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"4842","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1"},{"1":"4843","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1"},{"1":"4844","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1"},{"1":"4845","2":"1","3":"1","4":"1","5":"1","6":"1","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4847","2":"1","3":"1","4":"1","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4848","2":"1","3":"1","4":"1","5":"1","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4849","2":"1","3":"1","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4850","2":"1","3":"1","4":"NA","5":"1","6":"1","7":"1","8":"1","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4851","2":"1","3":"1","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4854","2":"1","3":"1","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4855","2":"1","3":"1","4":"1","5":"1","6":"1","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4857","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"NA","12":"NA"},{"1":"4858","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1"},{"1":"4859","2":"1","3":"1","4":"1","5":"1","6":"1","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4861","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1"},{"1":"4862","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"NA","12":"NA"},{"1":"4863","2":"1","3":"1","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4864","2":"1","3":"1","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"},{"1":"4865","2":"1","3":"1","4":"1","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="why-pivot-data" class="level2">
+<h2 class="anchored" data-anchor-id="why-pivot-data">Why pivot data?</h2>
+<p>Why pivot data? Your analysis may be easier, or may require, the shape of data to match a particular structure. For example, ggplot generally prefers long tidy data. For example, once the data are properly shaped, analysis and variations becomes easier. Below is a quick example of using ggplot to format data in a long and tidy shape to create a bar plot. Of course, the plot needs some refining and hence improvements become easier to accomplish with the tall data shape. Nonetheless, below shows an initial draft of a bar plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(religion, count, <span class="at">fill =</span> income)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Once the data are properly shaped, variations on analysis becomes easier. Here I will, additionally, format some of the variables as categorical vectors, so that I can redraw the plot for more clarity. That is, to tell my data story more clearly.</p>
+<p>My goal is to format the vectors as factors using the <code>forcats</code> package. This will allow me arrange</p>
+<ul>
+<li>the order of the bars</li>
+<li>the order of the stacked elements of each bar</li>
+<li>the order of the Legend</li>
+</ul>
+<p>I will also change the color scheme of the discrete color from the <code>fill</code> argument, in combination with the <code>scale_fill_iridis_d</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>inc_levels <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Don't know/refused"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"&lt;$10k"</span>, <span class="st">"$10-20k"</span>, <span class="st">"$20-30k"</span>, <span class="st">"$30-40k"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">"$40-50k"</span>, <span class="st">"$50-75k"</span>, <span class="st">"$75-100k"</span>, <span class="st">"$100-150k"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">"&gt;150k"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">fct_relevel</span>(income, inc_levels)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(religion, count), </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>             count, <span class="at">fill =</span> <span class="fu">fct_rev</span>(income))) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Nonetheless, unpivoted, wide data, can be subset and visualized even though this is not ideal when attempting visualization variations on a more complex data frame. Here, unpivoted, I will make a bar chart of religious affiliation for incomes between $40k and $50k.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(religion, <span class="st">`</span><span class="at">$40-50k</span><span class="st">`</span>), <span class="st">`</span><span class="at">$40-50k</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note: Tidy, <code>pivot_longer</code>, data will be easier to manipulate with <code>ggplot2</code>. For example, You can subset the data with a single <code>filter</code> function, thereby more easily enabling different income charts. Below, although there is an additional line of code, the code is easier to read and easier to modify if I want to use a different income value.</p>
+<blockquote class="blockquote">
+<p><code>filter(income == "$40-50k")</code></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="st">"$40-50k"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(religion, count), count)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It also becomes a natural step to make comparisons with all the income values using <code>ggplot2::facet_wrap()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">fct_relevel</span>(income, inc_levels)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(religion, count), </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>             count)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> income, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>Another variation. Again, ggplot2 affordances are easier to leverage with tall data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>relig_income <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>religion, <span class="at">names_to =</span> <span class="st">"income"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">religion =</span> <span class="fu">fct_lump_n</span>(religion, <span class="dv">4</span>, <span class="at">w =</span> count)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">fct_relevel</span>(income, inc_levels)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(religion, income) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sumcount =</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(religion, sumcount), </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>             sumcount)) <span class="sc">+</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"grey80"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data =</span> . <span class="sc">%&gt;%</span> <span class="fu">filter</span>(income <span class="sc">==</span> <span class="st">"$40-50k"</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data =</span> . <span class="sc">%&gt;%</span> <span class="fu">filter</span>(income <span class="sc">==</span> <span class="st">"&gt;150k"</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"forestgreen"</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> income, <span class="at">nrow =</span> <span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="longer_wider_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
