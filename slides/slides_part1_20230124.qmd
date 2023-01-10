@@ -40,7 +40,6 @@ John R Little\
 ```{r}
 #| echo: false
 library(countdown)
-library(countdown)
 library(htmltools)
 tagList(rmarkdown::html_dependency_font_awesome())
 countdown(minutes = 15, seconds = 00)
