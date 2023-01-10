@@ -7,10 +7,10 @@
 <link href="slides_part1_20230124_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_part1_20230124_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_part1_20230124_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.179">
+  <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="John R Little">
-  <meta name="dcterms.date" content="2023-01-06">
+  <meta name="dcterms.date" content="2023-01-09">
   <title>R for data science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -392,13 +392,26 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">R for data science</h1>
   <p class="subtitle">Getting started with Tidyverse R,<br> RStudio, and Quarto</p>
-  <p class="author">John R Little</p>
-  <p class="date">January 6, 2023</p>
-</section>
 
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+John R Little 
+</div>
+        <p class="quarto-title-affiliation">
+            Duke University
+          </p>
+        <p class="quarto-title-affiliation">
+            
+          </p>
+    </div>
+</div>
+
+  <p class="date">January 9, 2023</p>
+</section>
 <section>
 <section id="r-for-data-science" class="title-slide slide level1 center">
 <h1>R for data science</h1>
@@ -406,7 +419,7 @@
 <p>John R Little<br>
 <span class="muted mediumtext">Center for Data &amp; Visualization Sciences</span><br>
 <span class="muted mediumtext">Duke University</span></p>
-<p>2023 January 06</p>
+<p>2023 January 09</p>
 <p><span class="muted mediumtext">Get code, data, and slides for today’s workshop<br>
 - https://github.com/libjohn/rfun_flipped<br>
 - https://github.com/libjohn/intro2r-code</span></p>
@@ -415,7 +428,7 @@
 
 </div>
 <div class="cell-output-display">
-<div class="countdown" id="timer_8126d1fe" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c09e0233" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -468,7 +481,7 @@
 <ul>
 <li><p>Each variable is a column</p></li>
 <li><p>Each observation is a row</p></li>
-<li><p>Each type of observational unit is a table</p></li>
+<li><p>Each value is a cell; each cell is a single value</p></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -527,7 +540,7 @@
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>Starwars <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>starwars <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">select</span>(name, skin_color, homeworld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -589,6 +602,10 @@
 <li><p>Render reports from code</p></li>
 </ul>
 </section>
+<section id="pshew" class="slide level2" data-background-image="images/relax-rabbit_1280.jpg">
+<h2>Pshew</h2>
+<p><span class="muted smalltext">Image credit: pixabay - https://pixabay.com/photos/rabbit-white-sleep-905971</span></p>
+</section>
 <section id="dplyr" class="slide level2">
 <h2>{<code>dplyr</code>}</h2>
 <div class="quarto-layout-panel">
@@ -623,6 +640,55 @@
 </div>
 </div>
 </div>
+</section>
+<section id="filter" class="slide level2">
+<h2><code>filter</code></h2>
+<h3 id="subset-rows-by-variables">Subset <strong>Rows</strong> by variables</h3>
+<p><code>starwars %&gt;% filter(eye_color == "orange")</code></p>
+<p><img src="images/filter_by_rows.svg" alt="mutate" height="300"></p>
+</section>
+<section id="select" class="slide level2">
+<h2><code>select</code></h2>
+<h3 id="subset-by-columns-variables">subset by columns (variables)</h3>
+<pre><code>starwars %&gt;% select(hair_color, eye_color)
+starwars %&gt;% select(2:4)
+starwars %&gt;% select(name:mass, 10, 7, 4:6)</code></pre>
+<p><img src="images/select.svg" alt="mutate" height="300"></p>
+</section>
+<section id="arrange" class="slide level2">
+<h2><code>arrange</code></h2>
+<h3 id="sort-rows-by-variables">Sort <strong>Rows</strong> by variables</h3>
+<pre><code>starwars %&gt;% arrange(eye_color)
+starwars %&gt;% arrange(desc(eye_color))
+starwars %&gt;% arrange(desc(eye_color), hair_color)</code></pre>
+<p><img src="images/arrange_rows.svg" alt="mutate" height="300"></p>
+</section>
+<section id="mutate" class="slide level2">
+<h2><code>mutate</code></h2>
+<h3 id="change-cell-values">Change cell values</h3>
+<pre><code>starwars %&gt;% mutate(big_mass = mass * 100)
+starwars %&gt;% mutate(BMI = (mass / (height/100)^2))
+starwars %&gt;% mutate(
+       nickname = str_c("Big", str_to_upper(hair_color), 
+                        sep = " "))</code></pre>
+<p><img src="images/mutate.svg" alt="mutate" height="200"></p>
+</section>
+<section id="count" class="slide level2">
+<h2><code>count</code></h2>
+<h3 id="count-observations-by-group">Count observations by group</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">count</span>(gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="summarize" class="slide level2">
+<h2><code>summarize</code></h2>
+<h3 id="reduce-multiple-values-to-a-single-value">Reduce multiple values to a single value</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">drop_na</span>(height) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>(), <span class="fu">n_distinct</span>(height), <span class="fu">min</span>(height), <span class="fu">max</span>(height))</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">drop_na</span>(height) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">summarise</span>(<span class="at">Total =</span> <span class="fu">n</span>(), <span class="fu">n_distinct</span>(height), <span class="fu">min</span>(height))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="upcoming-workshops" class="slide level2">
 <h2>Upcoming workshops</h2>
@@ -905,12 +971,15 @@ Duke University Libraries</span><br>
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -921,13 +990,6 @@ Duke University Libraries</span><br>
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -979,7 +1041,24 @@ Duke University Libraries</span><br>
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1017,24 +1096,42 @@ Duke University Libraries</span><br>
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>

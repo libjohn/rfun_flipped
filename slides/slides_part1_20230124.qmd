@@ -91,7 +91,7 @@ Goals of a tool-based, first-class approach
 
 -   Each observation is a row
 
--   Each type of observational unit is a table
+-   Each value is a cell; each cell is a single value
 :::
 
 ::: {.column width="50%"}
@@ -129,7 +129,7 @@ A conjunction ("and then"), read left to right, creating a "data sentence"
 ```{r}
 #| echo: true
 #| eval: false
-Starwars |>
+starwars |>
     select(name, skin_color, homeworld)
 ```
 :::
@@ -171,6 +171,12 @@ small_df <- starwars |>
 
 -   Render reports from code
 
+## Pshew {background-image="images/relax-rabbit_1280.jpg"}
+
+[Image credit: pixabay - https://pixabay.com/photos/rabbit-white-sleep-905971 ]{.muted .smalltext}
+
+
+
 ## {`dplyr`}
 
 ::: {layout="[[1], [-1], [1], [-1]]"}
@@ -206,6 +212,76 @@ column totals [(or subtotals with `group_by`)]{.muted}
 :::
 :::
 :::
+
+## `filter` 
+
+### Subset **Rows** by variables
+
+`starwars %>% filter(eye_color == "orange")`
+
+<img src ="images/filter_by_rows.svg" alt = "mutate" height="300" />
+
+
+## `select` 
+
+### subset by columns (variables)
+
+```
+starwars %>% select(hair_color, eye_color)
+starwars %>% select(2:4)
+starwars %>% select(name:mass, 10, 7, 4:6)
+```
+
+<img src ="images/select.svg" alt = "mutate" height="300" />
+
+## `arrange`  
+
+### Sort **Rows** by variables
+
+```
+starwars %>% arrange(eye_color)
+starwars %>% arrange(desc(eye_color))
+starwars %>% arrange(desc(eye_color), hair_color)
+```
+
+<img src ="images/arrange_rows.svg" alt = "mutate" height="300" />
+
+## `mutate`  
+
+### Change cell values
+
+```
+starwars %>% mutate(big_mass = mass * 100)
+starwars %>% mutate(BMI = (mass / (height/100)^2))
+starwars %>% mutate(
+       nickname = str_c("Big", str_to_upper(hair_color), 
+                        sep = " "))
+```
+
+<img src ="images/mutate.svg" alt = "mutate" height="200" />
+
+## `count`
+
+### Count observations by group
+
+```r
+starwars %>% count(gender)
+```
+
+## `summarize` 
+
+### Reduce multiple values to a single value
+
+```r
+starwars %>% 
+  drop_na(height) %>% 
+  summarise(n(), n_distinct(height), min(height), max(height))
+
+starwars %>% 
+  drop_na(height) %>% 
+  group_by(gender) %>% 
+  summarise(Total = n(), n_distinct(height), min(height))
+```  
 
 ## Upcoming workshops
 
