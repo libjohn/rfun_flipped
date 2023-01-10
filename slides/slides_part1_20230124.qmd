@@ -177,7 +177,7 @@ small_df <- starwars |>
 
 
 
-## {`dplyr`}
+## `{dplyr}`
 
 ::: {layout="[[1], [-1], [1], [-1]]"}
 [`library(dplyr)` or `library(tidyverse)`. Use {dplyr} to wrangle data]{.mediumtext}
@@ -282,6 +282,14 @@ starwars %>%
   group_by(gender) %>% 
   summarise(Total = n(), n_distinct(height), min(height))
 ```  
+
+## download code {background-image="images/download_from_github.png"}
+
+::: {layout="[[-1], [-1], [1]]"}
+
+https://github.com/libjohn/rfun_flipped
+
+:::
 
 ## Upcoming workshops
 

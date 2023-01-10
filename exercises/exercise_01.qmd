@@ -102,6 +102,6 @@ brodhead %>%
 
 > Answers can be found in the exercise_01_answers.Rmd file
 
-## Quiz
+## Optional
 
-Take the [interactive quiz](https://posit.cloud/learn/primers/2.2)
+[Interactive quiz](https://posit.cloud/learn/primers/2.2)
