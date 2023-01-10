@@ -45,7 +45,7 @@ license: CC BY
 
 10. Interactive visualization
 
-11. Linear regression / models (quick syntax introduction)
+11. Linear regression / models
 
 12. Reports: notebooks, slides, dashboards, word document, PDF, book, etc.
 
@@ -109,7 +109,9 @@ plot1
 
 From the `dplyr` library, use the five verbs ...
 
--   filter, select, arrange, mutate
+-   filter, select, arrange,
+
+-   mutate
 
 -   count, group_by & summarize
 
@@ -233,10 +235,12 @@ broom::glance(my_model)
 `mass` over `height` with a fitted linear regression line and confidence interval using `geom_smooth()`
 
 ```{r}
+#| warning: false
+#| message: false
 starwars %>% 
   filter(mass < 500) %>%
   ggplot(aes(height, mass)) +
-  geom_jitter() +
+  geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
