@@ -145,6 +145,18 @@ See Also: {htmlwidgets}, {shiny}, Quarto with Observable JS
 :::
 
 
+## pivot
+
+::: {layout="[[-1], [1], [-1], [1], [-1], [-1], [1]]"}
+
+`pivot_longer()`
+
+`pivot_wider()`
+
+[There are several {tidyr} functions that help tidy data.]{.muted}
+
+::: 
+
 
 ## Regression [(modeling)]{.muted}
 
@@ -170,11 +182,12 @@ starwars |>
 ```
 
 
-::: {.muted .mediumtext .right-justify}
+::: {.muted .mediumtext}
 
 See Also:\
+_Statistical Inference via Data Science_ by Ismay & Kim -- https://moderndive.com\
 tidymodels.org\
-Book:  _Tidy models with R_ -- tmwr.org
+_Tidy models with R_ by Khun & Silge -- tmwr.org
 
 :::
 
