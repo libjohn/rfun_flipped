@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="John R Little">
-<meta name="dcterms.date" content="2023-01-19">
+<meta name="dcterms.date" content="2023-01-25">
 
-<title>Exercise 0</title>
+<title>join</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,19 +88,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="exercise_00_files/libs/clipboard/clipboard.min.js"></script>
-<script src="exercise_00_files/libs/quarto-html/quarto.js"></script>
-<script src="exercise_00_files/libs/quarto-html/popper.min.js"></script>
-<script src="exercise_00_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="exercise_00_files/libs/quarto-html/anchor.min.js"></script>
-<link href="exercise_00_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="exercise_00_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="exercise_00_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="exercise_00_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="exercise_00_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="04_join_files/libs/clipboard/clipboard.min.js"></script>
+<script src="04_join_files/libs/quarto-html/quarto.js"></script>
+<script src="04_join_files/libs/quarto-html/popper.min.js"></script>
+<script src="04_join_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="04_join_files/libs/quarto-html/anchor.min.js"></script>
+<link href="04_join_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="04_join_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="04_join_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="04_join_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="04_join_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-<link href="exercise_00_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="exercise_00_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="04_join_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="04_join_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -113,7 +113,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-data-structures-vector-types" id="toc-exercise-data-structures-vector-types" class="nav-link active" data-scroll-target="#exercise-data-structures-vector-types">Exercise: Data Structures &amp; Vector Types</a></li>
+  <li><a href="#join" id="toc-join" class="nav-link active" data-scroll-target="#join">Join</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">data</a></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
   </ul>
 </nav>
 </div>
@@ -121,7 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercise 0</h1>
+<h1 class="title">join</h1>
 </div>
 
 
@@ -148,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 19, 2023</p>
+      <p class="date">January 25, 2023</p>
     </div>
   </div>
     
@@ -157,60 +159,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Goals:</p>
-<ul>
-<li>Create a R Notebook</li>
-<li>Import a dataset using <code>reader::read_csv()</code></li>
-</ul>
-<blockquote class="blockquote">
-<p>ANSWER can be found in exercise_00_answers.Rmd file</p>
-</blockquote>
-<section id="exercise-data-structures-vector-types" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-data-structures-vector-types">Exercise: Data Structures &amp; Vector Types</h2>
-<ol type="1">
-<li>Load the tidyverse libary package</li>
-</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="2" type="1">
-<li>Fill in the blanks. Using what you’ve seen in class, if <code>data/brodheadCenter.csv</code> is a CSV (comma separated values) file, how would you load the file into a new object called <code>brodhead</code>? Hint. the <code>data</code>{=} directory parallel and over from the <code>exercises</code> directory. <code>..</code> is a way to move up a directory. <code>../data</code> is a way to indicate the location of the data directory. Then add the filename after the slash. Or use the Import Data wizard from the <em>Environment</em> tab – but be sure to copy the code from the wizard into the code-chunk in the notebook.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>_____  <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(________)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="1">
-<li>Display your new <code>brodhead</code> data frame?</li>
-</ol>
-<div class="cell">
-
-</div>
-<ol start="4" type="1">
-<li><p><code>starwars</code> is an on-board dataset that comes with the tidyverse. Insert a new code chunk and display that data.</p></li>
-<li><p>Copy and paste the following code into a new code chunk in your new file.</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_infreq</span>(hair_color))) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Hair Color Frequency of Star Wars Characters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="exercise_00_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.4.0      ✔ purrr   1.0.0 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
 </div>
-<p>BONUS</p>
-<ol start="6" type="1">
-<li><p>Take a look at the structure of the <code>brodhead</code> object.</p>
+<section id="join" class="level2">
+<h2 class="anchored" data-anchor-id="join">Join</h2>
+<p>There are a series of <a href="https://dplyr.tidyverse.org/reference/index.html#section-two-table-verbs">join commands</a></p>
 <ul>
-<li>How many observations (rows) are there?</li>
-<li>How many variables (columns) are there?</li>
-<li>How many of the variables are numeric data?</li>
+<li>left_join, inner_join, right_join, full_join,</li>
+<li>semi_join, anti_join</li>
 </ul>
-<p>HINT: You can use the <code>glimpse() function</code></p></li>
-</ol>
-<blockquote class="blockquote">
-<p>ANSWER can be found in exercise_00_answers.Rmd file</p>
-</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pbs.twimg.com/media/B6eUTTACUAAahLf.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">dplyr joins visualized</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">data</h2>
+<p>These exercises use the following <a href="https://ggplot2.tidyverse.org/reference/index.html#section-data"><code>dplyr</code> datasets</a></p>
+<ul>
+<li>dplyr::band_instruments</li>
+<li>dplyr::band_members</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>band_members</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["band"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Mick","2":"Stones"},{"1":"John","2":"Beatles"},{"1":"Paul","2":"Beatles"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>band_instruments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["plays"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"John","2":"guitar"},{"1":"Paul","2":"bass"},{"1":"Keith","2":"guitar"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="goal" class="level2">
+<h2 class="anchored" data-anchor-id="goal">Goal</h2>
+<p>Make one big data frame that joins <code>band_members</code> with <code>band_instruments</code>. Using the template below you need to identify what type of join to use and identify the join key.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>band_members <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">----</span><span class="fu">_join</span>(band_instruments, <span class="at">by =</span> <span class="st">"----"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section></div></main>
