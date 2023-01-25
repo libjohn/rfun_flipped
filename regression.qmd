@@ -45,23 +45,13 @@ evals_ch5 %>%
 skimr::skim(evals_ch5)
 ```
 
-```{r}
-evals_ch5 %>% 
-  get_correlation(score ~ bty_avg)
-```
-
-Get correlation
+## Correlation
 
 ```{r}
 
 starwars %>% 
   filter(mass < 500) %>% 
   summarise(cor(mass, height))
-```
-
-```{r}
-evals_ch5 %>% 
-  summary()
 ```
 
 ### weak correlation
@@ -73,12 +63,8 @@ evals_ch5 %>%
   geom_smooth(method = lm)
 ```
 
-```{r}
-evals_ch5 %>% 
-  get_correlation(age ~ score)
-```
 
-## summary model
+## Linear model
 
 > For every increase of 1 unit increase in bty_avg, there is an associated increase of, on average, 0.067 units of score. from [*ModenDive*](https://moderndive.com/5-regression.html)
 
@@ -86,25 +72,25 @@ evals_ch5 %>%
 # Fit regression model:
 score_model <- lm(score ~ bty_avg, data = evals_ch5)
 
-
-glance(score_model)
-get_regression_table(score_model)
-
+score_model
 ```
-
-### more
 
 ```{r}
-get_regression_table(score_model)
+summary(score_model)
 ```
+
+
+## the tidy way
+
+### broom
+
+tidy the model fit with broom::tidy()
 
 ```{r}
 broom::tidy(score_model)
 ```
 
-```{r}
-get_regression_summaries(score_model)
-```
+get evaluative measure into a data frame
 
 ```{r}
 broom::glance(score_model)
@@ -112,9 +98,6 @@ broom::glance(score_model)
 
 ### More model data
 
-```{r}
-get_regression_points(score_model)
-```
 
 ```{r}
 broom::augment(score_model)
