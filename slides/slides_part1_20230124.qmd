@@ -37,7 +37,7 @@ John R Little\
 
 Code, data, and slides\
 https://github.com/libjohn/rfun_flipped\
-https://github.com/libjohn/intro2r-code
+https://github.com/libjohn/intro2r_exercises
 
 :::
 

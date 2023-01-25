@@ -7,10 +7,10 @@
 <link href="slides_part2_20230126_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_part2_20230126_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_part2_20230126_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.179">
+  <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="John R Little">
-  <meta name="dcterms.date" content="2023-01-19">
+  <meta name="dcterms.date" content="2023-01-25">
   <title>R for data science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -392,13 +392,26 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">R for data science</h1>
   <p class="subtitle">Visualization, pivot, join, <br>regression</p>
-  <p class="author">John R Little</p>
-  <p class="date">January 19, 2023</p>
-</section>
 
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+John R Little 
+</div>
+        <p class="quarto-title-affiliation">
+            Duke University
+          </p>
+        <p class="quarto-title-affiliation">
+            
+          </p>
+    </div>
+</div>
+
+  <p class="date">January 25, 2023</p>
+</section>
 <section>
 <section id="r-for-data-science" class="title-slide slide level1 center">
 <h1>R for data science</h1>
@@ -406,18 +419,18 @@
 <p>John R Little<br>
 <span class="muted mediumtext">Center for Data &amp; Visualization Sciences</span><br>
 <span class="muted mediumtext">Duke University</span></p>
-<p>2023 January 19</p>
+<p>2023 January 25</p>
 <div class="right-justify muted mediumtext">
 <p>Code, data, and slides<br>
 https://github.com/libjohn/rfun_flipped<br>
-https://github.com/libjohn/intro2r-code</p>
+https://github.com/libjohn/intro2r_exercises</p>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 
 </div>
 <div class="cell-output-display">
-<div class="countdown" id="timer_7a194917" data-update-every="1" tabindex="0" style="right:1;bottom:0;left:0;">
+<div class="countdown" id="timer_ae2dc70b" data-update-every="1" tabindex="0" style="right:1;bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -446,6 +459,41 @@ https://github.com/libjohn/intro2r-code</p>
 <li>Regression <code>lm()</code> and {broom}</li>
 <li>Modeling and ML with {tidymodels}</li>
 </ul>
+</section>
+<section id="quick-review" class="slide level2">
+<h2>quick review</h2>
+<table>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>mnemonic</th>
+<th>symbol</th>
+<th>keystroke</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pipe</td>
+<td>“and then”</td>
+<td><code>%&gt;%</code> <br> <code>|&gt;</code></td>
+<td>ctrl-shift-M</td>
+</tr>
+<tr class="even">
+<td>assignment</td>
+<td>“gets value from”</td>
+<td><code>&lt;-</code></td>
+<td>alt-dash</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>starwars <span class="sc">|&gt;</span>  </span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">select</span>(name, skin_color, homeworld)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>small_df <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>     <span class="fu">filter</span>(gender <span class="sc">==</span> <span class="st">"feminine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="ggplot2" class="slide level2">
 <h2><code>{ggplot2}</code></h2>
@@ -538,16 +586,16 @@ dplyr, ggplot2 (i.e.&nbsp;tidyverse)<br>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>my_plot <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> gender))</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>my_plot <span class="sc">|&gt;</span> </span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">ggplotly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>my_plot <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> gender))</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>my_plot <span class="sc">|&gt;</span> </span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">ggplotly</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -612,11 +660,11 @@ dplyr, ggplot2 (i.e.&nbsp;tidyverse)<br>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>my_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(my_fit) </span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>broom<span class="sc">::</span><span class="fu">glance</span>(my_fit) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(mass <span class="sc">~</span> height, <span class="at">data =</span> starwars <span class="sc">|&gt;</span> <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>))</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(my_fit) </span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>broom<span class="sc">::</span><span class="fu">glance</span>(my_fit) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -626,10 +674,10 @@ dplyr, ggplot2 (i.e.&nbsp;tidyverse)<br>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>starwars <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>starwars <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">500</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(height, mass)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -943,12 +991,15 @@ Duke University Libraries</span><br>
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -959,13 +1010,6 @@ Duke University Libraries</span><br>
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1017,7 +1061,24 @@ Duke University Libraries</span><br>
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -1055,24 +1116,42 @@ Duke University Libraries</span><br>
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
