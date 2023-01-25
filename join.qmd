@@ -1,0 +1,110 @@
+---
+title: "join two data frames"
+author: "John Little"
+
+date-modified: 'today'
+date-format: long
+
+format: 
+  html:
+    footer: "CC BY 4.0 John R Little"
+
+license: CC BY    
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Join
+
+There are a series of [join commands](https://dplyr.tidyverse.org/reference/index.html#section-two-table-verbs)
+
+-   left_join, inner_join, right_join, full_join,
+-   semi_join, anti_join
+
+![dplyr joins visualized](https://pbs.twimg.com/media/B6eUTTACUAAahLf.png)
+
+First let's read in the favorability ratings data from fivethirtyeight.com
+
+## data
+
+These exercisees use the following [`ggplot2` training datasets](https://ggplot2.tidyverse.org/reference/index.html#section-data)
+
+-   dplyr::starwars
+-   Data from fivethrityeight.org (modified)
+
+```{r}
+fav_ratings <- read_csv("data/538_favorability_popularity.csv", skip = 11)
+fav_ratings
+```
+
+```{r}
+starwars
+```
+
+Join on a **key** that is common across two data frames. For best results use a numeric key that promotes precision. Of course, we're going to use a alphabetic key, `name`, which will highlight what can go wrong and introduce troubleshooting strategies.
+
+In this case, the key will be the `name` variable that is common to both tables. We're using the `fav_ratings` tibble and the `starwars` tibble.
+
+```{r}
+fav_ratings %>% 
+  # left_join(starwars, by = "name") |> 
+  # left_join(starwars, by = c("name" = "name"))
+  left_join(starwars)  %>%
+  arrange(desc(fav_rating))
+```
+
+### anti_join
+
+what is in the left table and not the right table.
+
+```{r}
+anti_join(fav_ratings, starwars) %>% arrange(name)
+anti_join(starwars, fav_ratings) %>% arrange(name)
+```
+
+### semi_join or inner_join
+
+join only the rows that match.
+
+```{r}
+fav_ratings |> 
+  semi_join(starwars)
+```
+
+### Regex
+
+Regular expressions and {stringr} can be handy when manipulating character variables into join keys.
+
+-   str_detect()
+
+-   str_to_lower()
+
+-   str_remove()
+
+-   str_trim()
+
+-   str_extract()
+
+```{r}
+starwars %>% 
+  filter(str_detect(name, 
+                    regex("3p|palpatine|obi|amidala|leia|d2", 
+                          ignore_case = TRUE))) %>% 
+  arrange(name)
+```
+
+```{r}
+fav_ratings %>% 
+  filter(str_detect(name, 
+                    regex("3p|palpatine|obi|amidala|leia|d2", 
+                          ignore_case = TRUE))) %>% 
+  arrange(name)
+```
+
+## See Also
+
+-   dplyr::**bind_rows**()
+
+-   dplyr::**bind_cols**()

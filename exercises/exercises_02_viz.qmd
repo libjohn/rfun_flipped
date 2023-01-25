@@ -54,7 +54,7 @@ mpg %>%
 
 ## Your Turn 3
 
-Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
+Replace this scatter plot with one that draws box plots. Use the cheat sheet. Try your best guess.
 
 ```{r}
 mpg %>% 
