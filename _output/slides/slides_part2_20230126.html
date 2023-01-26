@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.1.179">
 
   <meta name="author" content="John R Little">
-  <meta name="dcterms.date" content="2023-01-25">
+  <meta name="dcterms.date" content="2023-01-26">
   <title>R for data science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -396,7 +396,7 @@
   <h1 class="title">R for data science</h1>
   <p class="subtitle">Visualization, pivot, join, <br>regression</p>
   <p class="author">John R Little</p>
-  <p class="date">January 25, 2023</p>
+  <p class="date">January 26, 2023</p>
 </section>
 
 <section>
@@ -406,7 +406,7 @@
 <p>John R Little<br>
 <span class="muted mediumtext">Center for Data &amp; Visualization Sciences</span><br>
 <span class="muted mediumtext">Duke University</span></p>
-<p>2023 January 25</p>
+<p>2023 January 26</p>
 <div class="right-justify muted mediumtext">
 <p>Code, data, and slides<br>
 https://github.com/libjohn/rfun_flipped<br>
@@ -417,7 +417,7 @@ https://github.com/libjohn/intro2r_exercises</p>
 
 </div>
 <div class="cell-output-display">
-<div class="countdown" id="timer_6be29dc3" data-update-every="1" tabindex="0" style="right:1;bottom:0;left:0;">
+<div class="countdown" id="timer_522d0ae9" data-update-every="1" tabindex="0" style="right:1;bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -432,7 +432,7 @@ https://github.com/libjohn/intro2r_exercises</p>
 <h2>How to learn R efficiently</h2>
 <ul>
 <li><p><span class="muted">Part 1: Data wrangling with {dplyr}</span></p></li>
-<li><p>Part 2: (today) visualization with {ggplot2}, briefly: EDA, interactive plots, linear regression models</p></li>
+<li><p>Part 2: (today) visualization with {ggplot2}, briefly: EDA, interactive plots, join, pivot, linear regression models</p></li>
 <li><p><span class="muted">Part 3: iterations &amp; custom functions</span></p></li>
 <li><p><span class="muted">Part 4: case study in wrangling and visualization by ingesting multiple excel worksheets from multiple excel workbooks</span></p></li>
 </ul>
@@ -443,8 +443,11 @@ https://github.com/libjohn/intro2r_exercises</p>
 <li>{ggplot2} for visualization</li>
 <li>{skimr} for EDA</li>
 <li>{plotly} interactive graphics ({shiny} {observable})</li>
-<li>Regression <code>lm()</code> and {broom}</li>
+<li><code>left_join()</code> &amp; <code>pivot_longer()</code></li>
+<li>Regression <code>lm()</code> and {broom}
+<ul>
 <li>Modeling and ML with {tidymodels}</li>
+</ul></li>
 </ul>
 </section>
 <section id="quick-review" class="slide level2">
@@ -634,6 +637,20 @@ dplyr, ggplot2 (i.e.&nbsp;tidyverse)<br>
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><span class="muted">There are several {tidyr} functions that help tidy data.</span></p>
 </div>
+</div>
+</div>
+</section>
+<section id="join" class="slide level2">
+<h2>join</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><br> <code>left_join()</code></p>
+<p><br></p>
+<p><code>anti_join()</code></p>
+<p><br></p>
+<p><span class="muted">etc.</span></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="https://pbs.twimg.com/media/B6eUTTACUAAahLf.png"></p>
 </div>
 </div>
 </section>

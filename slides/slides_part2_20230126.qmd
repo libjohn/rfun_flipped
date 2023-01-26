@@ -61,7 +61,7 @@ countdown(minutes = 15, seconds = 00, left = 0, right = 1)
 
 -   [Part 1: Data wrangling with {dplyr}]{.muted}
 
--   Part 2: (today) visualization with {ggplot2}, briefly: EDA, interactive plots, linear regression models
+-   Part 2: (today) visualization with {ggplot2}, briefly: EDA, interactive plots, join, pivot, linear regression models
 
 -   [Part 3: iterations & custom functions]{.muted}
 
@@ -72,8 +72,9 @@ countdown(minutes = 15, seconds = 00, left = 0, right = 1)
 -   {ggplot2} for visualization
 -   {skimr} for EDA
 -   {plotly} interactive graphics ({shiny} {observable})
+-   `left_join()`   &  `pivot_longer()`
 -   Regression `lm()` and {broom}
--   Modeling and ML with {tidymodels}
+    -   Modeling and ML with {tidymodels}
 
 ## quick review
 
@@ -176,6 +177,30 @@ See Also: {htmlwidgets}, {shiny}, Quarto with Observable JS
 [There are several {tidyr} functions that help tidy data.]{.muted}
 
 ::: 
+
+## join
+
+:::: {.columns}
+
+::: {.column width="60%"}
+<br/>
+`left_join()`  
+
+<br/>
+
+`anti_join()`  
+
+<br/>
+
+[etc.]{.muted} 
+
+:::
+
+::: {.column width="40%"}
+![](https://pbs.twimg.com/media/B6eUTTACUAAahLf.png)
+:::
+
+::::
 
 
 ## Regression [(modeling)]{.muted}
