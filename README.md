@@ -56,8 +56,3 @@ For access to videos, see the Rfun [*quickStart with R*](https://rfun.library.du
 ## Notes
 
 There are URLs in the _outline_ and _quickstart_ files (and elsewhere).  Among those links you can find links to various static and interactive exercises.  And, I have a useful set of exercises at the [intro2r-code github repo](https://github.com/libjohn/intro2r-code).
-
-
-## hello world
-
-test test test
